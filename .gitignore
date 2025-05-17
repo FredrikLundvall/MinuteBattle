@@ -1,0 +1,6 @@
+.vs/
+.config/
+bin/
+.vscode/launch.json
+Content/obj/
+obj/
