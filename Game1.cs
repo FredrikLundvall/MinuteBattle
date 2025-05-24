@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using MinuteBattle.Graphics;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace MinuteBattle
@@ -9,12 +10,12 @@ namespace MinuteBattle
     {
         Texture2D spriteTexture;
         private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
         protected Rectangle drawingRectangle;
         private float rotationAngle;
         private Vector2 spritePosition;
         private Vector2 spriteOrigin;
         SpriteFont font;
+        Clip _clip;
 
         public Game1()
         {
@@ -26,15 +27,27 @@ namespace MinuteBattle
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            if (GraphicsDevice == null)
+            {
+                _graphics.ApplyChanges();
+            }
+
+            // Change the resolution to match your current desktop
+            _graphics.IsFullScreen = true;
+            _graphics.PreferredBackBufferWidth = GraphicsDevice.Adapter.CurrentDisplayMode.Width;
+            _graphics.PreferredBackBufferHeight = GraphicsDevice.Adapter.CurrentDisplayMode.Height;
+            _graphics.ApplyChanges();
 
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-           // TODO: use this.Content to load your game content here
-            _spriteBatch = new SpriteBatch(GraphicsDevice);
+            // TODO: use this.Content to load your game content here
             spriteTexture = Content.Load<Texture2D>("Brittish/brittish_soldier_128");
+            TextureList.Add(TextureList.BRIT_SOLDIER, spriteTexture);
+            Globals.StaticSpriteBatch = new SpriteBatch(GraphicsDevice);
+
             font = Content.Load<SpriteFont>("GUI/fonts/BebasNeue-Regular");
             // Get the viewport (window) dimensions
             var viewport = _graphics.GraphicsDevice.Viewport;
@@ -52,6 +65,8 @@ namespace MinuteBattle
             // Set the position of the texture to be the center of the screen.
             spritePosition.X = viewport.Width / 2;
             spritePosition.Y = viewport.Height / 2;
+
+            _clip = new Clip(spritePosition, 0, new Animation(spriteOrigin, TextureList.BRIT_SOLDIER));
         }
 
         protected override void Update(GameTime gameTime)
@@ -69,6 +84,7 @@ namespace MinuteBattle
             float circle = MathHelper.Pi * 2;
             rotationAngle %= circle;
 
+            _clip._rotation = rotationAngle;
             base.Update(gameTime);
         }
 
@@ -77,19 +93,20 @@ namespace MinuteBattle
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            _spriteBatch.Begin();
+            Globals.StaticSpriteBatch.Begin();
             //_spriteBatch.Draw(soldierSprite, spritePosition, Color.White);
             //_spriteBatch.Draw(soldierSprite, drawingRectangle, Color.White);
-            _spriteBatch.Draw(spriteTexture, spritePosition, null, Color.White, rotationAngle, spriteOrigin, 0.5f, SpriteEffects.None, 0f);
+            //_spriteBatch.Draw(spriteTexture, spritePosition, null, Color.White, rotationAngle, spriteOrigin, 0.5f, SpriteEffects.None, 0f);
+            _clip.Draw(gameTime);
 
             // Finds the center of the string in coordinates inside the text rectangle
             var text = "Minute Battle";
             Vector2 textMiddlePoint = font.MeasureString(text) / 2;
             // Places text in center of the screen
             Vector2 position = new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 4);
-            _spriteBatch.DrawString(font, text, position, Color.DarkOliveGreen, 0, textMiddlePoint, 1.0f, SpriteEffects.None, 0.5f);
+            Globals.StaticSpriteBatch.DrawString(font, text, position, Color.DarkOliveGreen, 0, textMiddlePoint, 1.0f, SpriteEffects.None, 0.5f);
 
-            _spriteBatch.End();
+            Globals.StaticSpriteBatch.End();
             base.Draw(gameTime);
         }
     }
