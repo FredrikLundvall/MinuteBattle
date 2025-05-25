@@ -1,0 +1,25 @@
+Separation
+
+* Separate game logic from the Graphics.
+* An object holds everything that's supposed to be "replayed" including sound and also silence.
+* The players input is saved in an object and if the time is right the input is handled and an update is made in the object and the "replay" information is changed.
+* When anything is supposed to happen it is placed in an event object that later the game logic will react to.
+
+
+Quick round deck builder (Minute battle)
+* Every battle have different win conditions.
+* Xp gives possibility to upgrade the cards
+* Gold is used to buy Resources or change the deck.
+* Xp is received by failed skill checks (or failed skill checks) for example by missing an enemy.
+* Gold is received by successfully achieving objectives.
+* Xp och gold can also be received in encounters.
+* Resources is equal to hp, when they are reduced to zero it's game over.
+* Resources can be in different positions: reinforcements, local base, in battle.
+* The resources in the different positions have a max sizes and a speed of transfer between the positions.
+* When an unit dies that resource points are lost.
+* If an unit survives the resorces Points from that unit are recovered.
+* Retreat has to be possible and manytimes beneficial.
+* Win conditions can determine if retreat is possible or will be to costly.
+
+
+
