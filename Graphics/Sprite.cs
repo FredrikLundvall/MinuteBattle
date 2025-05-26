@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace MinuteBattle.Graphics
 {
-    public class Clip
+    public class Sprite
     {
         public Vector2 _position = Vector2.Zero;
         public float _rotation = 0;
-        public Animation _animation = Animation.EmptyAnimation;
-        public Clip(Vector2 position, float rotation, Animation animation)
+        public Texture _animation = Texture.EmptyAnimation;
+        public Sprite(Vector2 position, float rotation, Texture animation)
         {
             _position = position;
             _rotation = rotation;

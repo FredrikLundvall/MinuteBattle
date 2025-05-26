@@ -15,7 +15,7 @@ namespace MinuteBattle
         private Vector2 spritePosition;
         private Vector2 spriteOrigin;
         SpriteFont font;
-        Clip _clip;
+        Sprite _clip;
 
         public Game1()
         {
@@ -66,7 +66,7 @@ namespace MinuteBattle
             spritePosition.X = viewport.Width / 2;
             spritePosition.Y = viewport.Height / 2;
 
-            _clip = new Clip(spritePosition, 0, new Animation(spriteOrigin, TextureList.BRIT_SOLDIER));
+            _clip = new Sprite(spritePosition, 0, new Graphics.Texture(spriteOrigin, TextureList.BRIT_SOLDIER));
         }
 
         protected override void Update(GameTime gameTime)

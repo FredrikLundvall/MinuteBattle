@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace MinuteBattle.Graphics
 {
-    public class Animation
+    public class Texture
     {
-        public static Animation EmptyAnimation = new Animation(Vector2.Zero, TextureList.EMPTY);
+        public static Texture EmptyAnimation = new Texture(Vector2.Zero, TextureList.EMPTY);
         public Vector2 _origin = Vector2.Zero;
         public int _textureId = 0;
-        public Animation(Vector2 origin, int textureId) 
+        public Texture(Vector2 origin, int textureId) 
         {
             _origin = origin;
             _textureId = textureId;

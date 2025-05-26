@@ -14,6 +14,10 @@ namespace MinuteBattle.Graphics
         public const int BRIT_SOLDIER = 1;
         public const int GERM_SOLDIER = 2;
         internal static Dictionary<int, Texture2D> _textureList = new Dictionary<int, Texture2D>();
+        static TextureList()
+        {
+            Add(EMPTY, null);
+        }
         public static void Add(int index, Texture2D texture)
         {
             _textureList[index] = texture;
