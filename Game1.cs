@@ -2,20 +2,16 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MinuteBattle.Graphics;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace MinuteBattle
 {
     public class Game1 : Game
     {
-        Texture2D spriteTexture;
         private GraphicsDeviceManager _graphics;
-        protected Rectangle drawingRectangle;
-        private float rotationAngle;
-        private Vector2 spritePosition;
-        private Vector2 spriteOrigin;
-        SpriteFont font;
-        Sprite _clip;
+        private float _rotationAngle;
+        private Vector2 _spritePosition;
+        SpriteFont _font;
+        Puppet _brittishPrivate;
 
         public Game1()
         {
@@ -43,30 +39,20 @@ namespace MinuteBattle
 
         protected override void LoadContent()
         {
-            // TODO: use this.Content to load your game content here
+            Texture2D spriteTexture;
             spriteTexture = Content.Load<Texture2D>("Brittish/brittish_soldier_128");
-            TextureList.Add(TextureList.BRIT_SOLDIER, spriteTexture);
+            TextureDictionary.Add(TextureEnum.BrittishSoldier, spriteTexture);
             Globals.StaticSpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            font = Content.Load<SpriteFont>("GUI/fonts/BebasNeue-Regular");
+            _font = Content.Load<SpriteFont>("GUI/fonts/BebasNeue-Regular");
+
             // Get the viewport (window) dimensions
             var viewport = _graphics.GraphicsDevice.Viewport;
-
-            // Set the sprite drawing area from the Viewport origin (0,0) to 80% the sprite scale width and 100% of the sprite scale height.
-            drawingRectangle.X = viewport.X;
-            drawingRectangle.Y = viewport.Y;
-            drawingRectangle.Width = 32;
-            drawingRectangle.Height = 32;
-
-            // Set the Texture origin to be the center of the texture.
-            spriteOrigin.X = 40; // spriteTexture.Width / 2;
-            spriteOrigin.Y = 77; // spriteTexture.Height / 2;
-
             // Set the position of the texture to be the center of the screen.
-            spritePosition.X = viewport.Width / 2;
-            spritePosition.Y = viewport.Height / 2;
+            _spritePosition.X = viewport.Width / 2;
+            _spritePosition.Y = viewport.Height / 2;
 
-            _clip = new Sprite(spritePosition, 0, new Graphics.Texture(spriteOrigin, TextureList.BRIT_SOLDIER));
+            _brittishPrivate = PuppetFactory.CreatePuppet(PuppetEnum.BrittishPrivate);
         }
 
         protected override void Update(GameTime gameTime)
@@ -74,17 +60,16 @@ namespace MinuteBattle
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
             // The time since Update was called last.
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
-            // TODO: Add your game logic here.
             // Simple roation logic to rotate the sprite in a clockwise direction over time
-            rotationAngle += elapsed;
+            _rotationAngle += elapsed;
             float circle = MathHelper.Pi * 2;
-            rotationAngle %= circle;
+            _rotationAngle %= circle;
 
-            _clip._rotation = rotationAngle;
+            _brittishPrivate._rotation = _rotationAngle;
+            _brittishPrivate._position = _spritePosition;
             base.Update(gameTime);
         }
 
@@ -92,19 +77,15 @@ namespace MinuteBattle
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
             Globals.StaticSpriteBatch.Begin();
-            //_spriteBatch.Draw(soldierSprite, spritePosition, Color.White);
-            //_spriteBatch.Draw(soldierSprite, drawingRectangle, Color.White);
-            //_spriteBatch.Draw(spriteTexture, spritePosition, null, Color.White, rotationAngle, spriteOrigin, 0.5f, SpriteEffects.None, 0f);
-            _clip.Draw(gameTime);
+            _brittishPrivate.Draw(gameTime);
 
             // Finds the center of the string in coordinates inside the text rectangle
             var text = "Minute Battle";
-            Vector2 textMiddlePoint = font.MeasureString(text) / 2;
+            Vector2 textMiddlePoint = _font.MeasureString(text) / 2;
             // Places text in center of the screen
             Vector2 position = new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 4);
-            Globals.StaticSpriteBatch.DrawString(font, text, position, Color.DarkOliveGreen, 0, textMiddlePoint, 1.0f, SpriteEffects.None, 0.5f);
+            Globals.StaticSpriteBatch.DrawString(_font, text, position, Color.DarkOliveGreen, 0, textMiddlePoint, 1.0f, SpriteEffects.None, 0.5f);
 
             Globals.StaticSpriteBatch.End();
             base.Draw(gameTime);

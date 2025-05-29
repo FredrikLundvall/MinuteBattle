@@ -8,15 +8,13 @@ using System.Threading.Tasks;
 
 namespace MinuteBattle.Graphics
 {
-    public class Sprite
+    public class Puppet
     {
         public Vector2 _position = Vector2.Zero;
         public float _rotation = 0;
-        public Texture _animation = Texture.EmptyAnimation;
-        public Sprite(Vector2 position, float rotation, Texture animation)
+        public TextureAnimation _animation = TextureAnimation.EmptyAnimation;
+        public Puppet(TextureAnimation animation)
         {
-            _position = position;
-            _rotation = rotation;
             _animation = animation;
         }
         public void Draw(GameTime gameTime)

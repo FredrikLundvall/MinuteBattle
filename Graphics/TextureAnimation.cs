@@ -8,19 +8,19 @@ using System.Threading.Tasks;
 
 namespace MinuteBattle.Graphics
 {
-    public class Texture
+    public class TextureAnimation
     {
-        public static Texture EmptyAnimation = new Texture(Vector2.Zero, TextureList.EMPTY);
+        public static TextureAnimation EmptyAnimation = new TextureAnimation(Vector2.Zero, TextureEnum.Empty);
         public Vector2 _origin = Vector2.Zero;
-        public int _textureId = 0;
-        public Texture(Vector2 origin, int textureId) 
+        public TextureEnum _textureId = TextureEnum.Empty;
+        public TextureAnimation(Vector2 origin, TextureEnum textureId) 
         {
             _origin = origin;
             _textureId = textureId;
         }
         public Texture2D getTexture()
         {
-            return TextureList.Get(_textureId);
+            return TextureDictionary.Get(_textureId);
         }
     }
 }
