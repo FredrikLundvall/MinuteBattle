@@ -15,6 +15,8 @@ namespace MinuteBattle.Graphics
             switch (puppetType) {
                 case PuppetEnum.BrittishPrivate:
                     return new Puppet(new TextureAnimation(new Vector2(40, 77), TextureEnum.BrittishSoldier));
+                case PuppetEnum.GermanPrivate:
+                    return new Puppet(new TextureAnimation(new Vector2(40, 77), TextureEnum.GermanSoldier));
                 default:
                     return null;
             }

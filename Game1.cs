@@ -11,7 +11,8 @@ namespace MinuteBattle
         private float _rotationAngle;
         private Vector2 _spritePosition;
         SpriteFont _font;
-        Puppet _brittishPrivate;
+        int _brittishPrivate1 = 1;
+        int _germanPrivate1 = 2;
 
         public Game1()
         {
@@ -42,6 +43,9 @@ namespace MinuteBattle
             Texture2D spriteTexture;
             spriteTexture = Content.Load<Texture2D>("Brittish/brittish_soldier_128");
             TextureDictionary.Add(TextureEnum.BrittishSoldier, spriteTexture);
+
+            spriteTexture = Content.Load<Texture2D>("German/german_soldier_128");
+            TextureDictionary.Add(TextureEnum.GermanSoldier, spriteTexture);
             Globals.StaticSpriteBatch = new SpriteBatch(GraphicsDevice);
 
             _font = Content.Load<SpriteFont>("GUI/fonts/BebasNeue-Regular");
@@ -52,7 +56,9 @@ namespace MinuteBattle
             _spritePosition.X = viewport.Width / 2;
             _spritePosition.Y = viewport.Height / 2;
 
-            _brittishPrivate = PuppetFactory.CreatePuppet(PuppetEnum.BrittishPrivate);
+            Scene.AddPuppet(_brittishPrivate1, PuppetEnum.BrittishPrivate);
+            Scene.AddPuppet(_germanPrivate1, PuppetEnum.GermanPrivate);
+            Scene.UpdatePuppet(_germanPrivate1, new Vector2(viewport.Width / 3, viewport.Height / 3), MathHelper.Pi / 2, null);
         }
 
         protected override void Update(GameTime gameTime)
@@ -68,8 +74,7 @@ namespace MinuteBattle
             float circle = MathHelper.Pi * 2;
             _rotationAngle %= circle;
 
-            _brittishPrivate._rotation = _rotationAngle;
-            _brittishPrivate._position = _spritePosition;
+            Scene.UpdatePuppet(_brittishPrivate1, _spritePosition, _rotationAngle, null);
             base.Update(gameTime);
         }
 
@@ -78,7 +83,7 @@ namespace MinuteBattle
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             Globals.StaticSpriteBatch.Begin();
-            _brittishPrivate.Draw(gameTime);
+            Scene.Draw(gameTime);
 
             // Finds the center of the string in coordinates inside the text rectangle
             var text = "Minute Battle";
