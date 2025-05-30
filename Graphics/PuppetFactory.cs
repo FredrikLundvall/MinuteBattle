@@ -17,6 +17,8 @@ namespace MinuteBattle.Graphics
                     return new Puppet(new TextureAnimation(new Vector2(40, 77), TextureEnum.BrittishSoldier));
                 case PuppetEnum.GermanPrivate:
                     return new Puppet(new TextureAnimation(new Vector2(40, 77), TextureEnum.GermanSoldier));
+                case PuppetEnum.GermanMachineGun:
+                    return new Puppet(new TextureAnimation(new Vector2(40, 77), TextureEnum.GermanMachineGun));
                 default:
                     return null;
             }

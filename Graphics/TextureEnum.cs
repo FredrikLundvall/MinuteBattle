@@ -8,6 +8,6 @@ namespace MinuteBattle.Graphics
 {
     public enum TextureEnum
     {
-        Empty, BrittishSoldier, GermanSoldier
+        Empty, BrittishSoldier, GermanSoldier, GermanMachineGun
     }
 }

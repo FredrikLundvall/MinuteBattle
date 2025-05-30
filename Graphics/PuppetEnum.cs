@@ -8,6 +8,6 @@ namespace MinuteBattle.Graphics
 {
     public enum PuppetEnum
     {
-        BrittishPrivate, GermanPrivate
+        BrittishPrivate, GermanPrivate, GermanMachineGun
     }
 }

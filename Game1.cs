@@ -13,6 +13,7 @@ namespace MinuteBattle
         SpriteFont _font;
         int _brittishPrivate1 = 1;
         int _germanPrivate1 = 2;
+        int _germanMachineGun1 = 3;
 
         public Game1()
         {
@@ -48,6 +49,10 @@ namespace MinuteBattle
             TextureDictionary.Add(TextureEnum.GermanSoldier, spriteTexture);
             Globals.StaticSpriteBatch = new SpriteBatch(GraphicsDevice);
 
+            spriteTexture = Content.Load<Texture2D>("German/german_machine_gun_128");
+            TextureDictionary.Add(TextureEnum.GermanMachineGun, spriteTexture);
+            Globals.StaticSpriteBatch = new SpriteBatch(GraphicsDevice);
+
             _font = Content.Load<SpriteFont>("GUI/fonts/BebasNeue-Regular");
 
             // Get the viewport (window) dimensions
@@ -58,7 +63,9 @@ namespace MinuteBattle
 
             Scene.AddPuppet(_brittishPrivate1, PuppetEnum.BrittishPrivate);
             Scene.AddPuppet(_germanPrivate1, PuppetEnum.GermanPrivate);
+            Scene.AddPuppet(_germanMachineGun1, PuppetEnum.GermanMachineGun);
             Scene.UpdatePuppet(_germanPrivate1, new Vector2(viewport.Width / 3, viewport.Height / 3), MathHelper.Pi / 2, null);
+            Scene.UpdatePuppet(_germanMachineGun1, new Vector2(viewport.Width / 4, viewport.Height / 2 + viewport.Height / 4), MathHelper.Pi / 10, null);
         }
 
         protected override void Update(GameTime gameTime)
