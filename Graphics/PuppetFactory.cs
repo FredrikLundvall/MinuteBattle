@@ -14,11 +14,11 @@ namespace MinuteBattle.Graphics
         {
             switch (puppetType) {
                 case PuppetEnum.BrittishPrivate:
-                    return new Puppet(new TextureAnimation(new Vector2(40, 77), TextureEnum.BrittishSoldier));
+                    return new Puppet(new TextureAnimation(new Vector2(40, 77), TextureEnum.BrittishSoldier), new FontAnimation(Vector2.Zero, FontEnum.BebasNeue_Regular_18));
                 case PuppetEnum.GermanPrivate:
-                    return new Puppet(new TextureAnimation(new Vector2(40, 77), TextureEnum.GermanSoldier));
+                    return new Puppet(new TextureAnimation(new Vector2(40, 77), TextureEnum.GermanSoldier), new FontAnimation(Vector2.Zero, FontEnum.BebasNeue_Regular_18));
                 case PuppetEnum.GermanMachineGun:
-                    return new Puppet(new TextureAnimation(new Vector2(40, 77), TextureEnum.GermanMachineGun));
+                    return new Puppet(new TextureAnimation(new Vector2(40, 77), TextureEnum.GermanMachineGun), new FontAnimation(Vector2.Zero, FontEnum.BebasNeue_Regular_18));
                 default:
                     return null;
             }

@@ -1,2 +1,2 @@
-﻿using var game = new MinuteBattle.Game1();
+﻿using var game = new MinuteBattle.GameLoop();
 game.Run();

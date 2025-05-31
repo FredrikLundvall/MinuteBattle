@@ -6,18 +6,17 @@ using System;
 
 namespace MinuteBattle
 {
-    public class Game1 : Game
+    public class GameLoop : Game
     {
         private GraphicsDeviceManager _graphics;
         private float _rotationAngle;
         private Vector2 _spritePosition;
-        SpriteFont _font;
         int _brittishPrivate1 = 1;
         int _germanPrivate1 = 2;
         int _germanMachineGun1 = 3;
         TimeSpan _lastGarbageCollection;
 
-        public Game1()
+        public GameLoop()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -49,13 +48,15 @@ namespace MinuteBattle
 
             spriteTexture = Content.Load<Texture2D>("German/german_soldier_128");
             TextureDictionary.Add(TextureEnum.GermanSoldier, spriteTexture);
-            Globals.StaticSpriteBatch = new SpriteBatch(GraphicsDevice);
 
             spriteTexture = Content.Load<Texture2D>("German/german_machine_gun_128");
             TextureDictionary.Add(TextureEnum.GermanMachineGun, spriteTexture);
+
+            SpriteFont font = Content.Load<SpriteFont>("GUI/fonts/BebasNeue-Regular_18");
+            FontDictionary.Add(FontEnum.BebasNeue_Regular_18, font);
+
             Globals.StaticSpriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _font = Content.Load<SpriteFont>("GUI/fonts/BebasNeue-Regular");
 
             // Get the viewport (window) dimensions
             var viewport = _graphics.GraphicsDevice.Viewport;
@@ -66,8 +67,9 @@ namespace MinuteBattle
             Scene.AddPuppet(_brittishPrivate1, PuppetEnum.BrittishPrivate);
             Scene.AddPuppet(_germanPrivate1, PuppetEnum.GermanPrivate);
             Scene.AddPuppet(_germanMachineGun1, PuppetEnum.GermanMachineGun);
-            Scene.UpdatePuppet(_germanPrivate1, new Vector2(viewport.Width / 3, viewport.Height / 3), MathHelper.Pi / 2, null);
-            Scene.UpdatePuppet(_germanMachineGun1, new Vector2(viewport.Width / 4, viewport.Height / 2 + viewport.Height / 4), MathHelper.Pi / 10, null);
+            Scene.UpdatePuppet(_brittishPrivate1, new Vector2(viewport.Width / 2, viewport.Height / 2), 0, null, new Vector2(0, 60), "Richard", Color.DarkOliveGreen, null);
+            Scene.UpdatePuppet(_germanPrivate1, new Vector2(viewport.Width / 3, viewport.Height / 3), MathHelper.Pi / 2, null, new Vector2(0, 60), "Horst", Color.DarkOliveGreen, null);
+            Scene.UpdatePuppet(_germanMachineGun1, new Vector2(viewport.Width / 4, viewport.Height / 2 + viewport.Height / 4), MathHelper.Pi / 10, null, new Vector2(0, 60), "Wilhelm", Color.DarkOliveGreen, null);
 
             //Try to force a garbage collection 
             GC.Collect();
@@ -98,7 +100,7 @@ namespace MinuteBattle
             float circle = MathHelper.Pi * 2;
             _rotationAngle %= circle;
 
-            Scene.UpdatePuppet(_brittishPrivate1, _spritePosition, _rotationAngle, null);
+            Scene.UpdatePuppet(_brittishPrivate1, _spritePosition, _rotationAngle, null, new Vector2(0, 60), "Richard", Color.DarkOliveGreen, null);
             base.Update(gameTime);
         }
 
@@ -110,11 +112,11 @@ namespace MinuteBattle
             Scene.Draw(gameTime);
 
             // Finds the center of the string in coordinates inside the text rectangle
-            var text = "Minute Battle";
-            Vector2 textMiddlePoint = _font.MeasureString(text) / 2;
+            //var text = "Minute Battle";
+            //Vector2 textMiddlePoint = _font.MeasureString(text) / 2;
             // Places text in center of the screen
-            Vector2 position = new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 4);
-            Globals.StaticSpriteBatch.DrawString(_font, text, position, Color.DarkOliveGreen, 0, textMiddlePoint, 1.0f, SpriteEffects.None, 0.5f);
+            //Vector2 position = new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 4);
+            //Globals.StaticSpriteBatch.DrawString(_font, text, position, Color.DarkOliveGreen, 0, textMiddlePoint, 1.0f, SpriteEffects.None, 0.5f);
 
             Globals.StaticSpriteBatch.End();
             base.Draw(gameTime);
