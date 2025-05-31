@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MinuteBattle.Graphics;
+using System;
 
 namespace MinuteBattle
 {
@@ -14,6 +15,7 @@ namespace MinuteBattle
         int _brittishPrivate1 = 1;
         int _germanPrivate1 = 2;
         int _germanMachineGun1 = 3;
+        TimeSpan _lastGarbageCollection;
 
         public Game1()
         {
@@ -66,12 +68,27 @@ namespace MinuteBattle
             Scene.AddPuppet(_germanMachineGun1, PuppetEnum.GermanMachineGun);
             Scene.UpdatePuppet(_germanPrivate1, new Vector2(viewport.Width / 3, viewport.Height / 3), MathHelper.Pi / 2, null);
             Scene.UpdatePuppet(_germanMachineGun1, new Vector2(viewport.Width / 4, viewport.Height / 2 + viewport.Height / 4), MathHelper.Pi / 10, null);
+
+            //Try to force a garbage collection 
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            _lastGarbageCollection = new TimeSpan();
         }
 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            if ((gameTime.TotalGameTime - _lastGarbageCollection).TotalSeconds > 11.0)
+            {
+                //Suggest a garbage collection 
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                _lastGarbageCollection = gameTime.TotalGameTime;
+            }
 
             // The time since Update was called last.
             float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
