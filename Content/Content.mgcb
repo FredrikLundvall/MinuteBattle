@@ -54,7 +54,7 @@
 /processor:FontDescriptionProcessor
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
-/build:GUI/fonts/BebasNeue-Regular.spritefont
+/build:GUI/fonts/BebasNeue-Regular.spritefont;GUI/fonts/BebasNeue-Regular_18.spritefont
 
 #begin GUI/icons/field_camp_64.png
 /importer:TextureImporter
