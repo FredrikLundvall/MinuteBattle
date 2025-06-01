@@ -22,8 +22,7 @@ namespace MinuteBattle.Graphics
         }
         public void Draw(GameTime gameTime)
         {
-            Globals.StaticSpriteBatch.Draw(_textureAnimation.getTexture(), _position, null, Color.White, _rotation, _textureAnimation._origin, 0.5f, SpriteEffects.None, 0f);
-            //Globals.StaticSpriteBatch.DrawString(_fontAnimation.getFont(), _text, _position + _textOffset, _textColor, 0, _fontAnimation._origin, 1.0f, SpriteEffects.None, 0.5f);
+            _textureAnimation.Draw(_position, _rotation, gameTime);
             _fontAnimation.Draw(_position, gameTime);
         }
     }

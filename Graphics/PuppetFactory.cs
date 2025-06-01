@@ -14,11 +14,20 @@ namespace MinuteBattle.Graphics
         {
             switch (puppetType) {
                 case PuppetEnum.BrittishPrivate:
-                    return new Puppet(new TextureAnimation(new Vector2(40, 77), TextureEnum.BrittishSoldier), new FontAnimation(Vector2.Zero, FontEnum.BebasNeue_Regular_18, Vector2.Zero, "", Color.Transparent));
+                    return new Puppet(
+                        new TextureAnimation(new Vector2(40, 77), TextureEnum.BrittishSoldier, Vector2.Zero, 0), 
+                        new FontAnimation(Vector2.Zero, FontEnum.BebasNeue_Regular_18, Vector2.Zero, "", Color.Transparent)
+                        );
                 case PuppetEnum.GermanPrivate:
-                    return new Puppet(new TextureAnimation(new Vector2(40, 77), TextureEnum.GermanSoldier), new FontAnimation(Vector2.Zero, FontEnum.BebasNeue_Regular_18, Vector2.Zero, "", Color.Transparent));
+                    return new Puppet(
+                        new TextureAnimation(new Vector2(40, 77), TextureEnum.GermanSoldier, Vector2.Zero, 0), 
+                        new FontAnimation(Vector2.Zero, FontEnum.BebasNeue_Regular_18, Vector2.Zero, "", Color.Transparent)
+                        );
                 case PuppetEnum.GermanMachineGun:
-                    return new Puppet(new TextureAnimation(new Vector2(40, 77), TextureEnum.GermanMachineGun), new FontAnimation(Vector2.Zero, FontEnum.BebasNeue_Regular_18, Vector2.Zero, "", Color.Transparent));
+                    return new Puppet(
+                        new TextureAnimation(new Vector2(40, 77), TextureEnum.GermanMachineGun, Vector2.Zero, 0), 
+                        new FontAnimation(Vector2.Zero, FontEnum.BebasNeue_Regular_18, Vector2.Zero, "", Color.Transparent)
+                        );
                 default:
                     return null;
             }
