@@ -22,10 +22,6 @@ namespace MinuteBattle.Graphics
             {
                 _puppetList[id]._position = position;
                 _puppetList[id]._rotation = rotation;
-                _puppetList[id]._textOffset = textOffset;
-
-                _puppetList[id]._text = text;
-                _puppetList[id]._textColor = textColor;
                 if (textureAnimation != null)
                 {
                     _puppetList[id]._textureAnimation = textureAnimation;
@@ -36,7 +32,11 @@ namespace MinuteBattle.Graphics
                 }
                 if (_puppetList[id]._fontAnimation != null)
                 {
-                    _puppetList[id]._textOffset.X = _puppetList[id]._textOffset.X - (_puppetList[id]._fontAnimation.getFont().MeasureString(text).X / 2);
+                    _puppetList[id]._fontAnimation._textOffset = textOffset;
+                    _puppetList[id]._fontAnimation._textOffset.X = _puppetList[id]._fontAnimation._textOffset.X - (_puppetList[id]._fontAnimation.getFont().MeasureString(text).X / 2);
+
+                    _puppetList[id]._fontAnimation._text = text;
+                    _puppetList[id]._fontAnimation._textColor = textColor;
                 }
             }
         }
