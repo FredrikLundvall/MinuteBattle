@@ -5,32 +5,55 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MinuteBattle.Graphics
 {
-    public class FontAnimation
+    public class FontAnimation: IClip
     {
-        public static FontAnimation EmptyAnimation = new FontAnimation(Vector2.Zero, FontEnum.Empty, Vector2.Zero, "", Color.Transparent);
-        public Vector2 _textOffset = Vector2.Zero;
+        public static FontAnimation EmptyAnimation = new FontAnimation(ClipCategoryEnum.Unknown, FontEnum.Empty, Vector2.Zero, Vector2.Zero, 0, true, "", Color.Transparent);
+        ClipCategoryEnum _clipCategory = ClipCategoryEnum.Unknown;
+        public FontEnum _fontId = FontEnum.Empty;
+        public Vector2 _origin = Vector2.Zero;
+        public Vector2 _offsetPosition = Vector2.Zero;
+        public float _offsetRotation = 0;
+        public bool _useParentRotation = true;
         public string _text = "";
         public Color _textColor = Color.White;
-        public Vector2 _origin = Vector2.Zero;
-        public FontEnum _fontId = FontEnum.Empty;
-        public FontAnimation(Vector2 origin, FontEnum fontId, Vector2 textOffset, string text, Color textColor)
+        public FontAnimation(ClipCategoryEnum clipCategory, FontEnum fontId, Vector2 origin, Vector2 offsetPosition, float offsetRotation, bool useParentRotation, string text, Color textColor)
         {
-            _origin = origin;
+            _clipCategory = clipCategory;
             _fontId = fontId;
-            _textOffset = textOffset;
+            _origin = origin;
+            _offsetPosition = offsetPosition;
+            _offsetRotation = offsetRotation;
+            _useParentRotation = useParentRotation;
             _text = text;
             _textColor = textColor;
         }
-        public SpriteFont getFont()
+        public Vector2 getTextSize()
         {
-            return FontDictionary.Get(_fontId);
+            return FontDictionary.Get(_fontId).MeasureString(_text);
         }
-        public void Draw(Vector2 parentPosition, GameTime gameTime)
+        public void Draw(Vector2 parentPosition, float parentRotation, GameTime gameTime)
         {
-            Globals.StaticSpriteBatch.DrawString(getFont(), _text, parentPosition + _textOffset, _textColor, 0, _origin, 1.0f, SpriteEffects.None, 0.5f);
+            Globals.StaticSpriteBatch.DrawString(FontDictionary.Get(_fontId), _text, parentPosition + _offsetPosition, _textColor, (_useParentRotation)? parentRotation : 0 + _offsetRotation, _origin, 1.0f, SpriteEffects.None, 0.5f);
+        }
+        public ClipCategoryEnum GetCategory()
+        {
+            return _clipCategory;
+        }
+        public bool SetText(string text)
+        {
+            if (this == EmptyAnimation) return false;
+            _text = text;
+            return true;
+        }
+        public bool SetRotation(float rotation)
+        {
+            if (this == EmptyAnimation) return false;
+            _offsetRotation = rotation;
+            return true;
         }
     }
 }

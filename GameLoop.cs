@@ -64,12 +64,13 @@ namespace MinuteBattle
             _spritePosition.X = viewport.Width / 2;
             _spritePosition.Y = viewport.Height / 2;
 
-            Scene.AddPuppet(_brittishPrivate1, PuppetEnum.BrittishPrivate);
-            Scene.AddPuppet(_germanPrivate1, PuppetEnum.GermanPrivate);
-            Scene.AddPuppet(_germanMachineGun1, PuppetEnum.GermanMachineGun);
-            Scene.UpdatePuppet(_brittishPrivate1, new Vector2(viewport.Width / 2, viewport.Height / 2), 0, null, new Vector2(0, 60), "Richard", Color.DarkOliveGreen, null);
-            Scene.UpdatePuppet(_germanPrivate1, new Vector2(viewport.Width / 3, viewport.Height / 3), MathHelper.Pi / 2, null, new Vector2(0, 60), "Horst", Color.DarkOliveGreen, null);
-            Scene.UpdatePuppet(_germanMachineGun1, new Vector2(viewport.Width / 4, viewport.Height / 2 + viewport.Height / 4), MathHelper.Pi / 10, null, new Vector2(0, 60), "Wilhelm", Color.DarkOliveGreen, null);
+            Scene.AddPuppet(_brittishPrivate1, PuppetEnum.BrittishPrivate, new Vector2(viewport.Width / 2, viewport.Height / 2), 0);
+            Scene.AddPuppet(_germanPrivate1, PuppetEnum.GermanPrivate, new Vector2(viewport.Width / 3, viewport.Height / 3), MathHelper.Pi / 2);
+            Scene.AddPuppet(_germanMachineGun1, PuppetEnum.GermanMachineGun, new Vector2(viewport.Width / 4, viewport.Height / 2 + viewport.Height / 4), MathHelper.Pi / 10);
+
+            Scene.getPuppet(_brittishPrivate1).getFirstClip(ClipCategoryEnum.NameTag).SetText("Garreth");
+            Scene.getPuppet(_germanPrivate1).getFirstClip(ClipCategoryEnum.NameTag).SetText("Heisenberg");
+            Scene.getPuppet(_germanMachineGun1).getFirstClip(ClipCategoryEnum.NameTag).SetText("Eichmann");
 
             //Try to force a garbage collection 
             GC.Collect();
@@ -100,25 +101,14 @@ namespace MinuteBattle
             float circle = MathHelper.Pi * 2;
             _rotationAngle %= circle;
 
-            Scene.UpdatePuppet(_brittishPrivate1, _spritePosition, _rotationAngle, null, new Vector2(0, 60), "Richard", Color.DarkOliveGreen, null);
+            Scene.getPuppet(_brittishPrivate1).getFirstClip(ClipCategoryEnum.BaseTexture).SetRotation(_rotationAngle);
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            Globals.StaticSpriteBatch.Begin();
             Scene.Draw(gameTime);
-
-            // Finds the center of the string in coordinates inside the text rectangle
-            //var text = "Minute Battle";
-            //Vector2 textMiddlePoint = _font.MeasureString(text) / 2;
-            // Places text in center of the screen
-            //Vector2 position = new Vector2(Window.ClientBounds.Width / 2, Window.ClientBounds.Height / 4);
-            //Globals.StaticSpriteBatch.DrawString(_font, text, position, Color.DarkOliveGreen, 0, textMiddlePoint, 1.0f, SpriteEffects.None, 0.5f);
-
-            Globals.StaticSpriteBatch.End();
             base.Draw(gameTime);
         }
     }

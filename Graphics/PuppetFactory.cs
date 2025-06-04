@@ -10,27 +10,32 @@ namespace MinuteBattle.Graphics
 {
     public static class PuppetFactory
     {
-        public static Puppet CreatePuppet(PuppetEnum puppetType)
+        public static Puppet CreatePuppet(PuppetEnum puppetType, Vector2 position, float rotation)
         {
+            var puppet = new Puppet(position, rotation);
             switch (puppetType) {
                 case PuppetEnum.BrittishPrivate:
-                    return new Puppet(
-                        new TextureAnimation(new Vector2(40, 77), TextureEnum.BrittishSoldier, Vector2.Zero, 0), 
-                        new FontAnimation(Vector2.Zero, FontEnum.BebasNeue_Regular_18, Vector2.Zero, "", Color.Transparent)
-                        );
+                {
+                    puppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.BrittishSoldier, new Vector2(40, 77), Vector2.Zero, 0));
+                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_18, new Vector2(40, -60), Vector2.Zero, 0, false, "", Color.DarkOliveGreen));
+                    break;
+                }
                 case PuppetEnum.GermanPrivate:
-                    return new Puppet(
-                        new TextureAnimation(new Vector2(40, 77), TextureEnum.GermanSoldier, Vector2.Zero, 0), 
-                        new FontAnimation(Vector2.Zero, FontEnum.BebasNeue_Regular_18, Vector2.Zero, "", Color.Transparent)
-                        );
+                {
+                    puppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.GermanSoldier, new Vector2(40, 77), Vector2.Zero, 0));
+                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_18, new Vector2(40, -60), Vector2.Zero, 0, false, "", Color.DarkOliveGreen));
+                    break;
+                }                
                 case PuppetEnum.GermanMachineGun:
-                    return new Puppet(
-                        new TextureAnimation(new Vector2(40, 77), TextureEnum.GermanMachineGun, Vector2.Zero, 0), 
-                        new FontAnimation(Vector2.Zero, FontEnum.BebasNeue_Regular_18, Vector2.Zero, "", Color.Transparent)
-                        );
+                {
+                    puppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.GermanMachineGun, new Vector2(40, 77), Vector2.Zero, 0));
+                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_18, new Vector2(40, -60), Vector2.Zero, 0, false, "", Color.DarkOliveGreen));
+                    break;
+                }
                 default:
                     return null;
             }
+            return puppet;
         }
     }
 }

@@ -12,40 +12,25 @@ namespace MinuteBattle.Graphics
     public static class Scene
     {
         internal static Dictionary<int, Puppet> _puppetList = new Dictionary<int, Puppet>();
-        public static void AddPuppet(int id, PuppetEnum puppetType)
+        public static void AddPuppet(int id, PuppetEnum puppetType, Vector2 position, float rotation)
         {
-            _puppetList.Add(id, PuppetFactory.CreatePuppet(puppetType));
+            _puppetList.Add(id, PuppetFactory.CreatePuppet(puppetType, position, rotation));
         }
-        public static void UpdatePuppet(int id, Vector2 position, float rotation, TextureAnimation textureAnimation, Vector2 textOffset, string text, Color textColor, FontAnimation fontAnimation)
+        public static Puppet getPuppet(int id)
         {
             if (_puppetList.ContainsKey(id))
-            {
-                _puppetList[id]._position = position;
-                _puppetList[id]._rotation = rotation;
-                if (textureAnimation != null)
-                {
-                    _puppetList[id]._textureAnimation = textureAnimation;
-                }
-                if (fontAnimation != null)
-                {
-                    _puppetList[id]._fontAnimation = fontAnimation;
-                }
-                if (_puppetList[id]._fontAnimation != null)
-                {
-                    _puppetList[id]._fontAnimation._textOffset = textOffset;
-                    _puppetList[id]._fontAnimation._textOffset.X = _puppetList[id]._fontAnimation._textOffset.X - (_puppetList[id]._fontAnimation.getFont().MeasureString(text).X / 2);
-
-                    _puppetList[id]._fontAnimation._text = text;
-                    _puppetList[id]._fontAnimation._textColor = textColor;
-                }
-            }
+                return _puppetList[id];
+            else
+                return Puppet.EmptyPuppet;
         }
         public static void Draw(GameTime gameTime)
         {
+            Globals.StaticSpriteBatch.Begin();
             foreach (Puppet puppet in _puppetList.Values)
             {
                 puppet.Draw(gameTime);
             }
+            Globals.StaticSpriteBatch.End();
         }
     }
 }

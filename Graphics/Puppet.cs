@@ -11,19 +11,33 @@ namespace MinuteBattle.Graphics
 {
     public class Puppet
     {
+        public static Puppet EmptyPuppet = new Puppet(Vector2.Zero, 0);
         public Vector2 _position = Vector2.Zero;
         public float _rotation = 0;
-        public TextureAnimation _textureAnimation = TextureAnimation.EmptyAnimation;
-        public FontAnimation _fontAnimation = FontAnimation.EmptyAnimation;
-        public Puppet(TextureAnimation textureAnimation, FontAnimation fontAnimation)
+        public List<IClip> _clipList = new List<IClip>();
+        public Puppet(Vector2 position, float rotation)
         {
-            _textureAnimation = textureAnimation;
-            _fontAnimation = fontAnimation;
+            _position = position;
+            _rotation = rotation;
+        }
+        public void AddClip(IClip clip)
+        {
+            _clipList.Add(clip);
+        }
+        public IClip getFirstClip(ClipCategoryEnum clipCategory)
+        {
+            foreach (IClip clip in _clipList)
+            {
+                if(clip.GetCategory() == clipCategory) return clip; 
+            }
+            return TextureAnimation.EmptyAnimation;
         }
         public void Draw(GameTime gameTime)
         {
-            _textureAnimation.Draw(_position, _rotation, gameTime);
-            _fontAnimation.Draw(_position, gameTime);
+            foreach (IClip clip in _clipList)
+            {
+                clip.Draw(_position, _rotation, gameTime);
+            }
         }
     }
 }
