@@ -14,7 +14,7 @@ Quick round deck builder (Minute battle)
 * Gold is received by successfully achieving objectives.
 * Xp och gold can also be received in encounters.
 * Resources is equal to hp, when they are reduced to zero it's game over.
-* Resources can be in different positions: reinforcements, local base, in battle.
+* Resources can be in different positions: reinforcements, local base (camp), in battle (frontline).
 * The resources in the different positions have a max sizes and a speed of transfer between the positions.
 * When an unit dies that resource points are lost.
 * If an unit survives the resorces Points from that unit are recovered.
