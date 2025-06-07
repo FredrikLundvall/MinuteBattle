@@ -12,6 +12,7 @@ namespace MinuteBattle.Logic
         public Resources _resources;
         public float _gold;
         public float _xp;
-        public Dictionary<int, ArmyUnit> _armyUnitList = new Dictionary<int, ArmyUnit>();
+        public Dictionary<int, DeployedArmyUnit> _deployedArmyUnitList = new Dictionary<int, DeployedArmyUnit>();
+        public List<ArmyUnit> _armyUnitDeckList = new List<ArmyUnit>();
     }
 }

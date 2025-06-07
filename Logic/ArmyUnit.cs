@@ -11,7 +11,8 @@ namespace MinuteBattle.Logic
     public class ArmyUnit
     {
         public ArmyUnitSettings _armyUnitSettings;
+        public string _unitName;
+        public string _description;
         public string _nameTag;
-        public Vector2 _position;
     }
 }
