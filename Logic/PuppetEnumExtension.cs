@@ -14,12 +14,9 @@ namespace MinuteBattle.Logic
             switch (puppet)
             {
                 case PuppetEnum.BrittishPrivate:
-                    return TeamSideEnum.Brittish;
-                case PuppetEnum.GermanPrivate: 
-                case PuppetEnum.GermanMachineGun:
-                    return TeamSideEnum.German;
+                    return TeamSideEnum.SideOne;
                 default:
-                    return TeamSideEnum.Unknown;
+                    return TeamSideEnum.SideTwo;
             }
         }
     }

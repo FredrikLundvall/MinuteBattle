@@ -8,6 +8,6 @@ namespace MinuteBattle.Logic
 {
     public enum TeamSideEnum
     {
-        Unknown, Brittish, German
+        SideOne, SideTwo
     }
 }
