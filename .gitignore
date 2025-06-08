@@ -1,6 +1,6 @@
-.vs/
-.config/
-bin/
-.vscode/launch.json
-Content/obj/
-obj/
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/GameTests/TestProject1/bin/Debug/net8.0
+/GameTests/TestProject1/obj
