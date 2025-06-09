@@ -8,10 +8,7 @@ namespace MinuteBattle.Logic
 {
     public class Team
     {
-        public TeamSideEnum _teamSide;
-        public Resources _resources;
-        public float _gold;
-        public float _xp;
+        public TeamDefinition _teamDefinition;
         public Dictionary<int, DeployedArmyUnit> _deployedArmyUnitList = new Dictionary<int, DeployedArmyUnit>();
         public List<ArmyUnit> _armyUnitDeckList = new List<ArmyUnit>();
     }

@@ -64,9 +64,9 @@ namespace MinuteBattle
             _spritePosition.X = viewport.Width / 2;
             _spritePosition.Y = viewport.Height / 2;
 
-            Scene.AddPuppet(_brittishPrivate1, PuppetEnum.BrittishPrivate, new Vector2(viewport.Width / 2, viewport.Height / 2), 0);
-            Scene.AddPuppet(_germanPrivate1, PuppetEnum.GermanPrivate, new Vector2(viewport.Width / 3, viewport.Height / 3), MathHelper.Pi / 2);
-            Scene.AddPuppet(_germanMachineGun1, PuppetEnum.GermanMachineGun, new Vector2(viewport.Width / 4, viewport.Height / 2 + viewport.Height / 4), MathHelper.Pi / 10);
+            Scene.AddPuppet(_brittishPrivate1, 0 /* PuppetEnum.BrittishPrivate */, new Vector2(viewport.Width / 2, viewport.Height / 2), 0);
+            Scene.AddPuppet(_germanPrivate1, 1 /* PuppetEnum.GermanPrivate */, new Vector2(viewport.Width / 3, viewport.Height / 3), MathHelper.Pi / 2);
+            Scene.AddPuppet(_germanMachineGun1, 2 /* PuppetEnum.GermanMachineGun */, new Vector2(viewport.Width / 4, viewport.Height / 2 + viewport.Height / 4), MathHelper.Pi / 10);
 
             Scene.getPuppet(_brittishPrivate1).getFirstClip(ClipCategoryEnum.NameTag).SetText("Garreth");
             Scene.getPuppet(_germanPrivate1).getFirstClip(ClipCategoryEnum.NameTag).SetText("Heisenberg");

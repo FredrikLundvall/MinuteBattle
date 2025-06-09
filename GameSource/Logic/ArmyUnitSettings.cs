@@ -9,7 +9,7 @@ namespace MinuteBattle.Logic
 {
     public class ArmyUnitSettings
     {
-        public PuppetEnum _puppetType;
+        public int _puppetType;
         public float _health;
         public float _movementSpeed;
         public float _fireRate;

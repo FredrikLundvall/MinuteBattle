@@ -12,7 +12,7 @@ namespace MinuteBattle.Graphics
     public static class Scene
     {
         internal static Dictionary<int, Puppet> _puppetList = new Dictionary<int, Puppet>();
-        public static void AddPuppet(int id, PuppetEnum puppetType, Vector2 position, float rotation)
+        public static void AddPuppet(int id, int puppetType, Vector2 position, float rotation)
         {
             _puppetList.Add(id, PuppetFactory.CreatePuppet(puppetType, position, rotation));
         }

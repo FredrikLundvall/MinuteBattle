@@ -9,12 +9,15 @@ namespace MinuteBattle.Logic
     public class Resources
     {
         public float _reinforcements;
-        public float _reinforcementsMax;
         public float _camp;
-        public float _campMax;
         public float _frontline;
-        public float _frontlineMax;
         public float _movementSpeed;
-        public float _movementSpeedMax;
+        public Resources(float reinforcements, float camp, float frontline, float movementSpeed)
+        {
+            _reinforcements = reinforcements;
+            _camp = camp;
+            _frontline = frontline;
+            _movementSpeed = movementSpeed;
+        }
     }
 }
