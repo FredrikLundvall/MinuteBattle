@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MinuteBattle.Logic
 {
-    public class TeamDefinition
+    public class TeamSetup
     {
         public TeamSide _teamSide;
         public int _id;
@@ -15,7 +15,7 @@ namespace MinuteBattle.Logic
         public Resources _resourcesLevel;
         public float _gold;
         public float _xp;
-        public TeamDefinition(TeamSide teamSide, int id, string name, Resources resourcesMax, Resources resourcesLevel, float gold, float xp)
+        public TeamSetup(TeamSide teamSide, int id, string name, Resources resourcesMax, Resources resourcesLevel, float gold, float xp)
         {
             _teamSide = teamSide;
             _id = id; 

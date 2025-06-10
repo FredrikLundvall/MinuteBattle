@@ -10,7 +10,7 @@ namespace MinuteBattle.Logic
     public static class GameDefinitions
     {
         public static Dictionary<int, TeamSide> _teamSideList = new Dictionary<int, TeamSide>();
-        public static Dictionary<int, TeamDefinition> _teamDefinitionList = new Dictionary<int, TeamDefinition>();
+        public static Dictionary<int, TeamSetup> _teamSetupList = new Dictionary<int, TeamSetup>();
         static public void AddTeamSide(int id, TeamSide teamSide)
         {
             _teamSideList.Add(id, teamSide);
@@ -19,13 +19,13 @@ namespace MinuteBattle.Logic
         {
             return _teamSideList[id];
         }
-        static public void AddTeamDefinition(int id, TeamDefinition teamDefinition)
+        static public void AddTeamSetup(int id, TeamSetup teamDefinition)
         {
-            _teamDefinitionList.Add(id, teamDefinition);
+            _teamSetupList.Add(id, teamDefinition);
         }
-        static public TeamDefinition GetTeamDefinition(int id)
+        static public TeamSetup GetTeamSetup(int id)
         {
-            return _teamDefinitionList[id];
+            return _teamSetupList[id];
         }
     }
 }
