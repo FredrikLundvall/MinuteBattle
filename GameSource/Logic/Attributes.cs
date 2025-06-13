@@ -7,14 +7,21 @@ using System.Threading.Tasks;
 
 namespace MinuteBattle.Logic
 {
-    public class ArmyUnitSettings
+    public class Attributes
     {
-        public int _puppetType;
         public float _health;
         public float _movementSpeed;
         public float _fireRate;
         public float _fireRange;
         public float _accuracy;
         public float _damage;
+        public Attributes(float health, float movementSpeed, float fireRate, float fireRange, float accuracy, float damage) {
+            _health = health;
+            _movementSpeed = movementSpeed;
+            _fireRate = fireRate;
+            _fireRange = fireRange;
+            _accuracy = accuracy;
+            _damage = damage;
+        }
     }
 }

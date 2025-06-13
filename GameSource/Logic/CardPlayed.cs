@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace MinuteBattle.Logic
 {
-    public class DeployedArmyUnit
+    public class CardPlayed
     {
-        public ArmyUnit _armyUnit;
+        public Card _card;
         public Vector2 _position;
-        public float _health;
+        public Attributes _attributes;
+        public string _nameTag;
     }
 }

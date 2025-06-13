@@ -22,4 +22,6 @@ Quick round deck builder (Minute battle)
 * Win conditions can determine if retreat is possible or will be to costly.
 
 
+attribute, statistic, characteristic, ability, property, capacity, quality
+skill, talent, capability, expertise, proficiency, training
 
