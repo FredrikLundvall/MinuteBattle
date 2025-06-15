@@ -10,16 +10,30 @@ namespace MinuteBattle.Logic
 {
     public class Card
     {
-        public int _id;
         public string _name;
         public string _description;
-        public Attributes _attributes;
-        public Card(int id, string name, string description, Attributes attributes)
+        public int _price;
+        public int _level;
+        public int _xpPerLevel;
+        public Card(string name, string description, int price, int level, int xpPerLevel)
         {
-            _id = id;
             _name = name;
             _description = description;
-            _attributes = attributes;
+            _price = price;
+            _level = level;
+            _xpPerLevel = xpPerLevel;
+        }
+        public Card Copy()
+        {
+            return new(_name, _description, _price, _level, _xpPerLevel);
+        }
+        public int XpToLevelUp()
+        { 
+            return _xpPerLevel; 
+        }
+        public void LevelUp()
+        {
+            ++_level;
         }
     }
 }

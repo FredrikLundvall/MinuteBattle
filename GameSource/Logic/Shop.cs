@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MinuteBattle.Logic
+{
+    public static class Shop
+    {
+        public static List<Card> _inStock = [];
+        public static int _resourcePointPrice = 10;
+        static Shop()
+        {
+            _inStock.Add(new("Private", "A single shot rifleman", 20, 1, 25));
+        }
+        public static bool BuyCard(Player player, string name)
+        {
+            Card card = _inStock.Find(it => it._name == name);
+            if (card._name == null)
+                return false;
+            int sum = card._price;
+            if (sum > player._gold)
+                return false;
+            player._gold -= sum;
+            player._cardDeck.Add(card.Copy());
+            return true;
+        }
+        public static bool BuyResourcePoints(Player player, int resourcePoints)
+        {
+            int sum = _resourcePointPrice * resourcePoints;
+            if (sum > player._gold)
+                return false;
+            player._gold -= sum;
+            player._resourcePoints += resourcePoints;
+            return true;
+        }
+        public static bool UpgradeCard(Player player, Card card)
+        {
+            int sum = card.XpToLevelUp();
+            if (sum > player._xp)
+                return false;
+            player._xp -= sum;
+            card.LevelUp();
+            return true;
+        }
+    }
+}
