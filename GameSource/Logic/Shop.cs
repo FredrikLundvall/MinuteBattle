@@ -12,6 +12,11 @@ namespace MinuteBattle.Logic
         public static int _resourcePointPrice = 10;
         static Shop()
         {
+            Init();
+        }
+        public static void Init()
+        {
+            _inStock.Clear();
             _inStock.Add(new("Private", "A single shot rifleman", 20, 1, 25));
         }
         public static bool BuyCard(Player player, string name)

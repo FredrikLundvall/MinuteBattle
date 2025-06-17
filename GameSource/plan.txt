@@ -10,7 +10,7 @@ Quick round deck builder (Minute battle)
 * Every battle have different win conditions.
 * Win conditions can determine if retreat is possible or will be to costly.
 * Xp gives possibility to upgrade the cards
-* Xp is received by failed skill checks (or failed skill checks) for example by missing an enemy.
+* Xp is received by successfull skill checks (or failed skill checks) for example by missing an enemy.
 * Gold is received by successfully achieving objectives.
 * Gold is used to buy Resources or change the deck.
 * Xp och gold can also be received in encounters.
@@ -25,9 +25,33 @@ Quick round deck builder (Minute battle)
 attribute, statistic, characteristic, ability, property, capacity, quality
 skill, talent, capability, expertise, proficiency, training
 
-Use cases:
+Events for different things that happens, to easier add some logic?
+
+
+Use cases
+
+
 Player
-Buys card and pays gold
+Buys card and receivs the card
+
+Shop
+Buys card and pays gold and get card
+Buys card when not enough gold don't get card
 Buys resources and pays gold
+Buys resource when not enough gold don't get resource
 Upgrades card in deck and pays xp
-Plays card if able because of resource limits
+Upgrades card when not having enough xp dont get level
+
+Battle
+Move resources one round from headquarters to base using the players speed
+Player plays card if able because of resource limits and removes resources
+When failing an accuracy skill check earn xp
+When a unit is killed that played card and resource is removed
+When battle objective of killing all enemies is acheived player earns gold
+
+Campaign
+When a battle ends the resources from played cards is retrieved and all resources is reset to their start positions
+One battle has "eliminate all enimies" as win condition another has "survive for 15 rounds" 
+
+Game
+When players total resource drops below zero the game ends
