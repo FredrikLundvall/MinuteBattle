@@ -20,6 +20,14 @@ namespace MinuteBattle.Logic
             _resourcePoints = resourcePoints;
             _xp = xp;
         }
+        public static Player CreateHero()
+        {
+            return new("Swedish army", 0, 100, 0);
+        }
+        public static Player CreateEnemy()
+        {
+            return new("Imperial-Catholic League army", 0, 100, 0);
+        }
         public Card GetCard(String name)
         {
             return _cardDeck.Find(it => it._name == name);
