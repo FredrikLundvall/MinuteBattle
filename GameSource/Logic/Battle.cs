@@ -8,5 +8,10 @@ namespace MinuteBattle.Logic
 {
     public class Battle
     {
+        public WinConditionEnum _winCondition = WinConditionEnum.EliminateAllEnemies;
+        public Battle(WinConditionEnum winCondition)
+        {
+            _winCondition = winCondition;
+        }
     }
 }

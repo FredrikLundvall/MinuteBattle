@@ -13,8 +13,8 @@ namespace MinuteBattle.Logic
         public static Campaign CreateCampaign()
         {
             Campaign campaign = new();
-            campaign._battleList.Add(new());
-            campaign._battleList.Add(new());
+            campaign._battleList.Add(new(WinConditionEnum.EliminateAllEnemies));
+            campaign._battleList.Add(new(WinConditionEnum.SurviveForFifteenRounds));
             return campaign;
         }
     }

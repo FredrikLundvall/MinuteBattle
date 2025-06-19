@@ -50,6 +50,8 @@ Map
 When creating a map add the terrains ditch, hill and bush.
 
 Battle
+* Creating a battle with "eliminate all enimies" as win condition 
+* Creating a battle with "survive for 15 rounds" as win condition 
 When creating a battle add a map.
 In resource-stage, move resources one round from headquarters to base using the players speed
 In card playing-stage, player plays card one round if able because of resource limits and removes resources
@@ -62,8 +64,7 @@ Encounter
 
 
 Campaign
-When a campaign is created more than one battle is added
-One battle has "eliminate all enimies" as win condition another has "survive for 15 rounds" 
+* When a campaign is created more than one battle is added
 When a battle ends the resources from played cards is retrieved and all resources is reset to their start positions
 
 Game
