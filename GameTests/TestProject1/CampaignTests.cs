@@ -14,11 +14,20 @@ namespace MinuteBattleTests
         {
         }
         [Test]
-        public void WhenCampignIsCreated_MoreThanOneBattleIsAdded()
+        public void WhenCampignIsCreated_BattleIsCreatded()
         {
             Campaign campaign = Campaign.CreateCampaign();
-            Assert.That(campaign._battleList, Is.Not.Null);
-            Assert.That(campaign._battleList.Count, Is.AtLeast(2));
+            Assert.That(campaign._battle, Is.Not.Null);
+        }
+        [Test]
+        public void WhenCampignIsStarted_BattleIsStarted()
+        {
+            Campaign campaign = Campaign.CreateCampaign();
+            Assert.That(campaign._state, Is.EqualTo(CampaignStateEnum.NotStarted));
+            Assert.That(campaign._battle._state, Is.EqualTo(BattleStateEnum.NotStarted));
+            campaign.NextStage();
+            Assert.That(campaign._state, Is.EqualTo(CampaignStateEnum.InProgress));
+            Assert.That(campaign._battle._state, Is.EqualTo(BattleStateEnum.Reinforcement));
         }
     }
 }

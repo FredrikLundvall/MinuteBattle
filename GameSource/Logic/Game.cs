@@ -8,7 +8,7 @@ namespace MinuteBattle.Logic
 {
     public class Game
     {
-        public GameStatusEnum _status = GameStatusEnum.InProgress;
+        public GameStateEnum _state = GameStateEnum.InProgress;
         public Player _hero;
         public Player _enemy;
         public Campaign _campaign;

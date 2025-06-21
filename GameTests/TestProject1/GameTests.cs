@@ -18,7 +18,7 @@ namespace MinuteBattleTests
         {
             //User creates the game and the status is in progress
             Game game = new();
-            Assert.That(game._status, Is.EqualTo(GameStatusEnum.InProgress));
+            Assert.That(game._state, Is.EqualTo(GameStateEnum.InProgress));
         }
         [Test]
         public void WhenGameIsCreated_PlayerEnemyAndCampaignIsCreated()

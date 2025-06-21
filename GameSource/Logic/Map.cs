@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace MinuteBattle.Logic
 {
-    public enum GameStatusEnum
+    public class Map
     {
-        InProgress, Won, Lost
     }
 }

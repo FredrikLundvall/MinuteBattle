@@ -22,7 +22,9 @@ Quick round deck builder (Minute battle)
 * Retreat has to be possible and manytimes beneficial.
 * A round has three stages: moving resources, the playing card stage and the fighting stage
 * A stat on the cards is command strain. It adds to your players current strain and limits how many new cards or moves he can make.
-
+* Sieges can be battles or encounters
+* When choosing battles the strategy can be to attack enemy supply lines (speed of resources), 
+  attack enemy camps (reduce local resources), eliminate forces (total resources). If you are forced to retreat, the damage is instead made to yourself   
 
 attribute, statistic, characteristic, ability, property, capacity, quality
 skill, talent, capability, expertise, proficiency, training
@@ -34,7 +36,7 @@ Use cases
 
 
 Player
-Buys card and receivs the card
+* Buys card and receivs the card
 
 Shop
 * Buys card and pays gold and get card
@@ -50,25 +52,37 @@ Map
 When creating a map add the terrains ditch, hill and bush.
 
 Battle
-* Creating a battle with "eliminate all enimies" as win condition 
+* Creating a battle with "eliminate all enemies" as win condition 
 * Creating a battle with "survive for 15 rounds" as win condition 
-When creating a battle add a map.
-In resource-stage, move resources one round from headquarters to base using the players speed
+* When creating a battle add a map
+* When creating a battle is created it is in "not-started-stage""
+* When a battle is started it goes into resource-stage
+When reinforcement-stage is over go to card-playing-stage
+When card-playing-stage is over go to fighting-stage
+In reinforcement-stage, move resources one round from headquarters to base using the players speed
 In card playing-stage, player plays card one round if able because of resource limits and removes resources
 In fighing-stage, the cards fight one round
 When failing an accuracy skill check earn xp
 When a unit is killed that played card and resource is removed
 When battle objective of killing specific enemy is acheived player earns gold
 
-Encounter
+Encounter (limited shop, shop, encounter)
+A choice is presented to the user
+When the user selects one choice the actions of the choice is executed and the encounter ends
 
 
 Campaign
-* When a campaign is created more than one battle is added
+* When a campaign is created a battle is created
+* When a campaign is created it is in "not-started-stage""
+* When a campaign is started the first battle is started
 When a battle ends the resources from played cards is retrieved and all resources is reset to their start positions
+When a battle ends the campaign goes into "achievement-stage" (medals, appointments, deals etc.)
+When "achievemnt-stage" ends the campaign goes to "recover-stage" (limited shop) 
+When "recover-stage" ends the "selection-stage" is started (shop, battle or encounter)
+When the "selection-stage" ends the shop, battle or encounter is created and started
 
 Game
 * User creates a game and status is "in progress"
 * User creates a game then a player, an enemy player and a campaign is created
 When players total resource drops below zero the game status is "lost"
-When last battle in a campaign is finished and player is still alive the status is "won"
+When enemy's total resource drops below zero the game status is is "won"
