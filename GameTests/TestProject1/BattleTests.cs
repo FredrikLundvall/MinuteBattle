@@ -35,7 +35,7 @@ namespace MinuteBattleTests
             Assert.That(battle._map, Is.Not.Null);
         }
         [Test]
-        public void WhenStarting_BattleIsInResourceStage()
+        public void WhenStarting_BattleIsInReinforcementStage()
         {
             Battle battle = new(WinConditionEnum.EliminateAllEnemies);
             Assert.That(battle._state, Is.EqualTo(BattleStateEnum.NotStarted));
@@ -43,12 +43,31 @@ namespace MinuteBattleTests
             Assert.That(battle._state, Is.EqualTo(BattleStateEnum.Reinforcement));
         }
         [Test]
-        public void WhenBattleLeavesResourceStage_BattleIsInCardPlayingStage()
+        public void WhenBattleLeavesReinforcementStage_BattleIsInCardPlayingStage()
         {
             Battle battle = new(WinConditionEnum.EliminateAllEnemies);
             battle.NextStage();
             battle.NextStage();
             Assert.That(battle._state, Is.EqualTo(BattleStateEnum.CardPlay));
+        }
+        [Test]
+        public void WhenBattleLeavesCardPlayingStage_BattleIsInFightingStage()
+        {
+            Battle battle = new(WinConditionEnum.EliminateAllEnemies);
+            battle.NextStage();
+            battle.NextStage();
+            battle.NextStage();
+            Assert.That(battle._state, Is.EqualTo(BattleStateEnum.Fighting));
+        }
+        [Test]
+        public void WhenBattleLeavesInFightingStage_AndBattleIsNotOver_BattleIsInReinforcementStage()
+        {
+            Battle battle = new(WinConditionEnum.EliminateAllEnemies);
+            battle.NextStage();
+            battle.NextStage();
+            battle.NextStage();
+            battle.NextStage();
+            Assert.That(battle._state, Is.EqualTo(BattleStateEnum.Reinforcement));
         }
     }
 }

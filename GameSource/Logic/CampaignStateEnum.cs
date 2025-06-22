@@ -8,6 +8,6 @@ namespace MinuteBattle.Logic
 {
     public enum CampaignStateEnum
     {
-        NotStarted, InProgress, Won, Lost
+        NotStarted, Battle, Achievement, Recover, Selection, Shop, Encounter
     }
 }

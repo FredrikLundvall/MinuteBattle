@@ -56,9 +56,12 @@ Battle
 * Creating a battle with "survive for 15 rounds" as win condition 
 * When creating a battle add a map
 * When creating a battle is created it is in "not-started-stage""
-* When a battle is started it goes into resource-stage
-When reinforcement-stage is over go to card-playing-stage
-When card-playing-stage is over go to fighting-stage
+* When a battle is started it goes into reinfoercements-stage
+* When reinforcement-stage is over go to card-playing-stage
+* When card-playing-stage is over go to fighting-stage
+* When fighting-stage is over and battle is still going go to reinforcements-stage
+When fighting-stage is over and win-condition is fulfilled go to won-stage
+When fighting-stage is over and win-condition is not fulfilled but loose-condition is forfilled go to lost-stage
 In reinforcement-stage, move resources one round from headquarters to base using the players speed
 In card playing-stage, player plays card one round if able because of resource limits and removes resources
 In fighing-stage, the cards fight one round
@@ -75,11 +78,11 @@ Campaign
 * When a campaign is created a battle is created
 * When a campaign is created it is in "not-started-stage""
 * When a campaign is started the first battle is started
-When a battle ends the resources from played cards is retrieved and all resources is reset to their start positions
 When a battle ends the campaign goes into "achievement-stage" (medals, appointments, deals etc.)
 When "achievemnt-stage" ends the campaign goes to "recover-stage" (limited shop) 
 When "recover-stage" ends the "selection-stage" is started (shop, battle or encounter)
 When the "selection-stage" ends the shop, battle or encounter is created and started
+When a battle ends the resources from played cards is retrieved and all resources is reset to their start positions
 
 Game
 * User creates a game and status is "in progress"

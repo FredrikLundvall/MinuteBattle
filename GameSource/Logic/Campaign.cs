@@ -21,11 +21,21 @@ namespace MinuteBattle.Logic
         {
             if (_state == CampaignStateEnum.NotStarted)
             {
-                _state = CampaignStateEnum.InProgress;
+                _state = CampaignStateEnum.Battle;
+                if (_battle != null)
+                    _battle.NextStage();
             }
-            if (_battle == null)
-                return;
-            _battle.NextStage();
+            else if (_state == CampaignStateEnum.Battle)
+            {
+                if (_battle != null)
+                {
+                    _battle.NextStage();
+                    if (_battle._state == BattleStateEnum.Lost || _battle._state == BattleStateEnum.Won)
+                    {
+                        _state = CampaignStateEnum.Achievement;
+                    }
+                }
+            }
         }
     }
 }

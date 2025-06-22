@@ -26,8 +26,22 @@ namespace MinuteBattleTests
             Assert.That(campaign._state, Is.EqualTo(CampaignStateEnum.NotStarted));
             Assert.That(campaign._battle._state, Is.EqualTo(BattleStateEnum.NotStarted));
             campaign.NextStage();
-            Assert.That(campaign._state, Is.EqualTo(CampaignStateEnum.InProgress));
+            Assert.That(campaign._state, Is.EqualTo(CampaignStateEnum.Battle));
             Assert.That(campaign._battle._state, Is.EqualTo(BattleStateEnum.Reinforcement));
+        }
+        [Test]
+        public void WhenBattleIsOver_CampaignIsInAchievementStage()
+        {
+            Campaign campaign = Campaign.CreateCampaign();
+            campaign.NextStage();
+            campaign._battle.NextStage();
+            campaign._battle.NextStage();
+            campaign._battle.NextStage();
+            campaign._battle.NextStage();
+            campaign.NextStage();
+
+            Assert.That(campaign._state, Is.EqualTo(CampaignStateEnum.Achievement));
+            Assert.That(campaign._battle._state, Is.EqualTo(BattleStateEnum.Won));
         }
     }
 }
