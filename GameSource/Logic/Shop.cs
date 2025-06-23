@@ -17,12 +17,12 @@ namespace MinuteBattle.Logic
         public static void Init()
         {
             _inStock.Clear();
-            _inStock.Add(new("Private", "A single shot rifleman", 20, 1, 25));
+            _inStock.Add(new("Private", "A single shot rifleman", 20, 1, 25, 10));
         }
         public static bool BuyCard(Player player, string name)
         {
             Card card = _inStock.Find(it => it._name == name);
-            if (card._name == null)
+            if (card == null)
                 return false;
             int sum = card._price;
             if (sum > player._gold)

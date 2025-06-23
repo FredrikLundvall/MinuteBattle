@@ -15,6 +15,7 @@ namespace MinuteBattleTests
         public const int CARD_PRICE = 20;
         public const int CARD_LEVEL = 1;
         public const int CARD_XP_PER_LEVEL = 25;
+        public const int CARD_RP_TO_PLAY = 10;
         public const string PLAYER_NAME = "Brittish";
         public const int PLAYER_GOLD = 120;
         public const int PLAYER_RESOURCE_POINT = 0;
@@ -27,7 +28,7 @@ namespace MinuteBattleTests
         public static void InitShop()
         {
             Shop._inStock.Clear();
-            Shop._inStock.Add(new(CARD_NAME, CARD_DESCRIPTION, CARD_PRICE, CARD_LEVEL, CARD_XP_PER_LEVEL));
+            Shop._inStock.Add(new(CARD_NAME, CARD_DESCRIPTION, CARD_PRICE, CARD_LEVEL, CARD_XP_PER_LEVEL, CARD_RP_TO_PLAY));
             Shop._resourcePointPrice = SHOP_RESOURCE_POINT_PRICE;
         }
     }

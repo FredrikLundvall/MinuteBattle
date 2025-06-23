@@ -9,6 +9,7 @@ namespace MinuteBattle.Logic
     public class Player
     {
         public List<Card> _cardDeck = [];
+        public List<Card> _cardInBattle = [];
         public string _name;
         public int _gold;
         private int _reinforcementRp;
@@ -43,23 +44,34 @@ namespace MinuteBattle.Logic
         {
             return _reinforcementRp;
         }
-        public int AddReinforcementRp(int rp)
+        public void AddReinforcementRp(int rp)
         {
-            return _reinforcementRp += rp;
+            _reinforcementRp += rp;
         }
         public int GetBaseRp()
         {
             return _baseRp;
         }
-        public int AddBaseRp(int rp)
+        public void AddBaseRp(int rp)
         {
-            return _baseRp += rp;
+            _baseRp += rp;
         }
         public void MoveRpFromReinforcementToBase()
         {
             int movedRp = Math.Min(_rpSpeed, _reinforcementRp);
             AddReinforcementRp(-movedRp);
             AddBaseRp(movedRp);
+        }
+        public bool PlayCard(string name)
+        {
+            Card card = GetCard(name);
+            if (card == null)
+                return false;
+            if (card._rpToPlay > _baseRp)
+                return false;
+            AddBaseRp(-card._rpToPlay);
+            _cardInBattle.Add(card.Copy());
+            return true;
         }
     }
 }
