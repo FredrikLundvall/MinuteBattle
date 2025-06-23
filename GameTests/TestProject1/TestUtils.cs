@@ -19,9 +19,10 @@ namespace MinuteBattleTests
         public const int PLAYER_GOLD = 120;
         public const int PLAYER_RESOURCE_POINT = 0;
         public const int PLAYER_XP = 100;
+        public const int PLAYER_RESORCE_POINT_SPEED = 10;
         public static Player CreatePlayer()
         {
-            return new(PLAYER_NAME, PLAYER_GOLD, PLAYER_RESOURCE_POINT, PLAYER_XP);
+            return new(PLAYER_NAME, PLAYER_GOLD, PLAYER_RESOURCE_POINT, PLAYER_XP, PLAYER_RESORCE_POINT_SPEED);
         }
         public static void InitShop()
         {

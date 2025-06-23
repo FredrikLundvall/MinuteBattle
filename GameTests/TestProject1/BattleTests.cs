@@ -17,27 +17,27 @@ namespace MinuteBattleTests
         public void CreatingBattleWithWinConditionEliminateAll()
         {
             //Creating a battle with win condition to eliminate all enemies
-            Battle battle = new(WinConditionEnum.EliminateAllEnemies);
+            Battle battle = new(new(), WinConditionEnum.EliminateAllEnemies);
             Assert.That(battle._winCondition, Is.EqualTo(WinConditionEnum.EliminateAllEnemies));
         }
         [Test]
         public void CreatingBattleWithWinConditionSurviveRounds()
         {
             //Creating a battle with win condition to survive for fifteen rounds
-            Battle battle = new(WinConditionEnum.SurviveForFifteenRounds);
+            Battle battle = new(new(), WinConditionEnum.SurviveForFifteenRounds);
             Assert.That(battle._winCondition, Is.EqualTo(WinConditionEnum.SurviveForFifteenRounds));
         }
         [Test]
         public void CreatingBattle_AddsMap()
         {
             //Creating a battle also creates a map
-            Battle battle = new(WinConditionEnum.EliminateAllEnemies);
+            Battle battle = new(new(), WinConditionEnum.SurviveForFifteenRounds);
             Assert.That(battle._map, Is.Not.Null);
         }
         [Test]
         public void WhenStarting_BattleIsInReinforcementStage()
         {
-            Battle battle = new(WinConditionEnum.EliminateAllEnemies);
+            Battle battle = new(new(), WinConditionEnum.SurviveForFifteenRounds);
             Assert.That(battle._state, Is.EqualTo(BattleStateEnum.NotStarted));
             battle.NextStage();
             Assert.That(battle._state, Is.EqualTo(BattleStateEnum.Reinforcement));
@@ -45,7 +45,7 @@ namespace MinuteBattleTests
         [Test]
         public void WhenBattleLeavesReinforcementStage_BattleIsInCardPlayingStage()
         {
-            Battle battle = new(WinConditionEnum.EliminateAllEnemies);
+            Battle battle = new(new(), WinConditionEnum.SurviveForFifteenRounds);
             battle.NextStage();
             battle.NextStage();
             Assert.That(battle._state, Is.EqualTo(BattleStateEnum.CardPlay));
@@ -53,7 +53,7 @@ namespace MinuteBattleTests
         [Test]
         public void WhenBattleLeavesCardPlayingStage_BattleIsInFightingStage()
         {
-            Battle battle = new(WinConditionEnum.EliminateAllEnemies);
+            Battle battle = new(new(), WinConditionEnum.SurviveForFifteenRounds);
             battle.NextStage();
             battle.NextStage();
             battle.NextStage();
@@ -62,12 +62,59 @@ namespace MinuteBattleTests
         [Test]
         public void WhenBattleLeavesInFightingStage_AndBattleIsNotOver_BattleIsInReinforcementStage()
         {
-            Battle battle = new(WinConditionEnum.EliminateAllEnemies);
+            Battle battle = new(new(), WinConditionEnum.SurviveForFifteenRounds);
             battle.NextStage();
             battle.NextStage();
             battle.NextStage();
             battle.NextStage();
             Assert.That(battle._state, Is.EqualTo(BattleStateEnum.Reinforcement));
+        }
+        [Test]
+        public void WhenBattleLeavesInFightingStage_AndWinConditionIsMet_BattleIsWon()
+        {
+            Battle battle = new(new(), WinConditionEnum.SurviveForFifteenRounds);
+            foreach (var _ in Enumerable.Range(0, 3 * 15))
+            {
+                battle.NextStage();
+            }
+            battle.NextStage();
+            Assert.That(battle._state, Is.EqualTo(BattleStateEnum.Won));
+        }
+        [Test]
+        public void WhenBattleLeavesInFightingStage_AndLooseConditionIsMet_BattleIsLost()
+        {
+            Game game = new();
+            Battle battle = new(game, WinConditionEnum.SurviveForFifteenRounds);
+            battle.NextStage();
+            battle.NextStage();
+            battle.NextStage();
+            game._hero.AddReinforcementRp(-game._hero.GetReinforcementRp());
+            game._hero.AddBaseRp(-game._hero.GetBaseRp());
+            battle.NextStage();
+            Assert.That(battle._state, Is.EqualTo(BattleStateEnum.Lost));
+        }
+        [Test]
+        public void WhenBattleLeavesInFightingStage_AndBothWinAndLooseConditionIsMet_BattleIsLost()
+        {
+            Game game = new();
+            Battle battle = new(game, WinConditionEnum.EliminateAllEnemies);
+            battle.NextStage();
+            battle.NextStage();
+            battle.NextStage();
+            game._hero.AddReinforcementRp(-game._hero.GetReinforcementRp());
+            game._hero.AddBaseRp(-game._hero.GetBaseRp());
+            battle.NextStage();
+            Assert.That(battle._state, Is.EqualTo(BattleStateEnum.Lost));
+        }
+        [Test]
+        public void WhenInReinforcementStage_ResourcesAreMovedToBase()
+        {
+            Game game = new();
+            int rpAfterOneMove = game._hero.GetReinforcementRp() - game._hero._rpSpeed;
+            Battle battle = new(game, WinConditionEnum.SurviveForFifteenRounds);
+            battle.NextStage();
+            Assert.That(battle._state, Is.EqualTo(BattleStateEnum.Reinforcement));
+            Assert.That(battle._game._hero.GetReinforcementRp(), Is.EqualTo(rpAfterOneMove));
         }
     }
 }

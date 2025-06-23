@@ -9,7 +9,6 @@ namespace MinuteBattleTests
         {
             TestUtils.InitShop();
         }
-
         [Test]
         public void PlayerBuysCard_CardIsInDeck()
         {
@@ -19,6 +18,5 @@ namespace MinuteBattleTests
             Assert.That(player.GetCard(TestUtils.CARD_NAME), Is.Not.Null);
             Assert.That(player._cardDeck.First()._name, Is.EqualTo(TestUtils.CARD_NAME));
         }
-
     }
 }

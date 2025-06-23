@@ -47,7 +47,7 @@ public class ShopTests
         //A player buys resource points and it is added to his resources and the price is subtracted from his gold
         Player player = TestUtils.CreatePlayer();
         Shop.BuyResourcePoints(player, 7);
-        Assert.That(player._resourcePoints, Is.EqualTo(TestUtils.PLAYER_RESOURCE_POINT + 7));
+        Assert.That(player.GetReinforcementRp(), Is.EqualTo(TestUtils.PLAYER_RESOURCE_POINT + 7));
         Assert.That(player._gold, Is.EqualTo(TestUtils.PLAYER_GOLD - (TestUtils.SHOP_RESOURCE_POINT_PRICE * 7)));
     }
     [Test]
@@ -57,7 +57,7 @@ public class ShopTests
         Player player = TestUtils.CreatePlayer();
         player._gold = TestUtils.SHOP_RESOURCE_POINT_PRICE - 1;
         Assert.That(Shop.BuyResourcePoints(player, 1), Is.False);
-        Assert.That(player._resourcePoints, Is.EqualTo(TestUtils.PLAYER_RESOURCE_POINT));
+        Assert.That(player.GetReinforcementRp(), Is.EqualTo(TestUtils.PLAYER_RESOURCE_POINT));
         Assert.That(player._gold, Is.EqualTo(TestUtils.SHOP_RESOURCE_POINT_PRICE - 1));
     }
     [Test]

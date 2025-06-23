@@ -8,13 +8,17 @@ namespace MinuteBattle.Logic
 {
     public class Campaign
     {
+        public Game _game;
         public Battle _battle = null;
         public CampaignStateEnum _state = CampaignStateEnum.NotStarted;
-        public Campaign() { }
-        public static Campaign CreateCampaign()
+        public Campaign(Game game) 
         {
-            Campaign campaign = new();
-            campaign._battle = new(WinConditionEnum.EliminateAllEnemies);
+            _game = game;
+        }
+        public static Campaign CreateCampaign(Game game)
+        {
+            Campaign campaign = new(game);
+            campaign._battle = new(game, WinConditionEnum.EliminateAllEnemies);
             return campaign;
         }
         public void NextStage()

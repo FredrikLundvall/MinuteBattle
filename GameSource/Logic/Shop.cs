@@ -37,7 +37,7 @@ namespace MinuteBattle.Logic
             if (sum > player._gold)
                 return false;
             player._gold -= sum;
-            player._resourcePoints += resourcePoints;
+            player.AddReinforcementRp(resourcePoints);
             return true;
         }
         public static bool UpgradeCard(Player player, Card card)

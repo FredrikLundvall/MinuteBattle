@@ -15,7 +15,7 @@ namespace MinuteBattle.Logic
         public Game() {
             _hero = Player.CreateHero();
             _enemy = Player.CreateEnemy();
-            _campaign = Campaign.CreateCampaign();
+            _campaign = Campaign.CreateCampaign(this);
         }
     }
 }
