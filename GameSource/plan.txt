@@ -38,6 +38,7 @@ Use cases
 Player
 * Buys card and receivs the card
 * When a player plays a card if base-rp is enough a copy is made and put in the cards-in-battle-list and removes resources
+* When a player plays a card when base-rp is not enough no card is played
 
 Shop
 * Buys card and pays gold and get card
@@ -65,7 +66,7 @@ Battle
 * When fighting-stage is over and loose-condition is forfilled go to lost-stage
 * When fighting-stage is over and both win-condition and loose-condition is forfilled go to lost-stage
 * In reinforcement-stage, move resources one round from headquarters to base using the players rp-speed
-In card playing-stage, player plays card one round if able because of resource limits and removes resources
+* In card playing-stage, player plays card one round if able because of resource limits and removes resources
 In fighing-stage, the cards fight one round
 When failing an accuracy skill check earn xp
 When a unit is killed that played card and resource is removed

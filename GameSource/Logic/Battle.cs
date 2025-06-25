@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MinuteBattle.Logic
 {
@@ -18,7 +19,7 @@ namespace MinuteBattle.Logic
         {
             _game = game;
             _winCondition = winCondition;
-            _map = new();
+            _map = Map.CreateMap(1000, 1000, _game._rnd);
         }
         public void NextStage()
         {
@@ -66,6 +67,12 @@ namespace MinuteBattle.Logic
                 return true;
             }
             return false;
+        }
+        public bool HeroPlayCard(string name)
+        {
+            if (_state != BattleStateEnum.CardPlay)
+                return false;
+            return _game._hero.PlayCard(name);
         }
     }
 }

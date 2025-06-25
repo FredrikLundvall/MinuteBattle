@@ -116,5 +116,31 @@ namespace MinuteBattleTests
             Assert.That(battle._state, Is.EqualTo(BattleStateEnum.Reinforcement));
             Assert.That(battle._game._hero.GetReinforcementRp(), Is.EqualTo(rpAfterOneMove));
         }
+        [Test]
+        public void WhenInCardPlayingStageStage_PlayerCanPlayCard()
+        {
+            Game game = new();
+            Battle battle = new(game, WinConditionEnum.SurviveForFifteenRounds);
+            game._hero._gold = TestUtils.CARD_PRICE;
+            Shop.BuyCard(game._hero, TestUtils.CARD_NAME);
+            game._hero.AddBaseRp(TestUtils.CARD_RP_TO_PLAY);
+            battle.NextStage();
+            battle.NextStage();
+            Assert.That(battle.HeroPlayCard(TestUtils.CARD_NAME), Is.True);
+            Assert.That(game._hero._cardInBattle.First()._name, Is.EqualTo(TestUtils.CARD_NAME));
+        }
+        //[Test]
+        //public void WhenInFightingStage_CardFightsOneRound()
+        //{
+        //    Game game = new();
+        //    Battle battle = new(game, WinConditionEnum.SurviveForFifteenRounds);
+        //    game._hero._gold = TestUtils.CARD_PRICE;
+        //    Shop.BuyCard(game._hero, TestUtils.CARD_NAME);
+        //    game._hero.AddBaseRp(TestUtils.CARD_RP_TO_PLAY);
+        //    battle.NextStage();
+        //    battle.NextStage();
+        //    Assert.That(battle.HeroPlayCard(TestUtils.CARD_NAME), Is.True);
+        //    Assert.That(game._hero._cardInBattle.First()._name, Is.EqualTo(TestUtils.CARD_NAME));
+        //}
     }
 }
