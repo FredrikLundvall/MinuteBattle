@@ -74,5 +74,11 @@ namespace MinuteBattle.Logic
                 return false;
             return _game._hero.PlayCard(name);
         }
+        public bool EnemyPlayCard(string name)
+        {
+            if (_state != BattleStateEnum.CardPlay)
+                return false;
+            return _game._enemy.PlayCard(name);
+        }
     }
 }

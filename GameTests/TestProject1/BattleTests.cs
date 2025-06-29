@@ -130,17 +130,22 @@ namespace MinuteBattleTests
             Assert.That(game._hero._cardInBattle.First()._name, Is.EqualTo(TestUtils.CARD_NAME));
         }
         //[Test]
-        //public void WhenInFightingStage_CardFightsOneRound()
+        //public void WhenInFightingStage_PlayersFightsOneRound()
         //{
         //    Game game = new();
         //    Battle battle = new(game, WinConditionEnum.SurviveForFifteenRounds);
         //    game._hero._gold = TestUtils.CARD_PRICE;
+        //    game._enemy._gold = TestUtils.CARD_PRICE;
         //    Shop.BuyCard(game._hero, TestUtils.CARD_NAME);
+        //    Shop.BuyCard(game._enemy, TestUtils.CARD_NAME);
         //    game._hero.AddBaseRp(TestUtils.CARD_RP_TO_PLAY);
+        //    game._enemy.AddBaseRp(TestUtils.CARD_RP_TO_PLAY);
         //    battle.NextStage();
         //    battle.NextStage();
-        //    Assert.That(battle.HeroPlayCard(TestUtils.CARD_NAME), Is.True);
-        //    Assert.That(game._hero._cardInBattle.First()._name, Is.EqualTo(TestUtils.CARD_NAME));
+        //    battle.HeroPlayCard(TestUtils.CARD_NAME);
+        //    battle.EnemyPlayCard(TestUtils.CARD_NAME);
+        //    battle.NextStage();
+        //    Assert.That(battle._state, Is.EqualTo(BattleStateEnum.Fighting));
         //}
     }
 }

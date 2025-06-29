@@ -51,7 +51,7 @@ Shop
 Terrain
 
 Map
-When creating a map add the terrains ditch, hill and bush.
+* When creating a map add the terrains ditch, hill and bush.
 
 Battle
 * Creating a battle with "eliminate all enemies" as win condition 
@@ -67,9 +67,9 @@ Battle
 * When fighting-stage is over and both win-condition and loose-condition is forfilled go to lost-stage
 * In reinforcement-stage, move resources one round from headquarters to base using the players rp-speed
 * In card playing-stage, player plays card one round if able because of resource limits and removes resources
-In fighing-stage, the cards fight one round
+In fighing-stage, the players cards fight one round and then goes to reinforcements-stage when no win- or loose-conditions are fullfilled
 When failing an accuracy skill check earn xp
-When a unit is killed that played card and resource is removed
+When a card is killed that played card and resource is removed
 When battle objective of killing specific enemy is acheived player earns gold
 
 Encounter (limited shop, shop, encounter)
