@@ -63,8 +63,8 @@ Battle
 * When card-playing-stage is over go to fighting-stage
 * When fighting-stage is over and battle is still going go to reinforcements-stage
 * When fighting-stage is over and win-condition is fulfilled go to won-stage
-* When fighting-stage is over and loose-condition is forfilled go to lost-stage
-* When fighting-stage is over and both win-condition and loose-condition is forfilled go to lost-stage
+* When fighting-stage is over and loose-condition is fulfilled go to lost-stage
+* When fighting-stage is over and both win-condition and loose-condition is fulilled go to lost-stage
 * In reinforcement-stage, move resources one round from headquarters to base using the players rp-speed
 * In card playing-stage, player plays card one round if able because of resource limits and removes resources
 In fighing-stage, the players cards fight one round and then goes to reinforcements-stage when no win- or loose-conditions are fullfilled
