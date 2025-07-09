@@ -6,8 +6,5 @@ using System.Threading.Tasks;
 
 namespace MinuteBattle.Graphics
 {
-    public enum TextureEnum
-    {
-        Empty, BrittishSoldier, GermanSoldier, GermanMachineGun, Button
-    }
+    public enum MouseButtonEnum { LeftButton, MiddleButton, RightButton, XButton1, XButton2 }
 }

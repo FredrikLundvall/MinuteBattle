@@ -34,13 +34,16 @@ namespace MinuteBattle.Graphics
         }
         public static void InitScene(Viewport viewport, int brittishPrivateId, int germanPrivateId, int germanMachineGunId)
         {
-            Scene.AddPuppet(brittishPrivateId, 0, new Vector2(viewport.Width / 2, viewport.Height / 2), 0);
-            Scene.AddPuppet(germanPrivateId, 1, new Vector2(viewport.Width / 3, viewport.Height / 3), MathHelper.Pi / 2);
-            Scene.AddPuppet(germanMachineGunId, 2, new Vector2(viewport.Width / 4, viewport.Height / 2 + viewport.Height / 4), MathHelper.Pi / 10);
+            //Scene.AddPuppet(brittishPrivateId, 0, new Vector2(viewport.Width / 2, viewport.Height / 2), 0);
+            //Scene.AddPuppet(germanPrivateId, 1, new Vector2(viewport.Width / 3, viewport.Height / 3), MathHelper.Pi / 2);
+            //Scene.AddPuppet(germanMachineGunId, 2, new Vector2(viewport.Width / 4, viewport.Height / 2 + viewport.Height / 4), MathHelper.Pi / 10);
 
-            Scene.getPuppet(brittishPrivateId).getFirstClip(ClipCategoryEnum.NameTag).SetText("Garreth");
-            Scene.getPuppet(germanPrivateId).getFirstClip(ClipCategoryEnum.NameTag).SetText("Heisenberg");
-            Scene.getPuppet(germanMachineGunId).getFirstClip(ClipCategoryEnum.NameTag).SetText("Eichmann");
+            //Scene.getPuppet(brittishPrivateId).getFirstClip(ClipCategoryEnum.NameTag).SetText("Garreth");
+            //Scene.getPuppet(germanPrivateId).getFirstClip(ClipCategoryEnum.NameTag).SetText("Heisenberg");
+            //Scene.getPuppet(germanMachineGunId).getFirstClip(ClipCategoryEnum.NameTag).SetText("Eichmann");
+
+            Scene.AddPuppet(0, 3, new Vector2(viewport.Width / 2, viewport.Height / 5), 0);
+            Scene.getPuppet(0).getAllClips(ClipCategoryEnum.NameTag).ForEach(clip => clip.SetText("Start"));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace MinuteBattle.Graphics
 {
-    public enum TextureEnum
+    public interface IResolution
     {
-        Empty, BrittishSoldier, GermanSoldier, GermanMachineGun, Button
+        Vector2 ScreenToGameCoord(Vector2 screenCoord);
     }
 }

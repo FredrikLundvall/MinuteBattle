@@ -32,6 +32,14 @@ namespace MinuteBattle.Graphics
                     puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_18, new Vector2(40, -60), Vector2.Zero, 0, false, "", Color.DarkOliveGreen));
                     break;
                 }
+                case 3: // Button with text:
+                {
+                    puppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.Button, new Vector2(160, 80), Vector2.Zero, 0));
+                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_18, new Vector2(20, 12), new Vector2(1, 1), 0, false, "", Color.White));
+                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_18, new Vector2(20, 12), new Vector2(-1, -1), 0, false, "", Color.Black));
+                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_18, new Vector2(20, 12), Vector2.Zero, 0, false, "", Color.Gray));
+                    break;
+                }
                 default:
                     return null;
             }

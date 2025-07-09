@@ -64,7 +64,7 @@ namespace MinuteBattle
 
             GarbageCollect(gameTime);
 
-            RotateSprite(gameTime);
+            //RotateSprite(gameTime);
             base.Update(gameTime);
         }
 
@@ -72,6 +72,7 @@ namespace MinuteBattle
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             Scene.Draw(gameTime);
+
             base.Draw(gameTime);
         }
 

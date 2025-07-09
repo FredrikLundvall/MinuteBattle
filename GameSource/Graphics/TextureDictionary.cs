@@ -36,6 +36,9 @@ namespace MinuteBattle.Graphics
             spriteTexture = content.Load<Texture2D>("German/german_machine_gun_128");
             TextureDictionary.Add(TextureEnum.GermanMachineGun, spriteTexture);
 
+            spriteTexture = content.Load<Texture2D>("GUI/button");
+            TextureDictionary.Add(TextureEnum.Button, spriteTexture);
+
             SpriteFont font = content.Load<SpriteFont>("GUI/fonts/BebasNeue-Regular_18");
             FontDictionary.Add(FontEnum.BebasNeue_Regular_18, font);
         }

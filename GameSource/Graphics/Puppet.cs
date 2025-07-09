@@ -14,7 +14,7 @@ namespace MinuteBattle.Graphics
         public static Puppet EmptyPuppet = new Puppet(Vector2.Zero, 0);
         public Vector2 _position = Vector2.Zero;
         public float _rotation = 0;
-        public List<IClip> _clipList = new List<IClip>();
+        public List<IClip> _clipList = [];
         public Puppet(Vector2 position, float rotation)
         {
             _position = position;
@@ -31,6 +31,13 @@ namespace MinuteBattle.Graphics
                 if(clip.GetCategory() == clipCategory) return clip; 
             }
             return TextureAnimation.EmptyAnimation;
+        }
+        public List<IClip> getAllClips(ClipCategoryEnum clipCategory)
+        {
+            var filteredList = _clipList.Where(clip => clip.GetCategory() == clipCategory).ToList();
+            if (filteredList.Count > 0)
+                return filteredList;
+            return [TextureAnimation.EmptyAnimation];
         }
         public void Draw(GameTime gameTime)
         {

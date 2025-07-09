@@ -49,6 +49,18 @@
 /processorParam:TextureFormat=Color
 /build:German/german_soldier_128.png
 
+#begin GUI/button.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GUI/button.png
+
 #begin GUI/fonts/BebasNeue-Regular.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
