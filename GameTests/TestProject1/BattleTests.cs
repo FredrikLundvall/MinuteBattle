@@ -83,7 +83,7 @@ namespace MinuteBattleTests
         [Test]
         public void WhenBattleLeavesInFightingStage_AndLooseConditionIsMet_BattleIsLost()
         {
-            Game game = new();
+            CardGame game = new();
             Battle battle = new(game, WinConditionEnum.SurviveForFifteenRounds);
             battle.NextStage();
             battle.NextStage();
@@ -96,7 +96,7 @@ namespace MinuteBattleTests
         [Test]
         public void WhenBattleLeavesInFightingStage_AndBothWinAndLooseConditionIsMet_BattleIsLost()
         {
-            Game game = new();
+            CardGame game = new();
             Battle battle = new(game, WinConditionEnum.EliminateAllEnemies);
             battle.NextStage();
             battle.NextStage();
@@ -109,7 +109,7 @@ namespace MinuteBattleTests
         [Test]
         public void WhenInReinforcementStage_ResourcesAreMovedToBase()
         {
-            Game game = new();
+            CardGame game = new();
             int rpAfterOneMove = game._hero.GetReinforcementRp() - game._hero._rpSpeed;
             Battle battle = new(game, WinConditionEnum.SurviveForFifteenRounds);
             battle.NextStage();
@@ -119,7 +119,7 @@ namespace MinuteBattleTests
         [Test]
         public void WhenInCardPlayingStageStage_PlayerCanPlayCard()
         {
-            Game game = new();
+            CardGame game = new();
             Battle battle = new(game, WinConditionEnum.SurviveForFifteenRounds);
             game._hero._gold = TestUtils.CARD_PRICE;
             Shop.BuyCard(game._hero, TestUtils.CARD_NAME);

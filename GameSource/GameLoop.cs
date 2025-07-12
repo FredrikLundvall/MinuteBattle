@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MinuteBattle.Graphics;
+using MinuteBattle.Logic;
 using System;
 
 namespace MinuteBattle
@@ -9,11 +10,9 @@ namespace MinuteBattle
     public class GameLoop : Game
     {
         private GraphicsDeviceManager _graphics;
-        private float _rotationAngle;
-        int _brittishPrivate1 = 1;
-        int _germanPrivate1 = 2;
-        int _germanMachineGun1 = 3;
         TimeSpan _lastGarbageCollection;
+        CardGame _game = new();
+        Scene _currentScene = Scene.EmptyScene;
 
         public GameLoop()
         {
@@ -39,6 +38,8 @@ namespace MinuteBattle
         {
             LoadGameAssets();
 
+            Stage.AddStartScene(_game, _graphics.GraphicsDevice.Viewport);
+
             //Try to force a garbage collection 
             GC.Collect();
             GC.WaitForPendingFinalizers();
@@ -52,9 +53,6 @@ namespace MinuteBattle
             TextureDictionary.LoadTextures(Content);
 
             Globals.StaticSpriteBatch = new SpriteBatch(GraphicsDevice);
-
-            // Get the viewport (window) dimensions
-            Scene.InitScene(_graphics.GraphicsDevice.Viewport, _brittishPrivate1, _germanPrivate1, _germanMachineGun1);
         }
 
         protected override void Update(GameTime gameTime)
@@ -63,15 +61,16 @@ namespace MinuteBattle
                 Exit();
 
             GarbageCollect(gameTime);
+            _currentScene = Stage.GetCurrentScene(_game); 
+            //Update
 
-            //RotateSprite(gameTime);
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-            Scene.Draw(gameTime);
+            GraphicsDevice.Clear(Color.Black);
+            _currentScene.Draw(gameTime);
 
             base.Draw(gameTime);
         }
@@ -84,7 +83,6 @@ namespace MinuteBattle
             _graphics.PreferredBackBufferHeight = GraphicsDevice.Adapter.CurrentDisplayMode.Height;
             _graphics.ApplyChanges();
         }
-
         private void GarbageCollect(GameTime gameTime)
         {
             if ((gameTime.TotalGameTime - _lastGarbageCollection).TotalSeconds > 11.0)
@@ -94,19 +92,6 @@ namespace MinuteBattle
                 GC.WaitForPendingFinalizers();
                 _lastGarbageCollection = gameTime.TotalGameTime;
             }
-        }
-
-        private void RotateSprite(GameTime gameTime)
-        {
-            // The time since Update was called last.
-            float elapsed = (float)gameTime.ElapsedGameTime.TotalSeconds;
-
-            // Simple roation logic to rotate the sprite in a clockwise direction over time
-            _rotationAngle += elapsed;
-            float circle = MathHelper.Pi * 2;
-            _rotationAngle %= circle;
-
-            Scene.getPuppet(_brittishPrivate1).getFirstClip(ClipCategoryEnum.BaseTexture).SetRotation(_rotationAngle);
         }
     }
 }

@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
-
-namespace MinuteBattle.Logic
+﻿namespace MinuteBattle.Logic
 {
     public class Battle
     {
-        public Game _game = null;
+        public CardGame _game = null;
         public WinConditionEnum _winCondition = WinConditionEnum.EliminateAllEnemies;
         public Map _map = null;
         public BattleStateEnum _state = BattleStateEnum.NotStarted;
         public int _numberOfRounds = 0;
         public int _numberOfEnemies = 0;
-        public Battle(Game game, WinConditionEnum winCondition)
+        public Battle(CardGame game, WinConditionEnum winCondition)
         {
             _game = game;
             _winCondition = winCondition;

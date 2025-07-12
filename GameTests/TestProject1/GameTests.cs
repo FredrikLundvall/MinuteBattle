@@ -17,14 +17,14 @@ namespace MinuteBattleTests
         public void WhenGameIsCreated_StatusIsStarted()
         {
             //User creates the game and the status is in progress
-            Game game = new();
+            CardGame game = new();
             Assert.That(game._state, Is.EqualTo(GameStateEnum.InProgress));
         }
         [Test]
         public void WhenGameIsCreated_PlayerEnemyAndCampaignIsCreated()
         {
             //User creates the game and a player, an enemy player and a campaign is created
-            Game game = new();
+            CardGame game = new();
             Assert.That(game._hero, Is.Not.Null);
             Assert.That(game._enemy, Is.Not.Null);
             Assert.That(game._campaign, Is.Not.Null);

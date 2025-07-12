@@ -1,12 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using MinuteBattle.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MinuteBattle.Logic
+﻿namespace MinuteBattle.Logic
 {
     public class Card
     {

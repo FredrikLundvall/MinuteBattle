@@ -1,18 +1,13 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MinuteBattle.Graphics
 {
     public static class PuppetFactory
     {
-        public static Puppet CreatePuppet(int puppetType, Vector2 position, float rotation)
+        public static Puppet CreatePuppet(int puppetType, Vector2 position, float rotation, Action clickAction)
         {
-            var puppet = new Puppet(position, rotation);
+            var puppet = new Puppet(position, rotation, clickAction);
             switch (puppetType) {
                 case 0: //PuppetEnum.BrittishPrivate:
                 {
@@ -35,9 +30,7 @@ namespace MinuteBattle.Graphics
                 case 3: // Button with text:
                 {
                     puppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.Button, new Vector2(160, 80), Vector2.Zero, 0));
-                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_18, new Vector2(20, 12), new Vector2(1, 1), 0, false, "", Color.White));
-                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_18, new Vector2(20, 12), new Vector2(-1, -1), 0, false, "", Color.Black));
-                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_18, new Vector2(20, 12), Vector2.Zero, 0, false, "", Color.Gray));
+                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_18, new Vector2(20, 12), Vector2.Zero, 0, false, "", Color.Black));
                     break;
                 }
                 default:

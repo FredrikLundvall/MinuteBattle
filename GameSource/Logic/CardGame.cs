@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MinuteBattle.Logic
 {
-    public class Game
+    public class CardGame
     {
         public GameStateEnum _state = GameStateEnum.InProgress;
         public Player _hero;
@@ -14,11 +10,19 @@ namespace MinuteBattle.Logic
         public Campaign _campaign;
         public Random _rnd;
 
-        public Game() {
+        public CardGame()
+        {
             _rnd = new Random(); //seed can be used to get same random for repeating the game
             _hero = Player.CreateHero();
             _enemy = Player.CreateEnemy();
             _campaign = Campaign.CreateCampaign(this);
+        }
+        public void Start()
+        {
+            if (_campaign._state == CampaignStateEnum.NotStarted)
+            {
+                _campaign.NextStage();
+            }
         }
     }
 }

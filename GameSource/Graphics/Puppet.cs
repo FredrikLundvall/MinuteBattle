@@ -1,24 +1,23 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace MinuteBattle.Graphics
 {
     public class Puppet
     {
-        public static Puppet EmptyPuppet = new Puppet(Vector2.Zero, 0);
+        public static Puppet EmptyPuppet = new Puppet(Vector2.Zero, 0, EmptyAction);
         public Vector2 _position = Vector2.Zero;
         public float _rotation = 0;
         public List<IClip> _clipList = [];
-        public Puppet(Vector2 position, float rotation)
+        public Action _clickAction = EmptyAction;
+        public static Action EmptyAction = new(() => { });
+        public Puppet(Vector2 position, float rotation, Action clickAction)
         {
             _position = position;
             _rotation = rotation;
+            _clickAction = clickAction;
         }
         public void AddClip(IClip clip)
         {

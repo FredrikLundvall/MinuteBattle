@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MinuteBattle.Logic
+﻿namespace MinuteBattle.Logic
 {
     public class Campaign
     {
-        public Game _game;
+        public CardGame _game;
         public Battle _battle = null;
         public CampaignStateEnum _state = CampaignStateEnum.NotStarted;
-        public Campaign(Game game) 
+        public Campaign(CardGame game) 
         {
             _game = game;
         }
-        public static Campaign CreateCampaign(Game game)
+        public static Campaign CreateCampaign(CardGame game)
         {
             Campaign campaign = new(game);
             campaign._battle = new(game, WinConditionEnum.EliminateAllEnemies);
