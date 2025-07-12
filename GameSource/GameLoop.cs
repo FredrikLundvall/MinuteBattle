@@ -37,7 +37,7 @@ namespace MinuteBattle
         protected override void LoadContent()
         {
             LoadGameAssets();
-
+            MouseChecker.Initialize();
             Stage.AddStartScene(_game, _graphics.GraphicsDevice.Viewport);
 
             //Try to force a garbage collection 
@@ -61,8 +61,8 @@ namespace MinuteBattle
                 Exit();
 
             GarbageCollect(gameTime);
-            _currentScene = Stage.GetCurrentScene(_game); 
-            //Update
+            _currentScene = Stage.GetCurrentScene(_game);
+            _currentScene.Update(gameTime);
 
             base.Update(gameTime);
         }

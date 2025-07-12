@@ -7,23 +7,25 @@ namespace MinuteBattle.Graphics
 {
     public class Puppet
     {
-        public static Puppet EmptyPuppet = new Puppet(Vector2.Zero, 0, EmptyAction);
+        public static Puppet EmptyPuppet = new Puppet(Vector2.Zero, 0, EmptyAction, Rectangle.Empty);
         public Vector2 _position = Vector2.Zero;
         public float _rotation = 0;
         public List<IClip> _clipList = [];
         public Action _clickAction = EmptyAction;
         public static Action EmptyAction = new(() => { });
-        public Puppet(Vector2 position, float rotation, Action clickAction)
+        public Rectangle _clickRectangle = Rectangle.Empty;
+        public Puppet(Vector2 position, float rotation, Action clickAction, Rectangle clickRectangle)
         {
             _position = position;
             _rotation = rotation;
             _clickAction = clickAction;
+            _clickRectangle = clickRectangle;
         }
         public void AddClip(IClip clip)
         {
             _clipList.Add(clip);
         }
-        public IClip getFirstClip(ClipCategoryEnum clipCategory)
+        public IClip GetFirstClip(ClipCategoryEnum clipCategory)
         {
             foreach (IClip clip in _clipList)
             {
@@ -31,7 +33,7 @@ namespace MinuteBattle.Graphics
             }
             return TextureAnimation.EmptyAnimation;
         }
-        public List<IClip> getAllClips(ClipCategoryEnum clipCategory)
+        public List<IClip> GetAllClips(ClipCategoryEnum clipCategory)
         {
             var filteredList = _clipList.Where(clip => clip.GetCategory() == clipCategory).ToList();
             if (filteredList.Count > 0)

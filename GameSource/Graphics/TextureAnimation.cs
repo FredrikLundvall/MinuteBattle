@@ -24,6 +24,12 @@ namespace MinuteBattle.Graphics
         {
             Globals.StaticSpriteBatch.Draw(TextureDictionary.Get(_textureId), parentPosition + _offsetPosition, null, Color.White, parentRotation + _offsetRotation, _origin, 0.5f, SpriteEffects.None, 0f);
         }
+        //public Rectangle GetRectangle(Vector2 parentPosition, float parentRotation)
+        //{
+        //    Rectangle rectangle = TextureDictionary.Get(_textureId).Bounds;
+        //    rectangle.Offset(parentPosition + _offsetPosition);
+        //    return rectangle;
+        //}
         public bool SetText(string text)
         {
             return false;

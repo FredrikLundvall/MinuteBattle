@@ -5,9 +5,9 @@ namespace MinuteBattle.Graphics
 {
     public static class PuppetFactory
     {
-        public static Puppet CreatePuppet(int puppetType, Vector2 position, float rotation, Action clickAction)
+        public static Puppet CreatePuppet(int puppetType, Vector2 position, float rotation, Action clickAction, Rectangle clickRectangle)
         {
-            var puppet = new Puppet(position, rotation, clickAction);
+            var puppet = new Puppet(position, rotation, clickAction, clickRectangle);
             switch (puppetType) {
                 case 0: //PuppetEnum.BrittishPrivate:
                 {
