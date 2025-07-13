@@ -23,8 +23,9 @@ namespace MinuteBattle.Graphics
         public static void AddStartScene(CardGame game, Viewport viewport)
         {
             Scene startScene = new();
-            startScene.AddPuppet(0, 3, new Vector2(viewport.Width / 2, viewport.Height / 5), 0, new(() => { game.Start(); }), new Rectangle(viewport.Width / 2, viewport.Height / 5, 128, 64));
+            startScene.AddPuppet(0, 3, new Vector2(viewport.Width / 2, viewport.Height / 5), 0, new(() => { game.Start(); }), Rectangle.Empty);
             startScene.GetPuppet(0).GetAllClips(ClipCategoryEnum.NameTag).ForEach(clip => clip.SetText("Start"));
+            startScene.GetPuppet(0).MakeBoundingRectangle();
             AddScene(START_SCENE_ID, startScene);
         }
         public static Scene GetCurrentScene(CardGame game)

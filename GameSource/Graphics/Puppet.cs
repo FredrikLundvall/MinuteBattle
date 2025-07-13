@@ -47,5 +47,31 @@ namespace MinuteBattle.Graphics
                 clip.Draw(_position, _rotation, gameTime);
             }
         }
+        public void MakeBoundingRectangle()
+        {
+            if (_clipList.Count == 0)
+            {
+                _clickRectangle = Rectangle.Empty;
+                return;
+            }
+            Rectangle boundingRectangle = Rectangle.Empty;
+            foreach (IClip clip in _clipList)
+            {
+                Rectangle clipRectangle = clip.GetBoundingRectangle(_position, _rotation);
+                if (!clipRectangle.IsEmpty)
+                {
+                    if (!boundingRectangle.IsEmpty)
+                    {
+                        // Combine the current clip's rectangle with the bounding rectangle
+                        boundingRectangle = Rectangle.Union(boundingRectangle, clipRectangle);
+                    }
+                    else
+                    {
+                        boundingRectangle = clipRectangle;
+                    }
+                }
+            }
+            _clickRectangle = boundingRectangle;
+        }
     }
 }

@@ -49,12 +49,12 @@ namespace MinuteBattle.Graphics
             _offsetRotation = rotation;
             return true;
         }
-        //public Rectangle GetRectangle(Vector2 parentPosition, float parentRotation)
-        //{
-        //    Rectangle rectangle = new();
-        //    rectangle.Size = getTextSize().ToPoint();
-        //    rectangle.Offset(parentPosition + _offsetPosition);
-        //    return rectangle;
-        //}
+        public Rectangle GetBoundingRectangle(Vector2 parentPosition, float parentRotation)
+        {
+            Rectangle rectangle = new();
+            rectangle.Size = getTextSize().ToPoint();
+            rectangle.Offset(parentPosition + _offsetPosition - _origin);
+            return rectangle;
+        }
     }
 }

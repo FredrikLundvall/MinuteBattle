@@ -30,6 +30,8 @@ namespace MinuteBattle
             }
 
             SetResolution();
+            Globals.Initialize(_graphics.GraphicsDevice);
+            MouseChecker.Initialize();
 
             base.Initialize();
         }
@@ -37,7 +39,6 @@ namespace MinuteBattle
         protected override void LoadContent()
         {
             LoadGameAssets();
-            MouseChecker.Initialize();
             Stage.AddStartScene(_game, _graphics.GraphicsDevice.Viewport);
 
             //Try to force a garbage collection 

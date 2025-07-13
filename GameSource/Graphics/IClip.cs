@@ -8,5 +8,6 @@ namespace MinuteBattle.Graphics
         ClipCategoryEnum GetCategory();
         bool SetText(string text);
         bool SetRotation(float rotation);
+        Rectangle GetBoundingRectangle(Vector2 parentPosition, float parentRotation);
     }
 }

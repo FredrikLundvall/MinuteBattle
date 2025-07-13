@@ -28,7 +28,7 @@ namespace MinuteBattle.Graphics
                 .ToList();
             foreach (Puppet puppet in filteredList)
             {
-                if(MouseChecker.IsCurrentlyOverArea(puppet._clickRectangle))
+                if(MouseChecker.IsCurrentlyOverArea(puppet._clickRectangle) && MouseChecker.ButtonIsCurrentlyPressed(MouseButtonEnum.LeftButton))
                 {
                     puppet._clickAction.Invoke();
                 }
@@ -40,6 +40,7 @@ namespace MinuteBattle.Graphics
             foreach (Puppet puppet in _puppetList.Values)
             {
                 puppet.Draw(gameTime);
+                Globals.DrawRectangle( puppet._clickRectangle, Color.Cyan);
             }
             Globals.StaticSpriteBatch.End();
         }

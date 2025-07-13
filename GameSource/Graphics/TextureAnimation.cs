@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System.Reflection.Metadata.Ecma335;
 
 namespace MinuteBattle.Graphics
 {
@@ -24,12 +25,14 @@ namespace MinuteBattle.Graphics
         {
             Globals.StaticSpriteBatch.Draw(TextureDictionary.Get(_textureId), parentPosition + _offsetPosition, null, Color.White, parentRotation + _offsetRotation, _origin, 0.5f, SpriteEffects.None, 0f);
         }
-        //public Rectangle GetRectangle(Vector2 parentPosition, float parentRotation)
-        //{
-        //    Rectangle rectangle = TextureDictionary.Get(_textureId).Bounds;
-        //    rectangle.Offset(parentPosition + _offsetPosition);
-        //    return rectangle;
-        //}
+        public Rectangle GetBoundingRectangle(Vector2 parentPosition, float parentRotation)
+        {
+            Rectangle bounds = TextureDictionary.Get(_textureId).Bounds;
+            float scale = 0.5f; // Assuming a scale of 0.5f as in the Draw method
+            Rectangle rectangle = new(0, 0, (int)float.Ceiling(bounds.Width * scale), (int)float.Ceiling(bounds.Height * scale));
+            rectangle.Offset(parentPosition + _offsetPosition - _origin * scale);
+            return rectangle;
+        }
         public bool SetText(string text)
         {
             return false;
