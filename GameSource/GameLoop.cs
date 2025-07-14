@@ -3,50 +3,39 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MinuteBattle.Graphics;
 using MinuteBattle.Logic;
-using System;
 
 namespace MinuteBattle
 {
     public class GameLoop : Game
     {
-        private GraphicsDeviceManager _graphics;
-        TimeSpan _lastGarbageCollection;
         CardGame _game = new();
         Scene _currentScene = Scene.EmptyScene;
+        GraphicsDeviceManager _graphicsDeviceManager;
 
         public GameLoop()
         {
-            _graphics = new GraphicsDeviceManager(this);
+            _graphicsDeviceManager = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
         }
-
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
             if (GraphicsDevice == null)
             {
-                _graphics.ApplyChanges();
+                Globals._graphics.ApplyChanges();
             }
-
-            SetResolution();
-            Globals.Initialize(_graphics.GraphicsDevice);
+            Globals.Initialize(_graphicsDeviceManager);
+            Globals.SetResolution();
             MouseChecker.Initialize();
-
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
             LoadGameAssets();
-            Stage.AddStartScene(_game, _graphics.GraphicsDevice.Viewport);
+            Stage.AddStartScene(_game, Globals._graphics.GraphicsDevice.Viewport);
 
-            //Try to force a garbage collection 
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
-            _lastGarbageCollection = new TimeSpan();
+            Globals.TryForcingGarbageCollect();
         }
 
         private void LoadGameAssets()
@@ -61,7 +50,7 @@ namespace MinuteBattle
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            GarbageCollect(gameTime);
+            Globals.GarbageCollect(gameTime);
             _currentScene = Stage.GetCurrentScene(_game);
             _currentScene.Update(gameTime);
 
@@ -70,29 +59,8 @@ namespace MinuteBattle
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
             _currentScene.Draw(gameTime);
-
             base.Draw(gameTime);
-        }
-
-        private void SetResolution()
-        {
-            // Change the resolution to match your current desktop
-            _graphics.IsFullScreen = true;
-            _graphics.PreferredBackBufferWidth = GraphicsDevice.Adapter.CurrentDisplayMode.Width;
-            _graphics.PreferredBackBufferHeight = GraphicsDevice.Adapter.CurrentDisplayMode.Height;
-            _graphics.ApplyChanges();
-        }
-        private void GarbageCollect(GameTime gameTime)
-        {
-            if ((gameTime.TotalGameTime - _lastGarbageCollection).TotalSeconds > 11.0)
-            {
-                //Suggest a garbage collection 
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-                _lastGarbageCollection = gameTime.TotalGameTime;
-            }
         }
     }
 }

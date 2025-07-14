@@ -14,6 +14,10 @@ namespace MinuteBattle.Graphics
         public Action _clickAction = EmptyAction;
         public static Action EmptyAction = new(() => { });
         public Rectangle _clickRectangle = Rectangle.Empty;
+        public bool _isFocused = false;
+        public bool _isPressed = false;
+        public bool _isPressedOutside = false;
+        public bool _isReleased = false;
         public Puppet(Vector2 position, float rotation, Action clickAction, Rectangle clickRectangle)
         {
             _position = position;

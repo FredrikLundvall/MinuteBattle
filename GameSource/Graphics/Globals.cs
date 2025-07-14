@@ -1,14 +1,15 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.ComponentModel.Design;
 
 namespace MinuteBattle.Graphics
 {
     public static class Globals
     {
+        public static GraphicsDeviceManager _graphics;
         public static SpriteBatch StaticSpriteBatch;
         public static IResolution StaticResolution = new Resolution();
+        private static TimeSpan _lastGarbageCollection = new();
         // create 1x1 texture for line drawing
         private static Texture2D _line = null;
 
@@ -45,10 +46,37 @@ namespace MinuteBattle.Graphics
                 0);
 
         }
-        public static void Initialize(GraphicsDevice graphicsDevice)
+        public static void Initialize(GraphicsDeviceManager graphicsDeviceManager)
         {
-            _line = new Texture2D(graphicsDevice, 1, 1);
+            _graphics = graphicsDeviceManager;
+            _line = new Texture2D(_graphics.GraphicsDevice, 1, 1);
             _line.SetData(new[] { Color.White }); // set the texture to be a 1x1 white pixel
+        }
+        public static void SetResolution()
+        {
+            // Change the resolution to match your current desktop
+            _graphics.IsFullScreen = true;
+            _graphics.PreferredBackBufferWidth = _graphics.GraphicsDevice.Adapter.CurrentDisplayMode.Width;
+            _graphics.PreferredBackBufferHeight = _graphics.GraphicsDevice.Adapter.CurrentDisplayMode.Height;
+            _graphics.ApplyChanges();
+        }
+        public static void TryForcingGarbageCollect()
+        {
+            //Suggest a garbage collection 
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+        }
+        public static void GarbageCollect(GameTime gameTime)
+        {
+            if ((gameTime.TotalGameTime - _lastGarbageCollection).TotalSeconds > 11.0)
+            {
+                //Suggest a garbage collection 
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                _lastGarbageCollection = gameTime.TotalGameTime;
+            }
         }
     }
 

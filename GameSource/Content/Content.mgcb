@@ -49,7 +49,7 @@
 /processorParam:TextureFormat=Color
 /build:German/german_soldier_128.png
 
-#begin GUI/button.png
+#begin GUI/button_320_104.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -59,7 +59,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:GUI/button.png
+/build:GUI/button_320_104.png
 
 #begin GUI/fonts/BebasNeue-Regular.spritefont
 /importer:FontDescriptionImporter
