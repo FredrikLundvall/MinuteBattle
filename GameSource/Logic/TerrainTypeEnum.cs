@@ -2,6 +2,6 @@
 {
     public enum TerrainTypeEnum
     {
-        Ditch, Hill, Bush
+        Ditch, Bush, Hill, 
     }
 }

@@ -35,6 +35,18 @@ namespace MinuteBattle.Graphics
 
             SpriteFont font = content.Load<SpriteFont>("GUI/fonts/BebasNeue-Regular_18");
             FontDictionary.Add(FontEnum.BebasNeue_Regular_18, font);
+
+            spriteTexture = content.Load<Texture2D>("Maps/great_plains_1600_900");
+            TextureDictionary.Add(TextureEnum.MapGreatPlain, spriteTexture);
+
+            spriteTexture = content.Load<Texture2D>("Maps/Terrain/hill_64");
+            TextureDictionary.Add(TextureEnum.TerrainHill, spriteTexture);
+
+            spriteTexture = content.Load<Texture2D>("Maps/Terrain/ditch_64");
+            TextureDictionary.Add(TextureEnum.TerrainDitch, spriteTexture);
+
+            spriteTexture = content.Load<Texture2D>("Maps/Terrain/bush_64");
+            TextureDictionary.Add(TextureEnum.TerrainBush, spriteTexture);
         }
 
     }

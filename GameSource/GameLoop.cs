@@ -22,29 +22,24 @@ namespace MinuteBattle
         {
             if (GraphicsDevice == null)
             {
-                Globals._graphics.ApplyChanges();
+                Globals.GraphicsDeviceMan.ApplyChanges();
             }
             Globals.Initialize(_graphicsDeviceManager);
             Globals.SetResolution();
             MouseChecker.Initialize();
             base.Initialize();
         }
-
         protected override void LoadContent()
         {
             LoadGameAssets();
-            Stage.AddStartScene(_game, Globals._graphics.GraphicsDevice.Viewport);
-
+            Stage.AddStartScene(_game);
             Globals.TryForcingGarbageCollect();
         }
-
         private void LoadGameAssets()
         {
             TextureDictionary.LoadTextures(Content);
-
             Globals.StaticSpriteBatch = new SpriteBatch(GraphicsDevice);
         }
-
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -53,10 +48,8 @@ namespace MinuteBattle
             Globals.GarbageCollect(gameTime);
             _currentScene = Stage.GetCurrentScene(_game);
             _currentScene.Update(gameTime);
-
             base.Update(gameTime);
         }
-
         protected override void Draw(GameTime gameTime)
         {
             _currentScene.Draw(gameTime);

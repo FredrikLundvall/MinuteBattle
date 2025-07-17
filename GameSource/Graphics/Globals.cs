@@ -6,12 +6,12 @@ namespace MinuteBattle.Graphics
 {
     public static class Globals
     {
-        public static GraphicsDeviceManager _graphics;
+        public static GraphicsDeviceManager GraphicsDeviceMan;
         public static SpriteBatch StaticSpriteBatch;
         public static IResolution StaticResolution = new Resolution();
         private static TimeSpan _lastGarbageCollection = new();
         // create 1x1 texture for line drawing
-        private static Texture2D _line = null;
+        private static Texture2D _pixel = null;
 
         public static void DrawRectangle(Rectangle rect, Color lineColor)
         {
@@ -24,15 +24,13 @@ namespace MinuteBattle.Graphics
             DrawLine(new Vector2(rect.X + rect.Width, rect.Y + rect.Height), new Vector2(rect.X, rect.Y + rect.Height), lineColor);
             DrawLine(new Vector2(rect.X, rect.Y + rect.Height), new Vector2(rect.X, rect.Y), lineColor);
         }
-
         public static void DrawLine(Vector2 start, Vector2 end, Color lineColor)
         {
             Vector2 edge = end - start;
             // calculate angle to rotate line
             float angle = (float)Math.Atan2(edge.Y, edge.X);
 
-
-            StaticSpriteBatch.Draw(_line,
+            StaticSpriteBatch.Draw(_pixel,
                 new Rectangle(// rectangle defines shape of line and position of start of line
                     (int)start.X,
                     (int)start.Y,
@@ -48,17 +46,17 @@ namespace MinuteBattle.Graphics
         }
         public static void Initialize(GraphicsDeviceManager graphicsDeviceManager)
         {
-            _graphics = graphicsDeviceManager;
-            _line = new Texture2D(_graphics.GraphicsDevice, 1, 1);
-            _line.SetData(new[] { Color.White }); // set the texture to be a 1x1 white pixel
+            GraphicsDeviceMan = graphicsDeviceManager;
+            _pixel = new Texture2D(GraphicsDeviceMan.GraphicsDevice, 1, 1);
+            _pixel.SetData(new[] { Color.White }); // set the texture to be a 1x1 white pixel
         }
         public static void SetResolution()
         {
             // Change the resolution to match your current desktop
-            _graphics.IsFullScreen = true;
-            _graphics.PreferredBackBufferWidth = _graphics.GraphicsDevice.Adapter.CurrentDisplayMode.Width;
-            _graphics.PreferredBackBufferHeight = _graphics.GraphicsDevice.Adapter.CurrentDisplayMode.Height;
-            _graphics.ApplyChanges();
+            GraphicsDeviceMan.IsFullScreen = true;
+            GraphicsDeviceMan.PreferredBackBufferWidth = GraphicsDeviceMan.GraphicsDevice.Adapter.CurrentDisplayMode.Width;
+            GraphicsDeviceMan.PreferredBackBufferHeight = GraphicsDeviceMan.GraphicsDevice.Adapter.CurrentDisplayMode.Height;
+            GraphicsDeviceMan.ApplyChanges();
         }
         public static void TryForcingGarbageCollect()
         {

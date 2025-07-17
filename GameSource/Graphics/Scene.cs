@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +9,7 @@ namespace MinuteBattle.Graphics
     {
         public static Scene EmptyScene = new();
         internal Dictionary<int, Puppet> _puppetList = [];
-        public void AddPuppet(int id, int puppetType, Vector2 position, float rotation, Action clickAction, Rectangle clickRectangle)
+        public void AddPuppet(int id, PuppetEnum puppetType, Vector2 position, float rotation, Action clickAction, Rectangle clickRectangle)
         {
             _puppetList.Add(id, PuppetFactory.CreatePuppet(puppetType, position, rotation, clickAction, clickRectangle));
         }
@@ -59,7 +58,7 @@ namespace MinuteBattle.Graphics
         }
         public void Draw(GameTime gameTime)
         {
-            Globals._graphics.GraphicsDevice.Clear(Color.Black);
+            Globals.GraphicsDeviceMan.GraphicsDevice.Clear(Color.Black);
             Globals.StaticSpriteBatch.Begin();
             foreach (Puppet puppet in _puppetList.Values)
             {

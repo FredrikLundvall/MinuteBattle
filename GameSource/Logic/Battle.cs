@@ -12,7 +12,7 @@
         {
             _game = game;
             _winCondition = winCondition;
-            _map = Map.CreateMap(1000, 1000, _game._rnd);
+            _map = Map.CreateMap(1600, 900, _game._rnd);
         }
         public void NextStage()
         {
