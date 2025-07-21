@@ -36,21 +36,32 @@ namespace MinuteBattle.Graphics
             Scene scene = new();
             Viewport viewport = Globals.GraphicsDeviceMan.GraphicsDevice.Viewport;
             Vector2 mapOffset = new Vector2(160, 140);
-            scene.AddPuppet(0, PuppetEnum.MapGreatPlain, mapOffset, 0, Puppet.EmptyAction, Rectangle.Empty);
+            int id = 0;
+            scene.AddPuppet(id++, PuppetEnum.MapGreatPlain, mapOffset, 0, Puppet.EmptyAction, Rectangle.Empty);
             foreach (var terrain in game._campaign._battle._map._terrain)
             {
                 if (terrain._terrainType == TerrainTypeEnum.Ditch)
                 {
-                    scene.AddPuppet(1, PuppetEnum.TerrainDitch, new Vector2(terrain._x, terrain._y) + mapOffset, 0, Puppet.EmptyAction, Rectangle.Empty);
+                    scene.AddPuppet(id++, PuppetEnum.TerrainDitch, new Vector2(terrain._x, terrain._y) + mapOffset, 0, Puppet.EmptyAction, Rectangle.Empty);
                 }
                 else if (terrain._terrainType == TerrainTypeEnum.Bush)
                 {
-                    scene.AddPuppet(2, PuppetEnum.TerrainBush, new Vector2(terrain._x, terrain._y) + mapOffset, 0, Puppet.EmptyAction, Rectangle.Empty);
+                    scene.AddPuppet(id++, PuppetEnum.TerrainBush, new Vector2(terrain._x, terrain._y) + mapOffset, 0, Puppet.EmptyAction, Rectangle.Empty);
                 }
                 else if (terrain._terrainType == TerrainTypeEnum.Hill)
                 {
-                    scene.AddPuppet(3, PuppetEnum.TerrainHill, new Vector2(terrain._x, terrain._y) + mapOffset, 0, Puppet.EmptyAction, Rectangle.Empty);
+                    scene.AddPuppet(id++, PuppetEnum.TerrainHill, new Vector2(terrain._x, terrain._y) + mapOffset, 0, Puppet.EmptyAction, Rectangle.Empty);
                 }
+            }
+            int x = 50;
+            int y = 190;
+            foreach (var cardInDeck in game._hero._cardDeck)
+            {
+                if (cardInDeck._cardType == CardTypeEnum.BrittishSoldier)
+                {
+                    scene.AddPuppet(id++, PuppetEnum.BrittishSoldier, new Vector2(x, y), 0, Puppet.EmptyAction, Rectangle.Empty);
+                }
+                y += 60;
             }
             AddScene(BATTLE_SCENE_ID, scene);
             return scene;
