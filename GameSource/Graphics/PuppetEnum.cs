@@ -2,6 +2,6 @@
 {
     public enum PuppetEnum
     {
-        BrittishSoldier, GermanSoldier, GermanMachineGun, StartButton, MapGreatPlain, TerrainDitch, TerrainBush, TerrainHill
+        HeroMelee, HeroProjectile, HeroArtillery, EnemyMelee, EnemyProjectile, EnemyArtillery, StartButton, MapGreatPlain, TerrainDitch, TerrainBush, TerrainHill
     }
 }

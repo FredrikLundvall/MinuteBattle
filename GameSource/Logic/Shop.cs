@@ -13,7 +13,7 @@ namespace MinuteBattle.Logic
         public static void Init()
         {
             _inStock.Clear();
-            _inStock.Add(new(CardTypeEnum.BrittishSoldier, "Private", "A single shot rifleman", 20, 1, 25, 10));
+            _inStock.Add(new(CardTypeEnum.HeroMelee, "Private", "A single shot rifleman", 20, 1, 25, 10));
         }
         public static bool BuyCard(Player player, string name)
         {

@@ -24,8 +24,8 @@ namespace MinuteBattle.Logic
         public static Player CreateHero()
         {
             Player hero = new("Swedish army", 0, 100, 0, 10);
-            hero._cardDeck.Add(new Card(CardTypeEnum.BrittishSoldier, "Musketeer lvl 1", "", 100, 1, 10, 10));
-            hero._cardDeck.Add(new Card(CardTypeEnum.BrittishSoldier, "Musketeer lvl 3", "", 100, 3, 10, 10));
+            hero._cardDeck.Add(new Card(CardTypeEnum.HeroMelee, "Musketeer lvl 1", "", 100, 1, 10, 10));
+            hero._cardDeck.Add(new Card(CardTypeEnum.HeroMelee, "Musketeer lvl 3", "", 100, 3, 10, 10));
             return hero;
         }
         public static Player CreateEnemy()

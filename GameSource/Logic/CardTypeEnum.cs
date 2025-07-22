@@ -8,6 +8,6 @@ namespace MinuteBattle.Logic
 {
     public enum CardTypeEnum
     {
-        BrittishSoldier, GermanSoldier, GermanMachineGun,
+        HeroMelee, HeroProjectile, HeroArtillery, EnemyMelee, EnemyProjectile, EnemyArtillery
     }
 }

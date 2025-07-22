@@ -57,9 +57,9 @@ namespace MinuteBattle.Graphics
             int y = 190;
             foreach (var cardInDeck in game._hero._cardDeck)
             {
-                if (cardInDeck._cardType == CardTypeEnum.BrittishSoldier)
+                if (cardInDeck._cardType == CardTypeEnum.HeroMelee)
                 {
-                    scene.AddPuppet(id++, PuppetEnum.BrittishSoldier, new Vector2(x, y), 0, Puppet.EmptyAction, Rectangle.Empty);
+                    scene.AddPuppet(id++, PuppetEnum.HeroMelee, new Vector2(x, y), 0, Puppet.EmptyAction, Rectangle.Empty);
                 }
                 y += 60;
             }

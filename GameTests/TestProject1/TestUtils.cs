@@ -10,7 +10,7 @@ namespace MinuteBattleTests
     public class TestUtils
     {
         public const int SHOP_RESOURCE_POINT_PRICE = 10;
-        public const CardTypeEnum CARD_TYPE = CardTypeEnum.BrittishSoldier;
+        public const CardTypeEnum CARD_TYPE = CardTypeEnum.HeroMelee;
         public const string CARD_NAME = "Private";
         public const string CARD_DESCRIPTION = "A single shot rifleman";
         public const int CARD_PRICE = 20;

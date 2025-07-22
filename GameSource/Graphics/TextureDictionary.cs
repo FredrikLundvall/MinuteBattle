@@ -21,31 +21,40 @@ namespace MinuteBattle.Graphics
         }
         public static void LoadTextures(ContentManager content)
         {
-            Texture2D spriteTexture = content.Load<Texture2D>("Brittish/brittish_soldier_128");
-            TextureDictionary.Add(TextureEnum.BrittishSoldier, spriteTexture);
+            Texture2D spriteTexture = content.Load<Texture2D>("hero/melee");
+            TextureDictionary.Add(TextureEnum.HeroMelee, spriteTexture);
 
-            spriteTexture = content.Load<Texture2D>("German/german_soldier_128");
-            TextureDictionary.Add(TextureEnum.GermanSoldier, spriteTexture);
+            spriteTexture = content.Load<Texture2D>("hero/projectile");
+            TextureDictionary.Add(TextureEnum.HeroProjectile, spriteTexture);
 
-            spriteTexture = content.Load<Texture2D>("German/german_machine_gun_128");
-            TextureDictionary.Add(TextureEnum.GermanMachineGun, spriteTexture);
+            spriteTexture = content.Load<Texture2D>("hero/artillery");
+            TextureDictionary.Add(TextureEnum.HeroArtillery, spriteTexture);
 
-            spriteTexture = content.Load<Texture2D>("GUI/button_320_104");
+            spriteTexture = content.Load<Texture2D>("enemy/melee");
+            TextureDictionary.Add(TextureEnum.EnemyMelee, spriteTexture);
+
+            spriteTexture = content.Load<Texture2D>("enemy/projectile");
+            TextureDictionary.Add(TextureEnum.EnemyProjectile, spriteTexture);
+
+            spriteTexture = content.Load<Texture2D>("enemy/artillery");
+            TextureDictionary.Add(TextureEnum.EnemyArtillery, spriteTexture);
+
+            spriteTexture = content.Load<Texture2D>("gui/button_320_104");
             TextureDictionary.Add(TextureEnum.Button, spriteTexture);
 
-            SpriteFont font = content.Load<SpriteFont>("GUI/fonts/BebasNeue-Regular_18");
+            SpriteFont font = content.Load<SpriteFont>("gui/fonts/BebasNeue-Regular_20");
             FontDictionary.Add(FontEnum.BebasNeue_Regular_18, font);
 
-            spriteTexture = content.Load<Texture2D>("Maps/great_plains_1600_900");
+            spriteTexture = content.Load<Texture2D>("maps/great_plains_1600_900");
             TextureDictionary.Add(TextureEnum.MapGreatPlain, spriteTexture);
 
-            spriteTexture = content.Load<Texture2D>("Maps/Terrain/hill_64");
+            spriteTexture = content.Load<Texture2D>("maps/Terrain/hill");
             TextureDictionary.Add(TextureEnum.TerrainHill, spriteTexture);
 
-            spriteTexture = content.Load<Texture2D>("Maps/Terrain/ditch_64");
+            spriteTexture = content.Load<Texture2D>("maps/Terrain/ditch");
             TextureDictionary.Add(TextureEnum.TerrainDitch, spriteTexture);
 
-            spriteTexture = content.Load<Texture2D>("Maps/Terrain/bush_64");
+            spriteTexture = content.Load<Texture2D>("maps/Terrain/bush");
             TextureDictionary.Add(TextureEnum.TerrainBush, spriteTexture);
         }
 
