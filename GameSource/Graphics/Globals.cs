@@ -42,7 +42,6 @@ namespace MinuteBattle.Graphics
                 new Vector2(0, 0), // point in line about which to rotate
                 SpriteEffects.None,
                 0);
-
         }
         public static void Initialize(GraphicsDeviceManager graphicsDeviceManager)
         {

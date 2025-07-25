@@ -25,7 +25,7 @@ namespace MinuteBattle.Graphics
             _text = text;
             _textColor = textColor;
         }
-        public Vector2 getTextSize()
+        public Vector2 getSize()
         {
             return FontDictionary.Get(_fontId).MeasureString(_text);
         }
@@ -49,10 +49,16 @@ namespace MinuteBattle.Graphics
             _offsetRotation = rotation;
             return true;
         }
+        public bool SetOrigin(Vector2 origin)
+        {
+            if (this == EmptyAnimation) return false;
+            _origin = origin;
+            return true;
+        }
         public Rectangle GetBoundingRectangle(Vector2 parentPosition, float parentRotation)
         {
             Rectangle rectangle = new();
-            rectangle.Size = getTextSize().ToPoint();
+            rectangle.Size = getSize().ToPoint();
             rectangle.Offset(parentPosition + _offsetPosition - _origin);
             return rectangle;
         }

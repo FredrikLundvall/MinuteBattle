@@ -53,15 +53,19 @@ namespace MinuteBattle.Graphics
                     scene.AddPuppet(id++, PuppetEnum.TerrainHill, new Vector2(terrain._x, terrain._y) + mapOffset, 0, Puppet.EmptyAction, Rectangle.Empty);
                 }
             }
-            int x = 50;
-            int y = 190;
+            int x = 80;
+            int y = 180;
             foreach (var cardInDeck in game._hero._cardDeck)
             {
                 if (cardInDeck._cardType == CardTypeEnum.HeroMelee)
                 {
                     scene.AddPuppet(id++, PuppetEnum.HeroMelee, new Vector2(x, y), 0, Puppet.EmptyAction, Rectangle.Empty);
+                    var clip = scene.GetPuppet(id - 1).GetFirstClip(ClipCategoryEnum.NameTag);
+                    clip.SetText(cardInDeck._name);
+                    var size = clip.getSize();
+                    clip.SetOrigin(new Vector2(size.X / 2, -16));
                 }
-                y += 60;
+                y += 70;
             }
             AddScene(BATTLE_SCENE_ID, scene);
             return scene;

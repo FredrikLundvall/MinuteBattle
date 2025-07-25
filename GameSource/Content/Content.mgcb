@@ -61,6 +61,13 @@
 /processorParam:TextureFormat=Color
 /build:gui/button_320_104.png
 
+#begin gui/fonts/BebasNeue-Regular_14.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:gui/fonts/BebasNeue-Regular_14.spritefont
+
 #begin gui/fonts/BebasNeue-Regular_20.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor

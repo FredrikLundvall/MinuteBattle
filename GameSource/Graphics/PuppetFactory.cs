@@ -12,25 +12,25 @@ namespace MinuteBattle.Graphics
                 case PuppetEnum.HeroMelee:
                 {
                     puppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.HeroMelee, new Vector2(16, 16), Vector2.Zero, 0, 1.0f));
-                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_18, new Vector2(16, -40), Vector2.Zero, 0, false, "", Color.DarkOliveGreen));
+                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_14, new Vector2(16, -16), Vector2.Zero, 0, false, "", Color.DarkOliveGreen));
                     break;
                 }
                 case PuppetEnum.EnemyMelee:
                 {
                     puppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.EnemyMelee, new Vector2(16, 16), Vector2.Zero, 0, 1.0f));
-                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_18, new Vector2(16, -40), Vector2.Zero, 0, false, "", Color.DarkOliveGreen));
+                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_14, new Vector2(16, -16), Vector2.Zero, 0, false, "", Color.DarkOliveGreen));
                     break;
                 }
                 case PuppetEnum.EnemyProjectile:
                 {
                     puppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.EnemyProjectile, new Vector2(16, 16), Vector2.Zero, 0, 1.0f));
-                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_18, new Vector2(16, -40), Vector2.Zero, 0, false, "", Color.DarkOliveGreen));
+                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_14, new Vector2(16, -16), Vector2.Zero, 0, false, "", Color.DarkOliveGreen));
                     break;
                 }
                 case PuppetEnum.StartButton:
                 {
                     puppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.Button, new Vector2(160, 52), Vector2.Zero, 0, 0.5f));
-                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_18, new Vector2(20, 12), Vector2.Zero, 0, false, "", Color.Black));
+                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_20, new Vector2(20, 12), Vector2.Zero, 0, false, "", Color.Black));
                     break;
                 }
                 case PuppetEnum.MapGreatPlain:

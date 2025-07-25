@@ -42,8 +42,11 @@ namespace MinuteBattle.Graphics
             spriteTexture = content.Load<Texture2D>("gui/button_320_104");
             TextureDictionary.Add(TextureEnum.Button, spriteTexture);
 
-            SpriteFont font = content.Load<SpriteFont>("gui/fonts/BebasNeue-Regular_20");
-            FontDictionary.Add(FontEnum.BebasNeue_Regular_18, font);
+            SpriteFont font = content.Load<SpriteFont>("gui/fonts/BebasNeue-Regular_14");
+            FontDictionary.Add(FontEnum.BebasNeue_Regular_14, font);
+
+            font = content.Load<SpriteFont>("gui/fonts/BebasNeue-Regular_20");
+            FontDictionary.Add(FontEnum.BebasNeue_Regular_20, font);
 
             spriteTexture = content.Load<Texture2D>("maps/great_plains_1600_900");
             TextureDictionary.Add(TextureEnum.MapGreatPlain, spriteTexture);

@@ -27,6 +27,11 @@ namespace MinuteBattle.Graphics
         {
             Globals.StaticSpriteBatch.Draw(TextureDictionary.Get(_textureId), parentPosition + _offsetPosition, null, Color.White, parentRotation + _offsetRotation, _origin, _scale, SpriteEffects.None, 0f);
         }
+        public Vector2 getSize()
+        {
+            var bounds = TextureDictionary.Get(_textureId).Bounds;
+            return new(bounds.Width * _scale, bounds.Height * _scale);
+        }
         public Rectangle GetBoundingRectangle(Vector2 parentPosition, float parentRotation)
         {
             Rectangle bounds = TextureDictionary.Get(_textureId).Bounds;
@@ -42,6 +47,12 @@ namespace MinuteBattle.Graphics
         {
             if(this == EmptyAnimation) return false;
             _offsetRotation = rotation;
+            return true;
+        }
+        public bool SetOrigin(Vector2 origin)
+        {
+            if (this == EmptyAnimation) return false;
+            _origin = origin;
             return true;
         }
     }
