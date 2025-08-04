@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using MinuteBattle.Logic;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MinuteBattle.Graphics
 { 
@@ -37,7 +38,16 @@ namespace MinuteBattle.Graphics
             Viewport viewport = Globals.GraphicsDeviceMan.GraphicsDevice.Viewport;
             Vector2 mapOffset = new Vector2(160, 140);
             int id = 0;
-            scene.AddPuppet(id++, PuppetEnum.MapGreatPlain, mapOffset, 0, Puppet.EmptyAction, Rectangle.Empty);
+            scene.AddPuppet(id++, PuppetEnum.MapGreatPlain, mapOffset, 0, new(() => {
+                //Drop the puppet beeing dragged (if there is one)
+                if (scene._draggedPuppet != Puppet.EmptyPuppet)
+                {
+                    var nexId = scene._puppetList.Keys.Max() + 1;
+                    scene._puppetList.Add(nexId, scene._draggedPuppet);
+                    scene._draggedPuppet = Puppet.EmptyPuppet;
+                }
+            }), Rectangle.Empty);
+            scene.GetPuppet(id - 1).MakeBoundingRectangle();
             foreach (var terrain in game._campaign._battle._map._terrain)
             {
                 if (terrain._terrainType == TerrainTypeEnum.Ditch)
@@ -59,11 +69,18 @@ namespace MinuteBattle.Graphics
             {
                 if (cardInDeck._cardType == CardTypeEnum.HeroMelee)
                 {
-                    scene.AddPuppet(id++, PuppetEnum.HeroMelee, new Vector2(x, y), 0, Puppet.EmptyAction, Rectangle.Empty);
+                    scene.AddPuppet(id++, PuppetEnum.HeroMelee, new Vector2(x, y), 0, new(() => {
+                        //Add a puppet to the scene as beeing dragged following the mouse, to represent the card
+                        if(scene._draggedPuppet == Puppet.EmptyPuppet)
+                        {
+                            scene._draggedPuppet = PuppetFactory.CreatePuppet(PuppetEnum.HeroMelee, new Vector2(x, y), 0, Puppet.EmptyAction, Rectangle.Empty);
+                        }
+                    }), Rectangle.Empty);
                     var clip = scene.GetPuppet(id - 1).GetFirstClip(ClipCategoryEnum.NameTag);
                     clip.SetText(cardInDeck._name);
                     var size = clip.getSize();
                     clip.SetOrigin(new Vector2(size.X / 2, -16));
+                    scene.GetPuppet(id - 1).MakeBoundingRectangle();
                 }
                 y += 70;
             }

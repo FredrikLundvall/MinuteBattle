@@ -9,6 +9,7 @@ namespace MinuteBattle.Graphics
     {
         public static Scene EmptyScene = new();
         internal Dictionary<int, Puppet> _puppetList = [];
+        public Puppet _draggedPuppet = Puppet.EmptyPuppet;
         public void AddPuppet(int id, PuppetEnum puppetType, Vector2 position, float rotation, Action clickAction, Rectangle clickRectangle)
         {
             _puppetList.Add(id, PuppetFactory.CreatePuppet(puppetType, position, rotation, clickAction, clickRectangle));
@@ -54,7 +55,13 @@ namespace MinuteBattle.Graphics
                     puppet._isPressed = false;
                     puppet._isPressedOutside = false;
                 }
+                if (!(puppet._isPressed && !puppet._isPressedOutside) && puppet._isReleased)
+                {
+                    //Invoke the puppets click action
+                    puppet._clickAction.Invoke();
+                }
             }
+            _draggedPuppet._position = MouseChecker.GetCurrentCoord();
         }
         public void Draw(GameTime gameTime)
         {
@@ -70,11 +77,6 @@ namespace MinuteBattle.Graphics
                         //Draw the puppet as currently pressed
                         Globals.DrawRectangle(puppet._clickRectangle, Color.Cyan);
                     }
-                    else if (puppet._isReleased)
-                    {
-                        //Invoke the puppets click action
-                        puppet._clickAction.Invoke();
-                    }
                     else
                     {
                         //Draw the puppet as focused
@@ -82,6 +84,7 @@ namespace MinuteBattle.Graphics
                     }
                 }
             }
+            _draggedPuppet.Draw(gameTime);
             Globals.StaticSpriteBatch.End();
         }
     }

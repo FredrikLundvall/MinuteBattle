@@ -34,5 +34,10 @@ namespace MinuteBattle.Graphics
             Vector2 mousePosition = _resolution.ScreenToGameCoord(new Vector2(mouseScreenPosition.X, mouseScreenPosition.Y));
             return buttonArea.Contains(mousePosition);
         }
+        public static Vector2 GetCurrentCoord()
+        {
+            Point mouseScreenPosition = _inputConnector.GetMouseState().Position;
+            return _resolution.ScreenToGameCoord(new Vector2(mouseScreenPosition.X, mouseScreenPosition.Y));
+        }
     }
 }
