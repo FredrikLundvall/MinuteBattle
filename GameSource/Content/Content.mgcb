@@ -49,7 +49,7 @@
 /processorParam:TextureFormat=Color
 /build:enemy/projectile.png
 
-#begin gui/button_320_104.png
+#begin gui/button_160_52.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -59,7 +59,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:gui/button_320_104.png
+/build:gui/button_160_52.png
 
 #begin gui/fonts/BebasNeue-Regular_14.spritefont
 /importer:FontDescriptionImporter
@@ -74,6 +74,20 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:gui/fonts/BebasNeue-Regular_20.spritefont
+
+#begin gui/fonts/JSL_Ancient_Medium.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:gui/fonts/JSL_Ancient_Medium.spritefont
+
+#begin gui/fonts/JSL_Ancient_Small.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:gui/fonts/JSL_Ancient_Small.spritefont
 
 #begin gui/icons/field_camp_64.png
 /importer:TextureImporter

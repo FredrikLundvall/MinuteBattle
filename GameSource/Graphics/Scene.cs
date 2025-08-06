@@ -70,7 +70,7 @@ namespace MinuteBattle.Graphics
             foreach (Puppet puppet in _puppetList.Values)
             {
                 puppet.Draw(gameTime);
-                if (puppet._isFocused)
+                if (puppet._isFocused && puppet._highligthOnFocus)
                 {
                     if (puppet._isPressed && !puppet._isPressedOutside)
                     {

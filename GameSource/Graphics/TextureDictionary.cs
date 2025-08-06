@@ -39,7 +39,7 @@ namespace MinuteBattle.Graphics
             spriteTexture = content.Load<Texture2D>("enemy/artillery");
             TextureDictionary.Add(TextureEnum.EnemyArtillery, spriteTexture);
 
-            spriteTexture = content.Load<Texture2D>("gui/button_320_104");
+            spriteTexture = content.Load<Texture2D>("gui/button_160_52");
             TextureDictionary.Add(TextureEnum.Button, spriteTexture);
 
             SpriteFont font = content.Load<SpriteFont>("gui/fonts/BebasNeue-Regular_14");
@@ -47,6 +47,12 @@ namespace MinuteBattle.Graphics
 
             font = content.Load<SpriteFont>("gui/fonts/BebasNeue-Regular_20");
             FontDictionary.Add(FontEnum.BebasNeue_Regular_20, font);
+
+            font = content.Load<SpriteFont>("gui/fonts/JSL_Ancient_Small");
+            FontDictionary.Add(FontEnum.JSL_Ancient_Small, font);
+
+            font = content.Load<SpriteFont>("gui/fonts/JSL_Ancient_Medium");
+            FontDictionary.Add(FontEnum.JSL_Ancient_Medium, font);
 
             spriteTexture = content.Load<Texture2D>("maps/great_plains_1600_900");
             TextureDictionary.Add(TextureEnum.MapGreatPlain, spriteTexture);

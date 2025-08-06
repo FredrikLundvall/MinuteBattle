@@ -48,6 +48,7 @@ namespace MinuteBattle.Graphics
                 }
             }), Rectangle.Empty);
             scene.GetPuppet(id - 1).MakeBoundingRectangle();
+            scene.GetPuppet(id - 1)._highligthOnFocus = false;
             foreach (var terrain in game._campaign._battle._map._terrain)
             {
                 if (terrain._terrainType == TerrainTypeEnum.Ditch)
@@ -74,6 +75,36 @@ namespace MinuteBattle.Graphics
                         if(scene._draggedPuppet == Puppet.EmptyPuppet)
                         {
                             scene._draggedPuppet = PuppetFactory.CreatePuppet(PuppetEnum.HeroMelee, new Vector2(x, y), 0, Puppet.EmptyAction, Rectangle.Empty);
+                        }
+                    }), Rectangle.Empty);
+                    var clip = scene.GetPuppet(id - 1).GetFirstClip(ClipCategoryEnum.NameTag);
+                    clip.SetText(cardInDeck._name);
+                    var size = clip.getSize();
+                    clip.SetOrigin(new Vector2(size.X / 2, -16));
+                    scene.GetPuppet(id - 1).MakeBoundingRectangle();
+                }
+                else if (cardInDeck._cardType == CardTypeEnum.HeroProjectile)
+                {
+                    scene.AddPuppet(id++, PuppetEnum.HeroProjectile, new Vector2(x, y), 0, new(() => {
+                        //Add a puppet to the scene as beeing dragged following the mouse, to represent the card
+                        if (scene._draggedPuppet == Puppet.EmptyPuppet)
+                        {
+                            scene._draggedPuppet = PuppetFactory.CreatePuppet(PuppetEnum.HeroProjectile, new Vector2(x, y), 0, Puppet.EmptyAction, Rectangle.Empty);
+                        }
+                    }), Rectangle.Empty);
+                    var clip = scene.GetPuppet(id - 1).GetFirstClip(ClipCategoryEnum.NameTag);
+                    clip.SetText(cardInDeck._name);
+                    var size = clip.getSize();
+                    clip.SetOrigin(new Vector2(size.X / 2, -16));
+                    scene.GetPuppet(id - 1).MakeBoundingRectangle();
+                }
+                else if (cardInDeck._cardType == CardTypeEnum.HeroArtillery)
+                {
+                    scene.AddPuppet(id++, PuppetEnum.HeroArtillery, new Vector2(x, y), 0, new(() => {
+                        //Add a puppet to the scene as beeing dragged following the mouse, to represent the card
+                        if (scene._draggedPuppet == Puppet.EmptyPuppet)
+                        {
+                            scene._draggedPuppet = PuppetFactory.CreatePuppet(PuppetEnum.HeroArtillery, new Vector2(x, y), 0, Puppet.EmptyAction, Rectangle.Empty);
                         }
                     }), Rectangle.Empty);
                     var clip = scene.GetPuppet(id - 1).GetFirstClip(ClipCategoryEnum.NameTag);

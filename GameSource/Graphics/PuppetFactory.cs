@@ -12,25 +12,25 @@ namespace MinuteBattle.Graphics
                 case PuppetEnum.HeroMelee:
                 {
                     puppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.HeroMelee, new Vector2(16, 16), Vector2.Zero, 0, 1.0f));
-                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_14, new Vector2(16, -16), Vector2.Zero, 0, false, "", Color.DarkOliveGreen));
+                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.JSL_Ancient_Small, new Vector2(16, -16), Vector2.Zero, 0, false, "", Color.SaddleBrown));
                     break;
                 }
-                case PuppetEnum.EnemyMelee:
+                case PuppetEnum.HeroProjectile:
                 {
-                    puppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.EnemyMelee, new Vector2(16, 16), Vector2.Zero, 0, 1.0f));
-                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_14, new Vector2(16, -16), Vector2.Zero, 0, false, "", Color.DarkOliveGreen));
+                    puppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.HeroProjectile, new Vector2(16, 16), Vector2.Zero, 0, 1.0f));
+                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.JSL_Ancient_Small, new Vector2(16, -16), Vector2.Zero, 0, false, "", Color.SaddleBrown));
                     break;
                 }
-                case PuppetEnum.EnemyProjectile:
+                case PuppetEnum.HeroArtillery:
                 {
-                    puppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.EnemyProjectile, new Vector2(16, 16), Vector2.Zero, 0, 1.0f));
-                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_14, new Vector2(16, -16), Vector2.Zero, 0, false, "", Color.DarkOliveGreen));
+                    puppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.HeroArtillery, new Vector2(16, 16), Vector2.Zero, 0, 1.0f));
+                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.JSL_Ancient_Small, new Vector2(16, -16), Vector2.Zero, 0, false, "", Color.SaddleBrown));
                     break;
                 }
                 case PuppetEnum.StartButton:
                 {
-                    puppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.Button, new Vector2(160, 52), Vector2.Zero, 0, 0.5f));
-                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.BebasNeue_Regular_20, new Vector2(20, 12), Vector2.Zero, 0, false, "", Color.Black));
+                    puppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.Button, new Vector2(80, 26), Vector2.Zero, 0, 1.0f));
+                    puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.JSL_Ancient_Medium, new Vector2(20, 10), Vector2.Zero, 0, false, "", Color.Black));
                     break;
                 }
                 case PuppetEnum.MapGreatPlain:
