@@ -33,9 +33,9 @@ namespace MinuteBattle.Graphics
                     puppet.AddClip(new FontAnimation(ClipCategoryEnum.NameTag, FontEnum.JSL_Ancient_Medium, new Vector2(20, 10), Vector2.Zero, 0, false, "", Color.Black));
                     break;
                 }
-                case PuppetEnum.MapGreatPlain:
+                case PuppetEnum.PaperSheet:
                 {
-                    puppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.MapGreatPlain, Vector2.Zero, Vector2.Zero, 0, 1.0f));
+                    puppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.PaperSheet, Vector2.Zero, Vector2.Zero, 0, 1.0f));
                     break;
                 }
                 case PuppetEnum.TerrainDitch:

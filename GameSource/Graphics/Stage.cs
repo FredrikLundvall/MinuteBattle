@@ -36,9 +36,9 @@ namespace MinuteBattle.Graphics
         {
             Scene scene = new();
             Viewport viewport = Globals.GraphicsDeviceMan.GraphicsDevice.Viewport;
-            Vector2 mapOffset = new Vector2(160, 140);
+            Vector2 mapOffset = new Vector2(0, 0);
             int id = 0;
-            scene.AddPuppet(id++, PuppetEnum.MapGreatPlain, mapOffset, 0, new(() => {
+            scene.AddPuppet(id++, PuppetEnum.PaperSheet, mapOffset, 0, new(() => {
                 //Drop the puppet beeing dragged (if there is one)
                 if (scene._draggedPuppet != Puppet.EmptyPuppet)
                 {

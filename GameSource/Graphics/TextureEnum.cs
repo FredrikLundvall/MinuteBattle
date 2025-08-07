@@ -2,6 +2,6 @@
 {
     public enum TextureEnum
     {
-        Empty, HeroMelee, HeroProjectile, HeroArtillery, EnemyMelee, EnemyProjectile, EnemyArtillery, Button, MapGreatPlain, TerrainDitch, TerrainBush, TerrainHill 
+        Empty, HeroMelee, HeroProjectile, HeroArtillery, EnemyMelee, EnemyProjectile, EnemyArtillery, Button, PaperSheet, TerrainDitch, TerrainBush, TerrainHill 
     }
 }

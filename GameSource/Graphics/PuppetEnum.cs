@@ -2,6 +2,6 @@
 {
     public enum PuppetEnum
     {
-        HeroMelee, HeroProjectile, HeroArtillery, EnemyMelee, EnemyProjectile, EnemyArtillery, StartButton, MapGreatPlain, TerrainDitch, TerrainBush, TerrainHill
+        HeroMelee, HeroProjectile, HeroArtillery, EnemyMelee, EnemyProjectile, EnemyArtillery, StartButton, PaperSheet, TerrainDitch, TerrainBush, TerrainHill
     }
 }

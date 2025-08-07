@@ -49,7 +49,7 @@
 /processorParam:TextureFormat=Color
 /build:enemy/projectile.png
 
-#begin gui/button_160_52.png
+#begin gui/button_medium.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -59,21 +59,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:gui/button_160_52.png
-
-#begin gui/fonts/BebasNeue-Regular_14.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:gui/fonts/BebasNeue-Regular_14.spritefont
-
-#begin gui/fonts/BebasNeue-Regular_20.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:gui/fonts/BebasNeue-Regular_20.spritefont
+/build:gui/button_medium.png
 
 #begin gui/fonts/JSL_Ancient_Medium.spritefont
 /importer:FontDescriptionImporter
@@ -88,42 +74,6 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:gui/fonts/JSL_Ancient_Small.spritefont
-
-#begin gui/icons/field_camp_64.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gui/icons/field_camp_64.png
-
-#begin gui/icons/frontline_64.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gui/icons/frontline_64.png
-
-#begin gui/icons/reinforcements_64.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:gui/icons/reinforcements_64.png
 
 #begin hero/artillery.png
 /importer:TextureImporter
@@ -161,7 +111,7 @@
 /processorParam:TextureFormat=Color
 /build:hero/projectile.png
 
-#begin maps/great_plains_1600_900.png
+#begin maps/paper_sheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -171,7 +121,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:maps/great_plains_1600_900.png
+/build:maps/paper_sheet.png
 
 #begin maps/terrain/bush.png
 /importer:TextureImporter
