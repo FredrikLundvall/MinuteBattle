@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MinuteBattle.Graphics;
@@ -39,6 +40,8 @@ namespace MinuteBattle
         {
             TextureDictionary.LoadTextures(Content);
             Globals.StaticSpriteBatch = new SpriteBatch(GraphicsDevice);
+            Globals._testClick = Content.Load<SoundEffect>("sound/click");
+            Globals._testTransition = Content.Load<SoundEffect>("sound/transition");
         }
         protected override void Update(GameTime gameTime)
         {

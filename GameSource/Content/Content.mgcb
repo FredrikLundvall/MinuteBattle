@@ -159,3 +159,15 @@
 /processorParam:TextureFormat=Color
 /build:maps/terrain/hill.png
 
+#begin sound/click.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/click.wav
+
+#begin sound/transition.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/transition.wav
+
