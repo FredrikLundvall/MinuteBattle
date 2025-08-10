@@ -56,6 +56,7 @@ namespace MinuteBattle.Graphics
                 {
                     Globals._testClick.Play(0.4f, 0.0f, 0.0f);
                     var nexId = scene._puppetList.Keys.Max() + 1;
+                    scene._draggedPuppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.Mark, new Vector2(32, 32), Vector2.Zero, 0, 1.0f));
                     scene._puppetList.Add(nexId, scene._draggedPuppet);
                     scene._draggedPuppet = Puppet.EmptyPuppet;
                 }

@@ -59,6 +59,9 @@ namespace MinuteBattle.Graphics
 
             spriteTexture = content.Load<Texture2D>("maps/Terrain/bush");
             TextureDictionary.Add(TextureEnum.TerrainBush, spriteTexture);
+
+            spriteTexture = content.Load<Texture2D>("maps/mark");
+            TextureDictionary.Add(TextureEnum.Mark, spriteTexture);
         }
 
     }
