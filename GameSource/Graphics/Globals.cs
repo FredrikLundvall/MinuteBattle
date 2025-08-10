@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using System;
 
 namespace MinuteBattle.Graphics
@@ -12,6 +13,7 @@ namespace MinuteBattle.Graphics
         public static IResolution StaticResolution = new Resolution();
         public static SoundEffect _testClick = null;
         public static SoundEffect _testTransition = null;
+        public static Song _testSong = null;
         private static TimeSpan _lastGarbageCollection = new();
         // create 1x1 texture for line drawing
         private static Texture2D _pixel = null;

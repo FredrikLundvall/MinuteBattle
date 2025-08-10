@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Media;
 using MinuteBattle.Logic;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,15 @@ namespace MinuteBattle.Graphics
             Scene startScene = new();
             Viewport viewport = Globals.GraphicsDeviceMan.GraphicsDevice.Viewport;
             startScene.AddPuppet(0, PuppetEnum.StartButton, new Vector2(viewport.Width / 2, viewport.Height / 5), 0, new(() => {
-                Globals._testTransition.Play();
+                Globals._testTransition.Play(0.4f, 0.0f, 0.0f);
+                // check the current state of the MediaPlayer.
+                if (MediaPlayer.State != MediaState.Stopped)
+                {
+                    MediaPlayer.Stop(); // stop current audio playback if playing or paused.
+                }
+                MediaPlayer.Volume = 0.05f;
+                // Play the selected song reference.
+                MediaPlayer.Play(Globals._testSong);
                 game.Start(); 
             }), Rectangle.Empty);
             startScene.GetPuppet(0).GetAllClips(ClipCategoryEnum.NameTag).ForEach(clip => clip.SetText("Start"));
@@ -45,7 +54,7 @@ namespace MinuteBattle.Graphics
                 //Drop the puppet beeing dragged (if there is one)
                 if (scene._draggedPuppet != Puppet.EmptyPuppet)
                 {
-                    Globals._testClick.Play();
+                    Globals._testClick.Play(0.4f, 0.0f, 0.0f);
                     var nexId = scene._puppetList.Keys.Max() + 1;
                     scene._puppetList.Add(nexId, scene._draggedPuppet);
                     scene._draggedPuppet = Puppet.EmptyPuppet;
@@ -78,7 +87,7 @@ namespace MinuteBattle.Graphics
                         //Add a puppet to the scene as beeing dragged following the mouse, to represent the card
                         if(scene._draggedPuppet == Puppet.EmptyPuppet)
                         {
-                            Globals._testClick.Play();
+                            Globals._testClick.Play(0.4f, 0.0f, 0.0f);
                             scene._draggedPuppet = PuppetFactory.CreatePuppet(PuppetEnum.HeroMelee, new Vector2(x, y), 0, Puppet.EmptyAction, Rectangle.Empty);
                         }
                     }), Rectangle.Empty);
@@ -94,7 +103,7 @@ namespace MinuteBattle.Graphics
                         //Add a puppet to the scene as beeing dragged following the mouse, to represent the card
                         if (scene._draggedPuppet == Puppet.EmptyPuppet)
                         {
-                            Globals._testClick.Play();
+                            Globals._testClick.Play(0.4f, 0.0f, 0.0f);
                             scene._draggedPuppet = PuppetFactory.CreatePuppet(PuppetEnum.HeroProjectile, new Vector2(x, y), 0, Puppet.EmptyAction, Rectangle.Empty);
                         }
                     }), Rectangle.Empty);
@@ -110,7 +119,7 @@ namespace MinuteBattle.Graphics
                         //Add a puppet to the scene as beeing dragged following the mouse, to represent the card
                         if (scene._draggedPuppet == Puppet.EmptyPuppet)
                         {
-                            Globals._testClick.Play();
+                            Globals._testClick.Play(0.4f, 0.0f, 0.0f);
                             scene._draggedPuppet = PuppetFactory.CreatePuppet(PuppetEnum.HeroArtillery, new Vector2(x, y), 0, Puppet.EmptyAction, Rectangle.Empty);
                         }
                     }), Rectangle.Empty);
