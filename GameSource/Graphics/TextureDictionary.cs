@@ -73,6 +73,9 @@ namespace MinuteBattle.Graphics
             spriteTexture = content.Load<Texture2D>("gui/mouse_hand");
             TextureDictionary.Add(TextureEnum.MouseHand, spriteTexture);
             _mouseHand = MouseCursor.FromTexture2D(spriteTexture, 21, 0);
+
+            spriteTexture = content.Load<Texture2D>("deck/blank_card");
+            TextureDictionary.Add(TextureEnum.BlankCard, spriteTexture);
         }
 
     }

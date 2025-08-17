@@ -96,7 +96,23 @@ namespace MinuteBattle.Graphics
                     var clip = scene.GetPuppet(id - 1).GetFirstClip(ClipCategoryEnum.NameTag);
                     clip.SetText(cardInDeck._name);
                     var size = clip.getSize();
-                    clip.SetOrigin(new Vector2(size.X / 2, -16));
+                    clip.SetOrigin(new Vector2(size.X / 2, -36));
+                    scene.GetPuppet(id - 1).MakeBoundingRectangle();
+                }
+                else if (cardInDeck._cardType == CardTypeEnum.HeroMeleeCard)
+                {
+                    scene.AddPuppet(id++, PuppetEnum.HeroMeleeCard, new Vector2(x, y), 0, new(() => {
+                        //Add a puppet to the scene as beeing dragged following the mouse, to represent the card
+                        if (scene._draggedPuppet == Puppet.EmptyPuppet)
+                        {
+                            Globals._testClick.Play(0.4f, 0.0f, 0.0f);
+                            scene._draggedPuppet = PuppetFactory.CreatePuppet(PuppetEnum.HeroMelee, new Vector2(x, y), 0, Puppet.EmptyAction, Rectangle.Empty);
+                        }
+                    }), Rectangle.Empty);
+                    var clip = scene.GetPuppet(id - 1).GetFirstClip(ClipCategoryEnum.NameTag);
+                    clip.SetText(cardInDeck._name);
+                    var size = clip.getSize();
+                    clip.SetOrigin(new Vector2(size.X / 2, -36));
                     scene.GetPuppet(id - 1).MakeBoundingRectangle();
                 }
                 else if (cardInDeck._cardType == CardTypeEnum.HeroProjectile)
@@ -112,7 +128,7 @@ namespace MinuteBattle.Graphics
                     var clip = scene.GetPuppet(id - 1).GetFirstClip(ClipCategoryEnum.NameTag);
                     clip.SetText(cardInDeck._name);
                     var size = clip.getSize();
-                    clip.SetOrigin(new Vector2(size.X / 2, -16));
+                    clip.SetOrigin(new Vector2(size.X / 2, -36));
                     scene.GetPuppet(id - 1).MakeBoundingRectangle();
                 }
                 else if (cardInDeck._cardType == CardTypeEnum.HeroArtillery)
@@ -128,10 +144,10 @@ namespace MinuteBattle.Graphics
                     var clip = scene.GetPuppet(id - 1).GetFirstClip(ClipCategoryEnum.NameTag);
                     clip.SetText(cardInDeck._name);
                     var size = clip.getSize();
-                    clip.SetOrigin(new Vector2(size.X / 2, -16));
+                    clip.SetOrigin(new Vector2(size.X / 2, -36));
                     scene.GetPuppet(id - 1).MakeBoundingRectangle();
                 }
-                y += 70;
+                y += 100;
             }
             AddScene(BATTLE_SCENE_ID, scene);
             return scene;
