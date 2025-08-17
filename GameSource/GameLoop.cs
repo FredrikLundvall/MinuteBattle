@@ -35,7 +35,8 @@ namespace MinuteBattle
         {
             LoadGameAssets();
             Stage.AddStartScene(_game);
-            Globals.TryForcingGarbageCollect();
+            Globals.TryForcingGarbageCollect(); 
+            Mouse.SetCursor(TextureDictionary._mouseArrow);
         }
         private void LoadGameAssets()
         {

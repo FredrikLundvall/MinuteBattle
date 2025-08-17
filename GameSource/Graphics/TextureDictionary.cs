@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Input;
 
 namespace MinuteBattle.Graphics
 {
@@ -19,6 +20,8 @@ namespace MinuteBattle.Graphics
         {
             return _textureList[index];
         }
+        public static MouseCursor _mouseArrow = null;
+        public static MouseCursor _mouseHand = null;
         public static void LoadTextures(ContentManager content)
         {
             Texture2D spriteTexture = content.Load<Texture2D>("hero/melee");
@@ -62,6 +65,14 @@ namespace MinuteBattle.Graphics
 
             spriteTexture = content.Load<Texture2D>("maps/mark");
             TextureDictionary.Add(TextureEnum.Mark, spriteTexture);
+
+            spriteTexture = content.Load<Texture2D>("gui/mouse_arrow");
+            TextureDictionary.Add(TextureEnum.MouseArrow, spriteTexture);
+            _mouseArrow = MouseCursor.FromTexture2D(spriteTexture, 0, 0);
+
+            spriteTexture = content.Load<Texture2D>("gui/mouse_hand");
+            TextureDictionary.Add(TextureEnum.MouseHand, spriteTexture);
+            _mouseHand = MouseCursor.FromTexture2D(spriteTexture, 21, 0);
         }
 
     }

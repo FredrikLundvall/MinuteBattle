@@ -35,7 +35,7 @@ namespace MinuteBattle.Graphics
                 {
                     MediaPlayer.Stop(); // stop current audio playback if playing or paused.
                 }
-                MediaPlayer.Volume = 0.05f;
+                MediaPlayer.Volume = 0.08f;
                 // Play the selected song reference.
                 MediaPlayer.Play(Globals._testSong);
                 game.Start(); 
@@ -61,21 +61,22 @@ namespace MinuteBattle.Graphics
                     scene._draggedPuppet = Puppet.EmptyPuppet;
                 }
             }), Rectangle.Empty);
-            scene.GetPuppet(id - 1).MakeBoundingRectangle();
-            scene.GetPuppet(id - 1)._highligthOnFocus = false;
+            scene.GetPuppet(id - 1)._clickRectangle = new Rectangle(260,30,1400,1020);
+            //TODO: Turn off highlight later
+            //scene.GetPuppet(id - 1)._highligthOnFocus = false;
             foreach (var terrain in game._campaign._battle._map._terrain)
             {
                 if (terrain._terrainType == TerrainTypeEnum.Ditch)
                 {
-                    scene.AddPuppet(id++, PuppetEnum.TerrainDitch, new Vector2(terrain._x, terrain._y) + mapOffset, 0, Puppet.EmptyAction, Rectangle.Empty);
+                    scene.AddPuppet(id++, PuppetEnum.TerrainDitch, new Vector2(terrain._x + 260, terrain._y + 30) + mapOffset, 0, Puppet.EmptyAction, Rectangle.Empty);
                 }
                 else if (terrain._terrainType == TerrainTypeEnum.Bush)
                 {
-                    scene.AddPuppet(id++, PuppetEnum.TerrainBush, new Vector2(terrain._x, terrain._y) + mapOffset, 0, Puppet.EmptyAction, Rectangle.Empty);
+                    scene.AddPuppet(id++, PuppetEnum.TerrainBush, new Vector2(terrain._x + 260, terrain._y + 30) + mapOffset, 0, Puppet.EmptyAction, Rectangle.Empty);
                 }
                 else if (terrain._terrainType == TerrainTypeEnum.Hill)
                 {
-                    scene.AddPuppet(id++, PuppetEnum.TerrainHill, new Vector2(terrain._x, terrain._y) + mapOffset, 0, Puppet.EmptyAction, Rectangle.Empty);
+                    scene.AddPuppet(id++, PuppetEnum.TerrainHill, new Vector2(terrain._x + 260, terrain._y + 30) + mapOffset, 0, Puppet.EmptyAction, Rectangle.Empty);
                 }
             }
             int x = 80;

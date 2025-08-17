@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MinuteBattle.Graphics
 {
@@ -27,6 +29,7 @@ namespace MinuteBattle.Graphics
                 .Where(puppet => puppet.Value._clickAction != Puppet.EmptyAction && puppet.Value._clickRectangle != Rectangle.Empty)
                 .Select(puppet => puppet.Value)
                 .ToList();
+            var isFocused = false;
             foreach (Puppet puppet in filteredList)
             {
                 puppet._isReleased = false;
@@ -60,8 +63,17 @@ namespace MinuteBattle.Graphics
                     //Invoke the puppets click action
                     puppet._clickAction.Invoke();
                 }
+                isFocused |= puppet._isFocused;
             }
             _draggedPuppet._position = MouseChecker.GetCurrentCoord();
+            if (isFocused)
+            {
+                Mouse.SetCursor(TextureDictionary._mouseHand);
+            }
+            else
+            {
+                Mouse.SetCursor(TextureDictionary._mouseArrow);
+            }
         }
         public void Draw(GameTime gameTime)
         {

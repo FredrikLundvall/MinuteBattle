@@ -1,4 +1,6 @@
-﻿namespace MinuteBattle.Logic
+﻿using MinuteBattle.Graphics;
+
+namespace MinuteBattle.Logic
 {
     public class Battle
     {
@@ -12,7 +14,9 @@
         {
             _game = game;
             _winCondition = winCondition;
-            _map = Map.CreateMap(1600, 900, _game._rnd);
+            // Rectangle(260, 30, 1400, 1020);
+            //1920 1080
+            _map = Map.CreateMap(1400, 1020, _game._rnd);
         }
         public void NextStage()
         {
