@@ -62,8 +62,14 @@ namespace MinuteBattle.Graphics
                 }
             }), Rectangle.Empty);
             scene.GetPuppet(id - 1)._clickRectangle = new Rectangle(260,30,1400,1020);
+            scene.GetPuppet(id - 1)._isAcceptingDrops = true;
             //TODO: Turn off highlight later
             //scene.GetPuppet(id - 1)._highligthOnFocus = false;
+
+            scene.AddPuppet(id++, PuppetEnum.StartButton, new Vector2(115, 1020), 0, Puppet.EmptyAction, Rectangle.Empty);
+            scene.GetPuppet(id - 1).GetAllClips(ClipCategoryEnum.NameTag).ForEach(clip => clip.SetText("Next"));
+            scene.GetPuppet(id - 1).MakeBoundingRectangle();
+
             foreach (var terrain in game._campaign._battle._map._terrain)
             {
                 if (terrain._terrainType == TerrainTypeEnum.Ditch)

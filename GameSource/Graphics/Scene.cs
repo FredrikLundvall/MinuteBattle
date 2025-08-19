@@ -35,15 +35,15 @@ namespace MinuteBattle.Graphics
                 puppet._isReleased = false;
                 if (MouseChecker.IsCurrentlyOverArea(puppet._clickRectangle))
                 {
-                    puppet._isFocused = true;
+                    puppet._isMouseOver = true;
                 }
                 else
                 {
-                    puppet._isFocused = false;
+                    puppet._isMouseOver = false;
                 }
                 if (MouseChecker.ButtonIsCurrentlyPressed(MouseButtonEnum.LeftButton))
                 {
-                    if (!puppet._isFocused && !puppet._isPressed)
+                    if (!puppet._isMouseOver && !puppet._isPressed)
                     {
                         puppet._isPressedOutside = true;
                     }
@@ -51,7 +51,7 @@ namespace MinuteBattle.Graphics
                 }
                 else
                 {
-                    if (puppet._isFocused && puppet._isPressed && !puppet._isPressedOutside)
+                    if (puppet._isMouseOver && puppet._isPressed && !puppet._isPressedOutside)
                     {
                         puppet._isReleased = true;
                     }
@@ -63,7 +63,7 @@ namespace MinuteBattle.Graphics
                     //Invoke the puppets click action
                     puppet._clickAction.Invoke();
                 }
-                isFocused |= puppet._isFocused;
+                isFocused |= puppet._isMouseOver;
             }
             _draggedPuppet._position = MouseChecker.GetCurrentCoord();
             if (isFocused)
@@ -73,7 +73,7 @@ namespace MinuteBattle.Graphics
             else
             {
                 Mouse.SetCursor(TextureDictionary._mouseArrow);
-            }
+            }            
         }
         public void Draw(GameTime gameTime)
         {
@@ -82,7 +82,7 @@ namespace MinuteBattle.Graphics
             foreach (Puppet puppet in _puppetList.Values)
             {
                 puppet.Draw(gameTime);
-                if (puppet._isFocused && puppet._highligthOnFocus)
+                if (puppet._isMouseOver && puppet._highligthOnMouseOver)
                 {
                     if (puppet._isPressed && !puppet._isPressedOutside)
                     {
