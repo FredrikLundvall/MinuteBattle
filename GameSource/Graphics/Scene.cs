@@ -30,18 +30,27 @@ namespace MinuteBattle.Graphics
                 .Select(puppet => puppet.Value)
                 .ToList();
             var isFocused = false;
+            bool mouseClicked = MouseChecker.ButtonIsCurrentlyPressed(MouseButtonEnum.LeftButton);
+            bool mouseOverAnyPuppet = false;
+            bool mouseOverAcceptingDrop = false;
+
             foreach (Puppet puppet in filteredList)
             {
                 puppet._isReleased = false;
                 if (MouseChecker.IsCurrentlyOverArea(puppet._clickRectangle))
                 {
                     puppet._isMouseOver = true;
+                    mouseOverAnyPuppet = true;
+                    if (puppet._isAcceptingDrops)
+                    {
+                        mouseOverAcceptingDrop = true;
+                    }
                 }
                 else
                 {
                     puppet._isMouseOver = false;
                 }
-                if (MouseChecker.ButtonIsCurrentlyPressed(MouseButtonEnum.LeftButton))
+                if (mouseClicked)
                 {
                     if (!puppet._isMouseOver && !puppet._isPressed)
                     {
@@ -65,6 +74,13 @@ namespace MinuteBattle.Graphics
                 }
                 isFocused |= puppet._isMouseOver;
             }
+
+            // Clear _draggedPuppet if mouse clicked outside puppets or not on a puppet that accepts drops
+            if (mouseClicked && (!mouseOverAnyPuppet || !mouseOverAcceptingDrop))
+            {
+                _draggedPuppet = Puppet.EmptyPuppet;
+            }
+
             _draggedPuppet._position = MouseChecker.GetCurrentCoord();
             if (isFocused)
             {
@@ -73,7 +89,7 @@ namespace MinuteBattle.Graphics
             else
             {
                 Mouse.SetCursor(TextureDictionary._mouseArrow);
-            }            
+            }       
         }
         public void Draw(GameTime gameTime)
         {
