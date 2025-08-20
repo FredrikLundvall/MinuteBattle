@@ -29,7 +29,7 @@ namespace MinuteBattle.Graphics
                 .Where(puppet => puppet.Value._clickAction != Puppet.EmptyAction && puppet.Value._clickRectangle != Rectangle.Empty)
                 .Select(puppet => puppet.Value)
                 .ToList();
-            var isFocused = false;
+            var isMouseOver = false;
             bool mouseClicked = MouseChecker.ButtonIsCurrentlyPressed(MouseButtonEnum.LeftButton);
             bool mouseOverAnyPuppet = false;
             bool mouseOverAcceptingDrop = false;
@@ -72,7 +72,7 @@ namespace MinuteBattle.Graphics
                     //Invoke the puppets click action
                     puppet._clickAction.Invoke();
                 }
-                isFocused |= puppet._isMouseOver;
+                isMouseOver |= puppet._isMouseOver;
             }
 
             // Clear _draggedPuppet if mouse clicked outside puppets or not on a puppet that accepts drops
@@ -82,7 +82,7 @@ namespace MinuteBattle.Graphics
             }
 
             _draggedPuppet._position = MouseChecker.GetCurrentCoord();
-            if (isFocused)
+            if (isMouseOver && !mouseOverAcceptingDrop)
             {
                 Mouse.SetCursor(TextureDictionary._mouseHand);
             }
