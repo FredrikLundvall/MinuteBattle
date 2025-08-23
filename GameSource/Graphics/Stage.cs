@@ -28,7 +28,7 @@ namespace MinuteBattle.Graphics
         {
             Scene startScene = new();
             Viewport viewport = Globals.GraphicsDeviceMan.GraphicsDevice.Viewport;
-            startScene.AddPuppet(0, PuppetEnum.StartButton, new Vector2(viewport.Width / 2, viewport.Height / 5), 0, new(() => {
+            startScene.AddPuppet(0, PuppetEnum.Button, new Vector2(viewport.Width / 2, viewport.Height / 5), 0, new(() => {
                 Globals._testTransition.Play(0.4f, 0.0f, 0.0f);
                 // check the current state of the MediaPlayer.
                 if (MediaPlayer.State != MediaState.Stopped)
@@ -56,7 +56,11 @@ namespace MinuteBattle.Graphics
                 {
                     Globals._testClick.Play(0.4f, 0.0f, 0.0f);
                     var nexId = scene._puppetList.Keys.Max() + 1;
-                    scene._draggedPuppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.Mark, new Vector2(32, 32), Vector2.Zero, 0, 1.0f));
+                    //A mark to show that the unit has been placed from the hand 
+                    //scene._draggedPuppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.Mark, new Vector2(32, 32), Vector2.Zero, 0, 1.0f, Color.White * 0.33f));
+                    scene._draggedPuppet._clipList.ForEach(clip => {
+                        clip.SetColor(Color.White * 0.5f);
+                    });
                     scene._puppetList.Add(nexId, scene._draggedPuppet);
                     scene._draggedPuppet = Puppet.EmptyPuppet;
                 }
@@ -66,9 +70,14 @@ namespace MinuteBattle.Graphics
             //TODO: Turn off highlight later
             //scene.GetPuppet(id - 1)._highligthOnFocus = false;
 
-            scene.AddPuppet(id++, PuppetEnum.StartButton, new Vector2(115, 1020), 0, Puppet.EmptyAction, Rectangle.Empty);
-            scene.GetPuppet(id - 1).GetAllClips(ClipCategoryEnum.NameTag).ForEach(clip => clip.SetText("Next"));
-            scene.GetPuppet(id - 1).MakeBoundingRectangle();
+            scene.AddPuppet(id++, PuppetEnum.Button, new Vector2(115, 1020), 0, Puppet.EmptyAction, Rectangle.Empty);
+            {
+                var clip = scene.GetPuppet(id - 1).GetFirstClip(ClipCategoryEnum.NameTag);
+                clip.SetText("Send order");
+                var size = clip.getSize();
+                clip.SetOrigin(new Vector2(size.X / 2, 10));
+                scene.GetPuppet(id - 1).MakeBoundingRectangle();
+            }
 
             foreach (var terrain in game._campaign._battle._map._terrain)
             {

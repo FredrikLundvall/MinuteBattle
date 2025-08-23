@@ -13,8 +13,8 @@ namespace MinuteBattle.Graphics
         public float _offsetRotation = 0;
         public bool _useParentRotation = true;
         public string _text = "";
-        public Color _textColor = Color.White;
-        public FontAnimation(ClipCategoryEnum clipCategory, FontEnum fontId, Vector2 origin, Vector2 offsetPosition, float offsetRotation, bool useParentRotation, string text, Color textColor)
+        public Color _color = Color.White;
+        public FontAnimation(ClipCategoryEnum clipCategory, FontEnum fontId, Vector2 origin, Vector2 offsetPosition, float offsetRotation, bool useParentRotation, string text, Color color)
         {
             _clipCategory = clipCategory;
             _fontId = fontId;
@@ -23,7 +23,7 @@ namespace MinuteBattle.Graphics
             _offsetRotation = offsetRotation;
             _useParentRotation = useParentRotation;
             _text = text;
-            _textColor = textColor;
+            _color = color;
         }
         public Vector2 getSize()
         {
@@ -31,7 +31,7 @@ namespace MinuteBattle.Graphics
         }
         public void Draw(Vector2 parentPosition, float parentRotation, GameTime gameTime)
         {
-            Globals.StaticSpriteBatch.DrawString(FontDictionary.Get(_fontId), _text, parentPosition + _offsetPosition, _textColor, (_useParentRotation)? parentRotation : 0 + _offsetRotation, _origin, 1.0f, SpriteEffects.None, 0.5f);
+            Globals.StaticSpriteBatch.DrawString(FontDictionary.Get(_fontId), _text, parentPosition + _offsetPosition, _color, (_useParentRotation)? parentRotation : 0 + _offsetRotation, _origin, 1.0f, SpriteEffects.None, 0.5f);
         }
         public ClipCategoryEnum GetCategory()
         {
@@ -61,6 +61,12 @@ namespace MinuteBattle.Graphics
             rectangle.Size = getSize().ToPoint();
             rectangle.Offset(parentPosition + _offsetPosition - _origin);
             return rectangle;
+        }
+        public bool SetColor(Color color)
+        {
+            if (this == EmptyAnimation) return false;
+            _color = color;
+            return true;
         }
     }
 }

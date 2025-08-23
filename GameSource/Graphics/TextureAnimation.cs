@@ -6,14 +6,15 @@ namespace MinuteBattle.Graphics
 {
     public class TextureAnimation : IClip
     {
-        public static TextureAnimation EmptyAnimation = new TextureAnimation(0, TextureEnum.Empty, Vector2.Zero, Vector2.Zero, 0, 1.0f);
+        public static TextureAnimation EmptyAnimation = new TextureAnimation(0, TextureEnum.Empty, Vector2.Zero, Vector2.Zero, 0, 1.0f, Color.White);
         ClipCategoryEnum _clipCategory = ClipCategoryEnum.Unknown;
         public Vector2 _origin = Vector2.Zero;
         public TextureEnum _textureId = TextureEnum.Empty;
         public Vector2 _offsetPosition = Vector2.Zero;
         public float _offsetRotation = 0;
         public float _scale = 1.0f;
-        public TextureAnimation(ClipCategoryEnum clipCategory, TextureEnum textureId, Vector2 origin, Vector2 offsetPosition, float offsetRotation, float scale)
+        public Color _color = Color.White;
+        public TextureAnimation(ClipCategoryEnum clipCategory, TextureEnum textureId, Vector2 origin, Vector2 offsetPosition, float offsetRotation, float scale, Color color)
         {
             _clipCategory = clipCategory;
             _origin = origin;
@@ -21,11 +22,12 @@ namespace MinuteBattle.Graphics
             _offsetPosition = offsetPosition;
             _offsetRotation = offsetRotation;
             _scale = scale;
+            _color = color;
         }
         public ClipCategoryEnum GetCategory() { return _clipCategory; } 
         public void Draw(Vector2 parentPosition, float parentRotation, GameTime gameTime)
         {
-            Globals.StaticSpriteBatch.Draw(TextureDictionary.Get(_textureId), parentPosition + _offsetPosition, null, Color.White, parentRotation + _offsetRotation, _origin, _scale, SpriteEffects.None, 0f);
+            Globals.StaticSpriteBatch.Draw(TextureDictionary.Get(_textureId), parentPosition + _offsetPosition, null, _color, parentRotation + _offsetRotation, _origin, _scale, SpriteEffects.None, 0f);
         }
         public Vector2 getSize()
         {
@@ -53,6 +55,12 @@ namespace MinuteBattle.Graphics
         {
             if (this == EmptyAnimation) return false;
             _origin = origin;
+            return true;
+        }
+        public bool SetColor(Color color)
+        {
+            if (this == EmptyAnimation) return false;
+            _color = color;
             return true;
         }
     }

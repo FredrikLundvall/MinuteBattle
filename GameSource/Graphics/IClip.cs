@@ -9,6 +9,7 @@ namespace MinuteBattle.Graphics
         bool SetText(string text);
         bool SetRotation(float rotation);
         bool SetOrigin(Vector2 origin);
+        bool SetColor(Color color);
         Rectangle GetBoundingRectangle(Vector2 parentPosition, float parentRotation);
         Vector2 getSize();
     }
