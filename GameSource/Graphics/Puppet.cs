@@ -11,8 +11,8 @@ namespace MinuteBattle.Graphics
         public Vector2 _position = Vector2.Zero;
         public float _rotation = 0;
         public List<IClip> _clipList = [];
-        public Action _clickAction = EmptyAction;
-        public static Action EmptyAction = new(() => { });
+        public Action<Puppet> _clickAction = EmptyAction;
+        public static Action<Puppet> EmptyAction = new((originPuppet) => { });
         public Rectangle _clickRectangle = Rectangle.Empty;
         public bool _isMouseOver = false;
         public bool _isPressed = false;
@@ -21,7 +21,7 @@ namespace MinuteBattle.Graphics
         public bool _highligthOnMouseOver = true;
         public bool _isAcceptingDrops = false;
 
-        public Puppet(Vector2 position, float rotation, Action clickAction, Rectangle clickRectangle)
+        public Puppet(Vector2 position, float rotation, Action<Puppet> clickAction, Rectangle clickRectangle)
         {
             _position = position;
             _rotation = rotation;

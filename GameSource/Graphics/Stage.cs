@@ -28,7 +28,7 @@ namespace MinuteBattle.Graphics
         {
             Scene startScene = new();
             Viewport viewport = Globals.GraphicsDeviceMan.GraphicsDevice.Viewport;
-            startScene.AddPuppet(0, PuppetEnum.Button, new Vector2(viewport.Width / 2, viewport.Height / 5), 0, new(() => {
+            startScene.AddPuppet(0, PuppetEnum.Button, new Vector2(viewport.Width / 2, viewport.Height / 5), 0, new((originPuppet) => {
                 Globals._testTransition.Play(0.4f, 0.0f, 0.0f);
                 // check the current state of the MediaPlayer.
                 if (MediaPlayer.State != MediaState.Stopped)
@@ -50,18 +50,34 @@ namespace MinuteBattle.Graphics
             Viewport viewport = Globals.GraphicsDeviceMan.GraphicsDevice.Viewport;
             Vector2 mapOffset = new Vector2(0, 0);
             int id = 0;
-            scene.AddPuppet(id++, PuppetEnum.PaperSheet, mapOffset, 0, new(() => {
+            scene.AddPuppet(id++, PuppetEnum.PaperSheet, mapOffset, 0, new((originPuppet) => {
                 //Drop the puppet beeing dragged (if there is one)
                 if (scene._draggedPuppet != Puppet.EmptyPuppet)
                 {
                     Globals._testClick.Play(0.4f, 0.0f, 0.0f);
-                    var nexId = scene._puppetList.Keys.Max() + 1;
+                    var droppedPuppet = scene._draggedPuppet;
                     //A mark to show that the unit has been placed from the hand 
-                    //scene._draggedPuppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.Mark, new Vector2(32, 32), Vector2.Zero, 0, 1.0f, Color.White * 0.33f));
-                    scene._draggedPuppet._clipList.ForEach(clip => {
+                    //TODO: Should have a mark or maybe not
+                    //droppedPuppet.AddClip(new TextureAnimation(ClipCategoryEnum.BaseTexture, TextureEnum.Mark, new Vector2(32, 32), Vector2.Zero, 0, 1.0f, Color.White * 0.33f));
+                    droppedPuppet._clipList.ForEach(clip => {
                         clip.SetColor(Color.White * 0.5f);
                     });
-                    scene._puppetList.Add(nexId, scene._draggedPuppet);
+                    droppedPuppet.MakeBoundingRectangle();
+                    droppedPuppet._clickAction = new System.Action<Puppet>((originPuppet) =>
+                    {
+                        //Pick up the puppet to be dragged again
+                        if (scene._draggedPuppet == Puppet.EmptyPuppet)
+                        {
+                            Globals._testClick.Play(0.4f, 0.0f, 0.0f);
+                            scene._puppetList.Remove(scene._puppetList.FirstOrDefault(x => x.Value == originPuppet).Key);
+                            droppedPuppet._clipList.ForEach(clip => {
+                                clip.SetColor(Color.White);
+                            });
+                            scene._draggedPuppet = originPuppet;
+                        }
+                    });
+                    var nexId = scene._puppetList.Keys.Max() + 1;
+                    scene._puppetList.Add(nexId, droppedPuppet);
                     scene._draggedPuppet = Puppet.EmptyPuppet;
                 }
             }), Rectangle.Empty);
@@ -71,13 +87,11 @@ namespace MinuteBattle.Graphics
             //scene.GetPuppet(id - 1)._highligthOnFocus = false;
 
             scene.AddPuppet(id++, PuppetEnum.Button, new Vector2(115, 1020), 0, Puppet.EmptyAction, Rectangle.Empty);
-            {
-                var clip = scene.GetPuppet(id - 1).GetFirstClip(ClipCategoryEnum.NameTag);
-                clip.SetText("Send order");
-                var size = clip.getSize();
-                clip.SetOrigin(new Vector2(size.X / 2, 10));
-                scene.GetPuppet(id - 1).MakeBoundingRectangle();
-            }
+            var clipButton = scene.GetPuppet(id - 1).GetFirstClip(ClipCategoryEnum.NameTag);
+            clipButton.SetText("Send order");
+            var sizeButton = clipButton.getSize();
+            clipButton.SetOrigin(new Vector2(sizeButton.X / 2, 10));
+            scene.GetPuppet(id - 1).MakeBoundingRectangle();
 
             foreach (var terrain in game._campaign._battle._map._terrain)
             {
@@ -100,7 +114,7 @@ namespace MinuteBattle.Graphics
             {
                 if (cardInDeck._cardType == CardTypeEnum.HeroMelee)
                 {
-                    scene.AddPuppet(id++, PuppetEnum.HeroMelee, new Vector2(x, y), 0, new(() => {
+                    scene.AddPuppet(id++, PuppetEnum.HeroMelee, new Vector2(x, y), 0, new((originPuppet) => {
                         //Add a puppet to the scene as beeing dragged following the mouse, to represent the card
                         if(scene._draggedPuppet == Puppet.EmptyPuppet)
                         {
@@ -116,7 +130,7 @@ namespace MinuteBattle.Graphics
                 }
                 else if (cardInDeck._cardType == CardTypeEnum.HeroMeleeCard)
                 {
-                    scene.AddPuppet(id++, PuppetEnum.HeroMeleeCard, new Vector2(x, y), 0, new(() => {
+                    scene.AddPuppet(id++, PuppetEnum.HeroMeleeCard, new Vector2(x, y), 0, new((originPuppet) => {
                         //Add a puppet to the scene as beeing dragged following the mouse, to represent the card
                         if (scene._draggedPuppet == Puppet.EmptyPuppet)
                         {
@@ -132,7 +146,7 @@ namespace MinuteBattle.Graphics
                 }
                 else if (cardInDeck._cardType == CardTypeEnum.HeroProjectile)
                 {
-                    scene.AddPuppet(id++, PuppetEnum.HeroProjectile, new Vector2(x, y), 0, new(() => {
+                    scene.AddPuppet(id++, PuppetEnum.HeroProjectile, new Vector2(x, y), 0, new((originPuppet) => {
                         //Add a puppet to the scene as beeing dragged following the mouse, to represent the card
                         if (scene._draggedPuppet == Puppet.EmptyPuppet)
                         {
@@ -148,7 +162,7 @@ namespace MinuteBattle.Graphics
                 }
                 else if (cardInDeck._cardType == CardTypeEnum.HeroArtillery)
                 {
-                    scene.AddPuppet(id++, PuppetEnum.HeroArtillery, new Vector2(x, y), 0, new(() => {
+                    scene.AddPuppet(id++, PuppetEnum.HeroArtillery, new Vector2(x, y), 0, new((originPuppet) => {
                         //Add a puppet to the scene as beeing dragged following the mouse, to represent the card
                         if (scene._draggedPuppet == Puppet.EmptyPuppet)
                         {

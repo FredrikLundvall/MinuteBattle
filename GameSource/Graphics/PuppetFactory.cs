@@ -5,7 +5,7 @@ namespace MinuteBattle.Graphics
 {
     public static class PuppetFactory
     {
-        public static Puppet CreatePuppet(PuppetEnum puppetType, Vector2 position, float rotation, Action clickAction, Rectangle clickRectangle)
+        public static Puppet CreatePuppet(PuppetEnum puppetType, Vector2 position, float rotation, Action<Puppet> clickAction, Rectangle clickRectangle)
         {
             var puppet = new Puppet(position, rotation, clickAction, clickRectangle);
             var darkBrown = new Color(70, 15, 8);

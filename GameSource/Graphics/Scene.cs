@@ -12,7 +12,7 @@ namespace MinuteBattle.Graphics
         public static Scene EmptyScene = new();
         internal Dictionary<int, Puppet> _puppetList = [];
         public Puppet _draggedPuppet = Puppet.EmptyPuppet;
-        public void AddPuppet(int id, PuppetEnum puppetType, Vector2 position, float rotation, Action clickAction, Rectangle clickRectangle)
+        public void AddPuppet(int id, PuppetEnum puppetType, Vector2 position, float rotation, Action<Puppet> clickAction, Rectangle clickRectangle)
         {
             _puppetList.Add(id, PuppetFactory.CreatePuppet(puppetType, position, rotation, clickAction, clickRectangle));
         }
@@ -70,7 +70,7 @@ namespace MinuteBattle.Graphics
                 if (!(puppet._isPressed && !puppet._isPressedOutside) && puppet._isReleased)
                 {
                     //Invoke the puppets click action
-                    puppet._clickAction.Invoke();
+                    puppet._clickAction.Invoke(puppet);
                 }
                 isMouseOver |= puppet._isMouseOver;
             }
