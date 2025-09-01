@@ -76,6 +76,9 @@ namespace MinuteBattle.Graphics
 
             spriteTexture = content.Load<Texture2D>("deck/blank_card");
             TextureDictionary.Add(TextureEnum.BlankCard, spriteTexture);
+
+            spriteTexture = content.Load<Texture2D>("maps/vertical_stripe");
+            TextureDictionary.Add(TextureEnum.Stripe, spriteTexture);
         }
 
     }

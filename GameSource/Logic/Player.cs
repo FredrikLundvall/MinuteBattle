@@ -32,7 +32,11 @@ namespace MinuteBattle.Logic
         }
         public static Player CreateEnemy()
         {
-            return new("Imperial-Catholic League army", 0, 100, 0, 10);
+            Player enemy = new("Imperial-Catholic League army", 0, 100, 0, 10);
+            enemy._cardDeck.Add(new Card(CardTypeEnum.EnemyMelee, "Pikeman LVL 2", "", 100, 3, 10, 10));
+            enemy._cardDeck.Add(new Card(CardTypeEnum.EnemyProjectile, "Musketeer LVL 2", "", 100, 1, 10, 10));
+            enemy._cardDeck.Add(new Card(CardTypeEnum.EnemyArtillery, "Artillery LVL 3", "", 100, 1, 10, 10));
+            return enemy;
         }
         public Card GetCard(String name)
         {

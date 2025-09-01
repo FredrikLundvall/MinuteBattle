@@ -54,6 +54,7 @@ namespace MinuteBattle.Graphics
             id = AddButtonsToScene(scene, id);
             id = AddTerrainToScene(game, scene, mapOffset, id);
             id = AddHeroDeckToScene(game, scene, id);
+            id = AddEnemyDeckToScene(game, scene, id);
             AddScene(BATTLE_SCENE_ID, scene);
             return scene;
         }
@@ -112,14 +113,34 @@ namespace MinuteBattle.Graphics
                 { CardTypeEnum.HeroMelee, PuppetEnum.HeroMelee },
                 { CardTypeEnum.HeroMeleeCard, PuppetEnum.HeroMeleeCard },
                 { CardTypeEnum.HeroProjectile, PuppetEnum.HeroProjectile },
-                { CardTypeEnum.HeroArtillery, PuppetEnum.HeroArtillery }
-            };
+                { CardTypeEnum.HeroArtillery, PuppetEnum.HeroArtillery },
+           };
 
             foreach (var cardInDeck in game._hero._cardDeck)
             {
                 if (puppetMap.TryGetValue(cardInDeck._cardType, out var puppetType))
                 {
                     AddHeroCard(cardInDeck, puppetType, x, y, scene, ref id);
+                }
+                y += 100;
+            }
+            return id;
+        }
+        private static int AddEnemyDeckToScene(CardGame game, Scene scene, int id)
+        {
+            int x = 1800, y = 180;
+            var puppetMap = new Dictionary<CardTypeEnum, PuppetEnum>
+            {
+                { CardTypeEnum.EnemyMelee, PuppetEnum.EnemyMelee },
+                { CardTypeEnum.EnemyProjectile, PuppetEnum.EnemyProjectile },
+                { CardTypeEnum.EnemyArtillery, PuppetEnum.EnemyArtillery },
+           };
+
+            foreach (var cardInDeck in game._enemy._cardDeck)
+            {
+                if (puppetMap.TryGetValue(cardInDeck._cardType, out var puppetType))
+                {
+                    AddEnemyCard(cardInDeck, puppetType, x, y, scene, ref id);
                 }
                 y += 100;
             }
@@ -142,7 +163,6 @@ namespace MinuteBattle.Graphics
                     scene.AddPuppet(id++, puppetType, new Vector2(terrain._x + 260, terrain._y + 30) + mapOffset, 0, Puppet.EmptyAction, Rectangle.Empty);
                 }
             }
-
             return id;
         }
         private static void AddHeroCard(Card card, PuppetEnum puppetType, int x, int y, Scene scene, ref int id)
@@ -156,12 +176,19 @@ namespace MinuteBattle.Graphics
                     scene._draggedPuppet = PuppetFactory.CreatePuppet(puppetType, new Vector2(x, y), 0, Puppet.EmptyAction, Rectangle.Empty);
                 }
             }, Rectangle.Empty);
-
             var clip = scene.GetPuppet(id - 1).GetFirstClip(ClipCategoryEnum.NameTag);
             clip.SetText(card._name);
             var size = clip.getSize();
             clip.SetOrigin(new Vector2(size.X / 2, -36));
             scene.GetPuppet(id - 1).MakeBoundingRectangle();
+        }
+        private static void AddEnemyCard(Card card, PuppetEnum puppetType, int x, int y, Scene scene, ref int id)
+        {
+            scene.AddPuppet(id++, puppetType, new Vector2(x, y), 0, Puppet.EmptyAction, Rectangle.Empty);
+            var clip = scene.GetPuppet(id - 1).GetFirstClip(ClipCategoryEnum.NameTag);
+            clip.SetText(card._name);
+            var size = clip.getSize();
+            clip.SetOrigin(new Vector2(size.X / 2, -36));
         }
         public static Scene GetCurrentScene(CardGame game)
         {
