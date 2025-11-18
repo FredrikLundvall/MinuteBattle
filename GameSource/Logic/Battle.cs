@@ -22,12 +22,6 @@ namespace MinuteBattle.Logic
         {
             if (_state == BattleStateEnum.NotStarted)
             {
-                _state = BattleStateEnum.Reinforcement;
-                _game._hero.MoveRpFromReinforcementToBase();
-                _game._enemy.MoveRpFromReinforcementToBase();
-            }
-            else if (_state == BattleStateEnum.Reinforcement)
-            {
                 _state = BattleStateEnum.CardPlay;
             }
             else if (_state == BattleStateEnum.CardPlay)
@@ -43,6 +37,12 @@ namespace MinuteBattle.Logic
                     _state = BattleStateEnum.Won;
                 else
                     _state = BattleStateEnum.Reinforcement;
+            }
+            else if (_state == BattleStateEnum.Reinforcement)
+            {
+                _state = BattleStateEnum.CardPlay;
+                _game._hero.MoveRpFromReinforcementToBase();
+                _game._enemy.MoveRpFromReinforcementToBase();
             }
         }
         private bool isBattleLost()

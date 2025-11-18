@@ -38,7 +38,8 @@ namespace MinuteBattle.Graphics
                 MediaPlayer.Volume = 0.08f;
                 // Play the selected song reference.
                 MediaPlayer.Play(Globals._testSong);
-                game.Start(); 
+                game.Start();
+                game._campaign.NextStage(); //Move to the card play stage
             }), Rectangle.Empty);
             startScene.GetPuppet(0).GetAllClips(ClipCategoryEnum.NameTag).ForEach(clip => clip.SetText("Start"));
             startScene.GetPuppet(0).MakeBoundingRectangle();
@@ -51,17 +52,22 @@ namespace MinuteBattle.Graphics
             Vector2 mapOffset = Vector2.Zero;
             int id = 0;
             id = AddPaperSheetToScene(scene, mapOffset, id);
-            id = AddButtonsToScene(scene, id);
+            id = AddButtonsToScene(game, scene, id);
             id = AddTerrainToScene(game, scene, mapOffset, id);
             id = AddHeroDeckToScene(game, scene, id);
             id = AddEnemyDeckToScene(game, scene, id);
             AddScene(BATTLE_SCENE_ID, scene);
             return scene;
         }
-        private static int AddButtonsToScene(Scene scene, int id)
+        private static int AddButtonsToScene(CardGame game, Scene scene, int id)
         {
             // Add Send Order button
-            scene.AddPuppet(id++, PuppetEnum.Button, new Vector2(115, 1020), 0, Puppet.EmptyAction, Rectangle.Empty);
+            scene.AddPuppet(id++, PuppetEnum.Button, new Vector2(115, 1020), 0, new((originPuppet) => {
+                //Adding the dropped puppets as played cards to the hero's played cards
+
+
+                game._campaign.NextStage(); //Move to the fighting stage
+            }), Rectangle.Empty);
             var clipButton = scene.GetPuppet(id - 1).GetFirstClip(ClipCategoryEnum.NameTag);
             clipButton.SetText("Send order");
             var sizeButton = clipButton.getSize();
