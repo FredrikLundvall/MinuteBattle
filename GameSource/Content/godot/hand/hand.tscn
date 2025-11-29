@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjkc4jlqirg4d"]
+
+[ext_resource type="PackedScene" uid="uid://bsor251gbadiw" path="res://godot/card/card.tscn" id="1_cj7vf"]
+[ext_resource type="Script" uid="uid://bi1ala0wn1sei" path="res://godot/hand/hand.gd" id="1_db1ti"]
+[ext_resource type="Texture2D" uid="uid://bykyxbxt2ukk7" path="res://hero/artillery.png" id="2_v64y0"]
+[ext_resource type="Texture2D" uid="uid://yq6xk8yrg31" path="res://hero/projectile.png" id="3_db1ti"]
+
+[node name="Hand" type="Node2D"]
+script = ExtResource("1_db1ti")
+
+[node name="Card" parent="." instance=ExtResource("1_cj7vf")]
+title = "Melee"
+price = 3
+
+[node name="Card2" parent="." instance=ExtResource("1_cj7vf")]
+position = Vector2(-1, 57)
+title = "Artillery"
+picture = ExtResource("2_v64y0")
+
+[node name="Card3" parent="." instance=ExtResource("1_cj7vf")]
+position = Vector2(0, 110)
+title = "Musketeer"
+price = 4
+picture = ExtResource("3_db1ti")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]

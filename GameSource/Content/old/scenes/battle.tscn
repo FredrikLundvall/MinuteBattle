@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=3 uid="uid://bom0nnlkfx0c0"]
+
+[ext_resource type="Texture2D" uid="uid://ch3hdmtterefj" path="res://maps/paper_sheet.png" id="1_dn72j"]
+[ext_resource type="Script" uid="uid://dsgi3vxkyq4l6" path="res://scripts/battle.gd" id="1_p1qf1"]
+[ext_resource type="PackedScene" uid="uid://dvi2hqa3ni8rw" path="res://scenes/card.tscn" id="1_th188"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dn72j"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_th188"]
+texture = ExtResource("1_dn72j")
+
+[node name="Battle" type="Node"]
+script = ExtResource("1_p1qf1")
+
+[node name="Columns" type="HBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="PlayerResources" type="VBoxContainer" parent="Columns"]
+layout_mode = 2
+
+[node name="HeadQuarters" type="Panel" parent="Columns/PlayerResources"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="Columns/PlayerResources/HeadQuarters"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 38
+text = "Hq 200"
+
+[node name="Camp" type="Panel" parent="Columns/PlayerResources"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Columns/PlayerResources/Camp"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 28
+text = "Camp 50"
+
+[node name="Cards" type="VBoxContainer" parent="Columns/PlayerResources"]
+layout_mode = 2
+
+[node name="Card" parent="Columns/PlayerResources/Cards" instance=ExtResource("1_th188")]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Card2" parent="Columns/PlayerResources/Cards" instance=ExtResource("1_th188")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Card3" parent="Columns/PlayerResources/Cards" instance=ExtResource("1_th188")]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="Columns"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_dn72j")
+
+[node name="Panel2" type="Panel" parent="Columns/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_th188")
+
+[node name="EnemyResources" type="VBoxContainer" parent="Columns"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Columns/EnemyResources"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="Columns/PlayerResources/Cards/Card2" to="." method="_on_card_2_pressed"]

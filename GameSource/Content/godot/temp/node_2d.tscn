@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqs7mmkh5rx8t"]
+
+[ext_resource type="Script" uid="uid://bivqb6kmqgmti" path="res://godot/temp/node_2d.gd" id="1_chga2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chga2"]
+size = Vector2(64, 64)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_chga2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color(0.36078432, 1, 1, 1)
+self_modulate = Color(0.44705883, 1, 1, 1)
+position = Vector2(31, 31)
+shape = SubResource("RectangleShape2D_chga2")
