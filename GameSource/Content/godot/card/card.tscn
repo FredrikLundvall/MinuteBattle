@@ -43,4 +43,8 @@ theme = ExtResource("2_1d8r6")
 text = "5"
 horizontal_alignment = 2
 
+[connection signal="card_focused" from="." to="." method="_on_card_focused"]
+[connection signal="card_unfocused" from="." to="." method="_on_card_unfocused"]
+[connection signal="input_event" from="Background/Area2D" to="." method="_on_area_2d_input_event"]
 [connection signal="mouse_entered" from="Background/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Background/Area2D" to="." method="_on_area_2d_mouse_exited"]

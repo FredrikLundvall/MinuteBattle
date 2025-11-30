@@ -4,10 +4,15 @@ class_name Card extends Node2D
 @export var title: String = "Title"
 @export var price: int = 5
 @export var picture: Texture2D = preload("res://hero/melee.png")
+@export var focused: bool = false
+@export var highlighted: bool = false
+
+signal card_focused(card: Card)
+signal card_unfocused(card: Card)
+signal card_clicked(card: Card)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print("Ready")	
 	var titleLbl: Label = $Background/Title
 	titleLbl.text = title
 	var priceLbl: Label = $Background/Price
@@ -16,17 +21,27 @@ func _ready() -> void:
 	pictureSpr.texture = picture
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _process(_delta: float) -> void:
+	if highlighted:
+		highlight()
+	else:
+		unhighlight()
 
-func card_selected():
+func highlight():
 	var background: Sprite2D = $Background
-	background.set_modulate(Color(1,0.5,0.1, 1))
+	background.set_modulate(Color(0.8,0.7,0.6, 1))
 	
-func card_unselected():
+func unhighlight():
 	var background: Sprite2D = $Background
 	background.set_modulate(Color(1,1,1, 1))
 
-
 func _on_area_2d_mouse_entered() -> void:
-	print("heyyy")
+	card_focused.emit(self)
+
+func _on_area_2d_mouse_exited() -> void:
+	card_unfocused.emit(self)
+
+
+func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if(event.is_action_pressed("mouse_click") and highlighted):
+		card_clicked.emit(self)
