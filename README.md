@@ -1,3 +1,3 @@
 MinuteBattle is a deckbuilder combined with a turn based strategy game set around 1630.
 It's built with Godot.
-Design/Minute Battle design.docx
+https://github.com/FredrikLundvall/MinuteBattle/raw/refs/heads/main/Design/Minute%20Battle%20design.docx
