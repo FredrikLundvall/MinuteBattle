@@ -12,8 +12,6 @@ func _ready() -> void:
 	#Set spawn point
 	terrain.set_cell(SPAWN_COORDINATES,0,SPAWN_ATLAS_TILE,0)
 
-func spawn_unit():
-	var melee: Sprite2D = Sprite2D.new()
-	melee.texture = meleePicture
-	melee.position = terrain.map_to_local(SPAWN_COORDINATES)
-	terrain.add_child(melee)
+func spawn_unit(unit: Unit):
+	unit.position = terrain.map_to_local(SPAWN_COORDINATES)
+	terrain.add_child(unit)

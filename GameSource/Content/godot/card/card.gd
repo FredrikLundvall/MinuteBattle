@@ -6,6 +6,7 @@ class_name Card extends Node2D
 @export var picture: Texture2D = preload("res://hero/melee.png")
 @export var focused: bool = false
 @export var highlighted: bool = false
+@export var unit: Unit = preload("res://godot/unit/unit.tscn").instantiate()
 
 signal card_focused(card: Card)
 signal card_unfocused(card: Card)
@@ -40,7 +41,6 @@ func _on_area_2d_mouse_entered() -> void:
 
 func _on_area_2d_mouse_exited() -> void:
 	card_unfocused.emit(self)
-
 
 func _on_area_2d_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if(event.is_action_pressed("mouse_click") and highlighted):

@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck7ukbhe6n7ut"]
+
+[ext_resource type="Script" uid="uid://ckcb7gf280a80" path="res://godot/unit/unit.gd" id="1_lc2w5"]
+[ext_resource type="Texture2D" uid="uid://dsksdmccbhpld" path="res://hero/melee.png" id="2_jyasx"]
+
+[node name="Unit" type="Node2D"]
+script = ExtResource("1_lc2w5")
+
+[node name="Picture" type="Sprite2D" parent="."]
+texture = ExtResource("2_jyasx")

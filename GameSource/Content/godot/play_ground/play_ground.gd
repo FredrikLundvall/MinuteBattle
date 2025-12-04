@@ -18,17 +18,20 @@ func _on_button_pressed() -> void:
 	spawn_card.title = "Test 1"
 	spawn_card.price = 1
 	spawn_card.picture = preload("res://hero/artillery.png")
+	spawn_card.unit.picture = preload("res://hero/artillery.png")
+	print("artillery")
 	hand.add_child(spawn_card)
-
 
 func _on_button_2_pressed() -> void:
 	var spawn_card = card_scene.instantiate()
 	spawn_card.title = "Test 2"
 	spawn_card.price = 2
 	spawn_card.picture = preload("res://hero/projectile.png")
+	spawn_card.unit.picture = preload("res://hero/projectile.png")
+	print("projectile")
 	hand.add_child(spawn_card)
 
 func _on_card_selected(card: Card) -> void:
-	print(card.name)
-	battle.spawn_unit()
-	pass
+	var spawn_unit = card.unit.duplicate()
+	spawn_unit.visible = true
+	battle.spawn_unit(spawn_unit)
