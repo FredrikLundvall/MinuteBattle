@@ -16,10 +16,10 @@ script = ExtResource("1_6n70q")
 position = Vector2(32, 32)
 texture = ExtResource("1_4uooh")
 
-[node name="Area2D" type="Area2D" parent="Background"]
+[node name="Area" type="Area2D" parent="Background"]
 position = Vector2(-32, -32)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Background/Area2D"]
+[node name="CollisionShape" type="CollisionShape2D" parent="Background/Area"]
 position = Vector2(31, 30)
 shape = SubResource("RectangleShape2D_6n70q")
 
@@ -51,6 +51,6 @@ visible = false
 
 [connection signal="card_focused" from="." to="." method="_on_card_focused"]
 [connection signal="card_unfocused" from="." to="." method="_on_card_unfocused"]
-[connection signal="input_event" from="Background/Area2D" to="." method="_on_area_2d_input_event"]
-[connection signal="mouse_entered" from="Background/Area2D" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Background/Area2D" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="input_event" from="Background/Area" to="." method="_on_area_2d_input_event"]
+[connection signal="mouse_entered" from="Background/Area" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Background/Area" to="." method="_on_area_2d_mouse_exited"]
