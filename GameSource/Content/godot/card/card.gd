@@ -6,7 +6,7 @@ class_name Card extends Node2D
 @export var picture: Texture2D = preload("res://hero/melee.png")
 @export var focused: bool = false
 @export var highlighted: bool = false
-@export var unit: Unit = preload("res://godot/unit/unit.tscn").instantiate()
+#@export var unit: Unit #= preload("res://godot/unit/unit.tscn").instantiate()
 
 signal card_focused(card: Card)
 signal card_unfocused(card: Card)
@@ -14,6 +14,8 @@ signal card_clicked(card: Card)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	#var unitScn: PackedScene = preload("res://godot/unit/unit.tscn")
+	#unit = unitScn.instantiate()
 	var titleLbl: Label = $Background/Title
 	titleLbl.text = title
 	var priceLbl: Label = $Background/Price

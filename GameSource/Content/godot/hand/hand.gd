@@ -43,6 +43,8 @@ func _on_card_clicked(card: Card) -> void:
 	remove_child(card)
 	card_selected.emit(card)
 	re_position()
+	#TODO this card has to be freed by the consumer of the signal
+	card.queue_free()
 
 func card_connect(card: Card):
 	if !card.card_focused.is_connected(_on_card_focused):   
@@ -62,3 +64,7 @@ func highlight_last_focused_card():
 				last_focused_card = card
 			else:
 				last_focused_card.highlighted = false
+
+
+func _on_tree_exiting() -> void:
+	print_orphan_nodes()
