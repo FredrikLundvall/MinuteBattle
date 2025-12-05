@@ -14,4 +14,6 @@ func _ready() -> void:
 
 func spawn_unit(unit: Unit):
 	unit.position = terrain.map_to_local(SPAWN_COORDINATES)
+	var rng = RandomNumberGenerator.new()
+	unit.position += Vector2(rng.randf_range(-10.0, 10.0),rng.randf_range(-10.0, 10.0))
 	terrain.add_child(unit)

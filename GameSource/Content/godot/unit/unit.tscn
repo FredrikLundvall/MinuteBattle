@@ -1,10 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://ck7ukbhe6n7ut"]
+[gd_scene load_steps=5 format=3 uid="uid://ck7ukbhe6n7ut"]
 
 [ext_resource type="Script" uid="uid://ckcb7gf280a80" path="res://godot/unit/unit.gd" id="1_lc2w5"]
 [ext_resource type="Texture2D" uid="uid://dsksdmccbhpld" path="res://hero/melee.png" id="2_jyasx"]
 
-[node name="Unit" type="Node2D"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jyasx"]
+rough = true
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jyasx"]
+radius = 12.0
+
+[node name="Unit" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_jyasx")
+gravity_scale = 0.0
 script = ExtResource("1_lc2w5")
 
 [node name="Picture" type="Sprite2D" parent="."]
 texture = ExtResource("2_jyasx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 14)
+shape = SubResource("CircleShape2D_jyasx")

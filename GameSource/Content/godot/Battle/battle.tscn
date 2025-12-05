@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=4 uid="uid://b1f5e0og3cr3d"]
+[gd_scene load_steps=10 format=4 uid="uid://b1f5e0og3cr3d"]
 
 [ext_resource type="Texture2D" uid="uid://ch3hdmtterefj" path="res://maps/paper_sheet.png" id="1_l7l7s"]
 [ext_resource type="Script" uid="uid://dp5fpwt3utp1s" path="res://godot/Battle/battle.gd" id="1_wv22a"]
@@ -26,6 +26,18 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_wv22a")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wv22a"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l0dnm"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_eicpw"]
+normal = Vector2(-1, 0)
+distance = -886.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_n55d4"]
+normal = Vector2(0, 1)
+
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_wv22a")
 
@@ -39,3 +51,19 @@ position = Vector2(-964.28577, -538.1444)
 scale = Vector2(2.1428573, 1.8556705)
 tile_map_data = PackedByteArray("AAADAAEAAAABAAAAAAADAAIAAAABAAEAAAAEAAEAAAACAAAAAAAEAAIAAAACAAEAAAAFAAIAAAABAAAAAAAFAAMAAAABAAEAAAAGAAIAAAACAAAAAAAGAAMAAAACAAEAAAAFAAAAAAAFAAAAAAAFAAEAAAAFAAEAAAAGAAEAAAAGAAEAAAAGAAYAAAADAAAAAAAGAAcAAAADAAEAAAAHAAYAAAAEAAAAAAAHAAcAAAAEAAEAAAAIAAYAAAADAAAAAAAIAAcAAAADAAEAAAAJAAYAAAAEAAAAAAAJAAcAAAAEAAEAAAAFAAYAAAAEAAAAAAAFAAcAAAAEAAEAAAA=")
 tile_set = SubResource("TileSet_l0dnm")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(7, 0)
+shape = SubResource("WorldBoundaryShape2D_wv22a")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(8, 575)
+shape = SubResource("WorldBoundaryShape2D_l0dnm")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_eicpw")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_n55d4")
