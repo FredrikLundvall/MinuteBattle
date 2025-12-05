@@ -7,7 +7,7 @@
 rough = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jyasx"]
-radius = 12.0
+radius = 13.0
 
 [node name="Unit" type="RigidBody2D"]
 physics_material_override = SubResource("PhysicsMaterial_jyasx")
