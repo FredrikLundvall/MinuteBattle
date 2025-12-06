@@ -68,3 +68,5 @@ shape = SubResource("WorldBoundaryShape2D_eicpw")
 
 [node name="Up" type="CollisionShape2D" parent="WorldBoundary"]
 shape = SubResource("WorldBoundaryShape2D_n55d4")
+
+[connection signal="child_entered_tree" from="Background/Terrain" to="." method="_on_terrain_child_entered_tree"]
