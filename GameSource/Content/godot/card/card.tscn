@@ -49,8 +49,6 @@ horizontal_alignment = 2
 [node name="Unit" parent="Members" instance=ExtResource("5_38227")]
 visible = false
 
-[connection signal="card_focused" from="." to="." method="_on_card_focused"]
-[connection signal="card_unfocused" from="." to="." method="_on_card_unfocused"]
-[connection signal="input_event" from="Background/Area" to="." method="_on_area_2d_input_event"]
-[connection signal="mouse_entered" from="Background/Area" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Background/Area" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="input_event" from="Background/Area" to="." method="_on_area_input_event"]
+[connection signal="mouse_entered" from="Background/Area" to="." method="_on_area_mouse_entered"]
+[connection signal="mouse_exited" from="Background/Area" to="." method="_on_area_mouse_exited"]

@@ -26,5 +26,3 @@ picture = ExtResource("3_db1ti")
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
 [connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
-[connection signal="card_focused" from="Card" to="." method="_on_card_card_focused"]
-[connection signal="card_unfocused" from="Card" to="." method="_on_card_card_unfocused"]
