@@ -13,12 +13,10 @@ signal card_clicked(card: Card)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var titleLbl: Label = $Background/Title
-	titleLbl.text = title
-	var priceLbl: Label = $Background/Price
-	priceLbl.text = str(price)
-	var pictureSpr: Sprite2D = $Background/Picture
-	pictureSpr.texture = picture
+	$Background/Title.text = title
+	$Background/Price.text = str(price)
+	$Background/Picture.texture = picture
+	$Members/Unit.picture = picture
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

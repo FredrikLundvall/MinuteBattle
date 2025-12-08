@@ -26,9 +26,10 @@ func _on_unit_unhovered(unit: Unit) -> void:
 	unit.highlighted = false
 	
 func _on_unit_clicked(unit: Unit) -> void:
+	print(unit.name + " clicked")
 	unit_selected.emit(unit)
 
-func unit_connect(unit: Unit):
+func _unit_connect(unit: Unit):
 	if !unit.unit_hovered.is_connected(_on_unit_hovered):   
 		unit.unit_hovered.connect(_on_unit_hovered)
 	if !unit.unit_unhovered.is_connected(_on_unit_unhovered):   
@@ -37,4 +38,4 @@ func unit_connect(unit: Unit):
 		unit.unit_clicked.connect(_on_unit_clicked)
 
 func _on_terrain_child_entered_tree(node: Node) -> void:
-	unit_connect(node as Unit)
+	_unit_connect(node as Unit)
