@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=4 uid="uid://b1f5e0og3cr3d"]
+[gd_scene load_steps=11 format=4 uid="uid://b1f5e0og3cr3d"]
 
 [ext_resource type="Texture2D" uid="uid://ch3hdmtterefj" path="res://maps/paper_sheet.png" id="1_l7l7s"]
-[ext_resource type="Script" uid="uid://dp5fpwt3utp1s" path="res://godot/Battle/battle.gd" id="1_wv22a"]
+[ext_resource type="Script" uid="uid://dph110o5rhboh" path="res://godot/battle/battle.gd" id="1_wv22a"]
 [ext_resource type="Texture2D" uid="uid://cuam4d2fsam0n" path="res://maps/terrain_tile_set.png" id="2_3qm6w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wv22a"]
@@ -36,6 +36,9 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_wv22a")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gf68c"]
+size = Vector2(871.9999, 558)
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wv22a"]
 normal = Vector2(1, 0)
 
@@ -63,6 +66,17 @@ scale = Vector2(2.1428573, 1.8556705)
 tile_map_data = PackedByteArray("AAADAAEAAAABAAAAAAAEAAEAAAACAAAAAAAEAAIAAAACAAEAAAAFAAIAAAABAAAAAAAFAAMAAAABAAEAAAAGAAIAAAACAAAAAAAGAAMAAAACAAEAAAAFAAAAAAAFAAAAAAAFAAEAAAAFAAEAAAAGAAEAAAAGAAEAAAAGAAYAAAADAAAAAAAGAAcAAAADAAEAAAAHAAYAAAAEAAAAAAAHAAcAAAAEAAEAAAAIAAYAAAADAAAAAAAIAAcAAAADAAEAAAAJAAYAAAAEAAAAAAAJAAcAAAAEAAEAAAAFAAYAAAAEAAAAAAAFAAcAAAAEAAEAAAAKAAEAAAAAAAIAAAALAAEAAAABAAIAAAAAAAMAAAADAAMAAAAMAAQAAAACAAIAAAAMAAUAAAACAAMAAAANAAUAAAADAAMAAAANAAQAAAADAAIAAAAAAAIAAAADAAIAAAABAAIAAAAEAAIAAAABAAMAAAAEAAMAAAACAAIAAAAFAAIAAAACAAMAAAAFAAMAAAA=")
 tile_set = SubResource("TileSet_l0dnm")
 
+[node name="MarkerLayer" type="Node2D" parent="Background"]
+position = Vector2(-964.28577, -538.1444)
+
+[node name="MapArea" type="Area2D" parent="."]
+position = Vector2(-6.1035156e-05, 0)
+scale = Vector2(1.0000002, 1)
+
+[node name="MapCollision" type="CollisionShape2D" parent="MapArea"]
+position = Vector2(448, 289)
+shape = SubResource("RectangleShape2D_gf68c")
+
 [node name="WorldBoundary" type="StaticBody2D" parent="."]
 
 [node name="Left" type="CollisionShape2D" parent="WorldBoundary"]
@@ -80,3 +94,4 @@ shape = SubResource("WorldBoundaryShape2D_eicpw")
 shape = SubResource("WorldBoundaryShape2D_n55d4")
 
 [connection signal="child_entered_tree" from="Background/Terrain" to="." method="_on_terrain_child_entered_tree"]
+[connection signal="input_event" from="MapArea" to="." method="_on_map_area_input_event"]

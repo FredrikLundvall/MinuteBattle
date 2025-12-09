@@ -15,6 +15,11 @@ run/main_scene="uid://biyoriwt7grce"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/resizable=false
+window/stretch/aspect="ignore"
+
 [input]
 
 mouse_click={

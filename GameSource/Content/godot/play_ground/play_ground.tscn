@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://gs22p0vudfwo" path="res://godot/play_ground/play_ground.gd" id="1_cgi8y"]
 [ext_resource type="PackedScene" uid="uid://cjkc4jlqirg4d" path="res://godot/hand/hand.tscn" id="1_rd3d2"]
-[ext_resource type="PackedScene" uid="uid://b1f5e0og3cr3d" path="res://godot/Battle/battle.tscn" id="2_mm68r"]
+[ext_resource type="PackedScene" uid="uid://b1f5e0og3cr3d" path="res://godot/battle/battle.tscn" id="2_mm68r"]
 
 [node name="PlayGround" type="Node2D"]
 script = ExtResource("1_cgi8y")

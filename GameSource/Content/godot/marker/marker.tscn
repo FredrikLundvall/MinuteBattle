@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnsup40h0ltpl"]
+
+[ext_resource type="Texture2D" uid="uid://dxsw13gpcb5nr" path="res://maps/flag2-sheet.png" id="1_w0r4h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iof1b"]
+atlas = ExtResource("1_w0r4h")
+region = Rect2(0, 0, 32, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2y8t2"]
+atlas = ExtResource("1_w0r4h")
+region = Rect2(32, 0, 32, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1chvb"]
+atlas = ExtResource("1_w0r4h")
+region = Rect2(64, 0, 32, 66)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gcdma"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iof1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2y8t2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1chvb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Marker" type="Node2D"]
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+position = Vector2(-8, -33)
+sprite_frames = SubResource("SpriteFrames_gcdma")
+frame = 2
+frame_progress = 0.7704971
