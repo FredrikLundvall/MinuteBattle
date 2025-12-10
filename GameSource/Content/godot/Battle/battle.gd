@@ -1,9 +1,9 @@
 class_name Battle extends Node2D
 
-@onready var terrain: TileMapLayer = $Background/Terrain
+@onready var terrain: TileMapLayer = $Terrain
 @onready var meleePicture: Texture2D = preload("res://hero/melee.png")
 @onready var marker_scene: PackedScene = preload("res://godot/marker/marker.tscn")
-@onready var marker_layer: Node2D = $Background/MarkerLayer
+@onready var marker_layer: Node2D = $MarkerLayer
 
 signal unit_selected(unit: Unit)
 
@@ -40,7 +40,8 @@ func _unit_connect(unit: Unit):
 		unit.unit_clicked.connect(_on_unit_clicked)
 
 func _on_terrain_child_entered_tree(node: Node) -> void:
-	_unit_connect(node as Unit)
+	if node is Unit:
+		_unit_connect(node as Unit)
 
 
 func _on_map_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
@@ -50,6 +51,7 @@ func _on_map_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: in
 		print("Local position at: ", get_local_mouse_position())
 		print("Viewport Resolution is: ", _viewport.get_visible_rect().size)
 		var marker = marker_scene.instantiate()
-		marker.position = get_local_mouse_position() *2
+		marker.position = get_local_mouse_position()
 		marker.get_node("Animation").play()
-		marker_layer.add_child(marker)
+		#marker_layer.add_child(marker)
+		terrain.add_child(marker)

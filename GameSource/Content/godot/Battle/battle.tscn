@@ -55,19 +55,17 @@ normal = Vector2(0, 1)
 script = ExtResource("1_wv22a")
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(450, 290)
-scale = Vector2(0.46666667, 0.5388888)
+position = Vector2(448.00003, 288)
+scale = Vector2(0.47395837, 0.55)
 texture = ExtResource("1_l7l7s")
 
-[node name="Terrain" type="TileMapLayer" parent="Background"]
+[node name="Terrain" type="TileMapLayer" parent="."]
 y_sort_enabled = true
-position = Vector2(-964.28577, -538.1444)
-scale = Vector2(2.1428573, 1.8556705)
 tile_map_data = PackedByteArray("AAADAAEAAAABAAAAAAAEAAEAAAACAAAAAAAEAAIAAAACAAEAAAAFAAIAAAABAAAAAAAFAAMAAAABAAEAAAAGAAIAAAACAAAAAAAGAAMAAAACAAEAAAAFAAAAAAAFAAAAAAAFAAEAAAAFAAEAAAAGAAEAAAAGAAEAAAAGAAYAAAADAAAAAAAGAAcAAAADAAEAAAAHAAYAAAAEAAAAAAAHAAcAAAAEAAEAAAAIAAYAAAADAAAAAAAIAAcAAAADAAEAAAAJAAYAAAAEAAAAAAAJAAcAAAAEAAEAAAAFAAYAAAAEAAAAAAAFAAcAAAAEAAEAAAAKAAEAAAAAAAIAAAALAAEAAAABAAIAAAAAAAMAAAADAAMAAAAMAAQAAAACAAIAAAAMAAUAAAACAAMAAAANAAUAAAADAAMAAAANAAQAAAADAAIAAAAAAAIAAAADAAIAAAABAAIAAAAEAAIAAAABAAMAAAAEAAMAAAACAAIAAAAFAAIAAAACAAMAAAAFAAMAAAA=")
 tile_set = SubResource("TileSet_l0dnm")
 
-[node name="MarkerLayer" type="Node2D" parent="Background"]
-position = Vector2(-964.28577, -538.1444)
+[node name="MarkerLayer" type="Node2D" parent="."]
+position = Vector2(-3.0517578e-05, 0)
 
 [node name="MapArea" type="Area2D" parent="."]
 position = Vector2(-6.1035156e-05, 0)
@@ -93,5 +91,5 @@ shape = SubResource("WorldBoundaryShape2D_eicpw")
 [node name="Up" type="CollisionShape2D" parent="WorldBoundary"]
 shape = SubResource("WorldBoundaryShape2D_n55d4")
 
-[connection signal="child_entered_tree" from="Background/Terrain" to="." method="_on_terrain_child_entered_tree"]
+[connection signal="child_entered_tree" from="Terrain" to="." method="_on_terrain_child_entered_tree"]
 [connection signal="input_event" from="MapArea" to="." method="_on_map_area_input_event"]
