@@ -3,7 +3,6 @@ class_name Battle extends Node2D
 @onready var terrain: TileMapLayer = $Terrain
 @onready var meleePicture: Texture2D = preload("res://hero/melee.png")
 @onready var marker_scene: PackedScene = preload("res://godot/marker/marker.tscn")
-@onready var marker_layer: Node2D = $MarkerLayer
 
 signal unit_selected(unit: Unit)
 
@@ -29,7 +28,53 @@ func _on_unit_unhovered(unit: Unit) -> void:
 	
 func _on_unit_clicked(unit: Unit) -> void:
 	print(unit.name + " clicked")
+	unit.selected = true
 	unit_selected.emit(unit)
+
+func _on_map_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
+	if event.is_action_pressed("mouse_click") and _hasAnyUnitSelected() and not _isAnyUnitHovered():
+		var marker = marker_scene.instantiate()
+		marker.position = get_local_mouse_position()
+		marker.get_node("Animation").play()
+		terrain.add_child(marker)
+		_setMarkerForSelectedUnitsAndRemoveOld(marker)
+		_unselectAllUnits()
+
+func _setMarkerForSelectedUnitsAndRemoveOld(marker: Marker):
+	var markersToRemove = [] 
+	for child in terrain.get_children():
+		if child is Unit:
+			var unit = (child as Unit)
+			if unit.selected:
+				if unit.marker != null:
+					markersToRemove.append(unit.marker)
+				unit.marker = marker
+	for markerToRemove in markersToRemove:
+		terrain.remove_child(markerToRemove)
+		markerToRemove.queue_free()
+	
+
+func _hasAnyUnitSelected() -> bool:
+	for child in terrain.get_children():
+		if child is Unit:
+			var unit = (child as Unit)
+			if unit.selected:
+				return true
+	return false
+	
+func _unselectAllUnits():
+	for child in terrain.get_children():
+		if child is Unit:
+			var unit = (child as Unit)
+			unit.selected = false
+
+func _isAnyUnitHovered() -> bool:
+	for child in terrain.get_children():
+		if child is Unit:
+			var unit = (child as Unit)
+			if unit.hovered:
+				return true
+	return false
 
 func _unit_connect(unit: Unit):
 	if !unit.unit_hovered.is_connected(_on_unit_hovered):   
@@ -42,16 +87,3 @@ func _unit_connect(unit: Unit):
 func _on_terrain_child_entered_tree(node: Node) -> void:
 	if node is Unit:
 		_unit_connect(node as Unit)
-
-
-func _on_map_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event.is_action_pressed("mouse_click"):
-		print("Mouse Click/Unclick at: ", event.position)
-		print("Global position at: ", get_global_mouse_position())
-		print("Local position at: ", get_local_mouse_position())
-		print("Viewport Resolution is: ", _viewport.get_visible_rect().size)
-		var marker = marker_scene.instantiate()
-		marker.position = get_local_mouse_position()
-		marker.get_node("Animation").play()
-		#marker_layer.add_child(marker)
-		terrain.add_child(marker)

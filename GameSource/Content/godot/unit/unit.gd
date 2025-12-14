@@ -3,6 +3,8 @@ class_name Unit extends Node2D
 @export var picture: Texture2D = preload("res://hero/melee.png")
 @export var hovered: bool = false
 @export var highlighted: bool = false
+@export var selected: bool = false
+@export var marker: Marker = null
 
 signal unit_hovered(unit: Unit)
 signal unit_unhovered(unit: Unit)
@@ -14,7 +16,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if highlighted:
+	if highlighted or selected:
 		highlight()
 	else:
 		unhighlight()

@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnsup40h0ltpl"]
+[gd_scene load_steps=7 format=3 uid="uid://bnsup40h0ltpl"]
 
+[ext_resource type="Script" uid="uid://bpf51umfkoo06" path="res://godot/marker/marker.gd" id="1_iof1b"]
 [ext_resource type="Texture2D" uid="uid://dxsw13gpcb5nr" path="res://maps/flag2-sheet.png" id="1_w0r4h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iof1b"]
@@ -32,6 +33,7 @@ animations = [{
 }]
 
 [node name="Marker" type="Node2D"]
+script = ExtResource("1_iof1b")
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 position = Vector2(-8, -33)
