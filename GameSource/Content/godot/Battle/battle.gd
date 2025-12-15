@@ -32,43 +32,45 @@ func _on_unit_clicked(unit: Unit) -> void:
 	unit_selected.emit(unit)
 
 func _on_map_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if event.is_action_pressed("mouse_click") and _hasAnyUnitSelected() and not _isAnyUnitHovered():
+	if event.is_action_pressed("mouse_click") and _has_any_unit_selected() and not _is_any_unit_hovered():
 		var marker = marker_scene.instantiate()
 		marker.position = get_local_mouse_position()
 		marker.get_node("Animation").play()
 		terrain.add_child(marker)
-		_setMarkerForSelectedUnitsAndRemoveOld(marker)
-		_unselectAllUnits()
+		_set_marker_for_selected_units_and_remove_old(marker)
+		_unselect_all_units()
 
-func _setMarkerForSelectedUnitsAndRemoveOld(marker: Marker):
-	var markersToRemove = [] 
-	for child in terrain.get_children():
-		if child is Unit:
-			var unit = (child as Unit)
-			if unit.selected:
-				if unit.marker != null:
-					markersToRemove.append(unit.marker)
-				unit.marker = marker
-	for markerToRemove in markersToRemove:
-		terrain.remove_child(markerToRemove)
-		markerToRemove.queue_free()
-	
+func _set_marker_for_selected_units_and_remove_old(marker: Marker) -> void:
+	var markers_to_remove: Array[Node] = []
+	for unit in terrain.get_children().filter(func(c): return _is_unit_and_selected(c)):
+		if unit.marker != null and not markers_to_remove.has(unit.marker):
+			markers_to_remove.append(unit.marker)
+		unit.marker = marker
+	_remove_nodes(markers_to_remove)
 
-func _hasAnyUnitSelected() -> bool:
+func _is_unit_and_selected(node: Node) -> bool:
+	if node is Unit: 
+		return node.selected
+	else: 
+		return false
+
+func _remove_nodes(nodes: Array[Node]) -> void:
+	for node in nodes:
+		node.queue_free()
+
+func _has_any_unit_selected() -> bool:
 	for child in terrain.get_children():
-		if child is Unit:
-			var unit = (child as Unit)
-			if unit.selected:
-				return true
+		if _is_unit_and_selected(child):
+			return true
 	return false
 	
-func _unselectAllUnits():
+func _unselect_all_units():
 	for child in terrain.get_children():
 		if child is Unit:
 			var unit = (child as Unit)
 			unit.selected = false
 
-func _isAnyUnitHovered() -> bool:
+func _is_any_unit_hovered() -> bool:
 	for child in terrain.get_children():
 		if child is Unit:
 			var unit = (child as Unit)
