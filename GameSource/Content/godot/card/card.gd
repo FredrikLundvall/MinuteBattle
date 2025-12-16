@@ -1,4 +1,4 @@
-#@tool
+@tool
 class_name Card extends Node2D
 
 @export var title: String = "Title"
@@ -16,7 +16,11 @@ func _ready() -> void:
 	$Background/Title.text = title
 	$Background/Price.text = str(price)
 	$Background/Picture.texture = picture
-	$Members/Unit.picture = picture
+	$Unit.picture = picture
+	if Engine.is_editor_hint():
+		$Unit.visible = true
+	else:
+		$Unit.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

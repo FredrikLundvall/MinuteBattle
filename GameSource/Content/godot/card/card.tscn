@@ -44,10 +44,10 @@ theme = ExtResource("2_1d8r6")
 text = "5"
 horizontal_alignment = 2
 
-[node name="Members" type="Node" parent="."]
+[node name="Unit" parent="." instance=ExtResource("5_38227")]
+position = Vector2(32, 92)
 
-[node name="Unit" parent="Members" instance=ExtResource("5_38227")]
-visible = false
+[node name="Members" type="Node" parent="."]
 
 [connection signal="input_event" from="Background/Area" to="." method="_on_area_input_event"]
 [connection signal="mouse_entered" from="Background/Area" to="." method="_on_area_mouse_entered"]

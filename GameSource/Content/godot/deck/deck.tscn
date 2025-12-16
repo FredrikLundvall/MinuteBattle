@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bl5df3b7c8t0d"]
+
+[ext_resource type="Script" uid="uid://eut7an5cugk4" path="res://godot/deck/deck.gd" id="1_m3lvi"]
+
+[node name="Deck" type="Node"]
+script = ExtResource("1_m3lvi")

@@ -16,16 +16,16 @@ position = Vector2(125, 42)
 position = Vector2(15, 136)
 
 [node name="Button" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Create card 1"
+offset_left = 122.0
+offset_right = 236.0
+offset_bottom = 31.0
+text = "Random from deck"
 
 [node name="Button2" type="Button" parent="."]
-offset_left = 1.0
-offset_top = 43.0
-offset_right = 112.0
-offset_bottom = 74.0
-text = "Create card 2"
+offset_left = 305.0
+offset_right = 416.0
+offset_bottom = 31.0
+text = "Customized"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

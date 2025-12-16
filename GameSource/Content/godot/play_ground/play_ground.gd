@@ -14,24 +14,26 @@ func _process(_delta: float) -> void:
 	pass
 
 func _on_button_pressed() -> void:
+	var rng = RandomNumberGenerator.new()
+	#TODO: Pick one from the deck
 	var spawn_card = card_scene.instantiate()
-	spawn_card.title = "Test 1"
-	spawn_card.price = 1
+	spawn_card.title = "12 pd Canon"
+	spawn_card.price = rng.randi_range(2, 7)
 	spawn_card.picture = preload("res://hero/artillery.png")
-	spawn_card.get_node("Members/Unit").picture = preload("res://hero/artillery.png")
+	spawn_card.get_node("Unit").picture = preload("res://hero/artillery.png")
 	#print("artillery")
 	hand.add_child(spawn_card)
 
 func _on_button_2_pressed() -> void:
+	var rng = RandomNumberGenerator.new()
 	var spawn_card = card_scene.instantiate()
-	spawn_card.title = "Test 2"
-	spawn_card.price = 2
+	spawn_card.title = "Caroleans"
+	spawn_card.price = rng.randi_range(3, 7)
 	spawn_card.picture = preload("res://hero/projectile.png")
-	spawn_card.get_node("Members/Unit").picture = preload("res://hero/projectile.png")
-	#print("projectile")
+	spawn_card.get_node("Unit").picture = preload("res://hero/projectile.png")
 	hand.add_child(spawn_card)
 
 func _on_card_selected(card: Card) -> void:
-	var spawn_unit = card.get_node("Members/Unit").duplicate()
+	var spawn_unit = card.get_node("Unit").duplicate()
 	spawn_unit.visible = true
 	battle.spawn_unit(spawn_unit)

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://cw4qqkxwernoe"]
+
+[ext_resource type="Script" uid="uid://eut7an5cugk4" path="res://godot/deck/deck.gd" id="1_fp48g"]
+[ext_resource type="PackedScene" uid="uid://bsor251gbadiw" path="res://godot/card/card.tscn" id="2_gratv"]
+[ext_resource type="Texture2D" uid="uid://yq6xk8yrg31" path="res://hero/projectile.png" id="3_ecr6u"]
+[ext_resource type="Texture2D" uid="uid://bykyxbxt2ukk7" path="res://hero/artillery.png" id="4_xbh8p"]
+
+[node name="SwedishDeck" type="Node"]
+script = ExtResource("1_fp48g")
+metadata/_custom_type_script = "uid://eut7an5cugk4"
+
+[node name="Pikemen" parent="." instance=ExtResource("2_gratv")]
+position = Vector2(1, 2)
+title = "Pikeman"
+price = 2
+
+[node name="Musketeers" parent="." instance=ExtResource("2_gratv")]
+position = Vector2(95, 1)
+title = "Musketeer"
+price = 3
+picture = ExtResource("3_ecr6u")
+
+[node name="3-pounder" parent="." instance=ExtResource("2_gratv")]
+position = Vector2(187, 1)
+title = "3-pounder"
+picture = ExtResource("4_xbh8p")
+
+[node name="6-pounder" parent="." instance=ExtResource("2_gratv")]
+position = Vector2(279, 0)
+title = "6-pounder"
+price = 6
+picture = ExtResource("4_xbh8p")
