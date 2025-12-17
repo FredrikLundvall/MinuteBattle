@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://crriqj865mh0j"]
+
+[ext_resource type="PackedScene" uid="uid://bsor251gbadiw" path="res://godot/card/card.tscn" id="2_moq15"]
+[ext_resource type="Texture2D" uid="uid://yq6xk8yrg31" path="res://hero/projectile.png" id="3_kti3l"]
+[ext_resource type="Texture2D" uid="uid://bykyxbxt2ukk7" path="res://hero/artillery.png" id="4_hlw0c"]
+
+[node name="SwedishPool" type="Node"]
+
+[node name="Pikemen" parent="." instance=ExtResource("2_moq15")]
+position = Vector2(1, 2)
+title = "Pikeman"
+price = 2
+
+[node name="Musketeers" parent="." instance=ExtResource("2_moq15")]
+position = Vector2(95, 1)
+title = "Musketeer"
+price = 3
+picture = ExtResource("3_kti3l")
+
+[node name="3-pounder" parent="." instance=ExtResource("2_moq15")]
+position = Vector2(187, 1)
+title = "3-pounder"
+picture = ExtResource("4_hlw0c")
+
+[node name="6-pounder" parent="." instance=ExtResource("2_moq15")]
+position = Vector2(279, 0)
+title = "6-pounder"
+price = 6
+picture = ExtResource("4_hlw0c")

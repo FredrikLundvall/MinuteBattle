@@ -37,3 +37,7 @@ func _on_card_selected(card: Card) -> void:
 	var spawn_unit = card.get_node("Unit").duplicate()
 	spawn_unit.visible = true
 	battle.spawn_unit(spawn_unit)
+
+func _input(event):
+	if event.is_action_pressed("exit_click"):
+		get_tree().quit()
