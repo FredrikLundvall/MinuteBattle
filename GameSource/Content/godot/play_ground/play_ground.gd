@@ -1,4 +1,4 @@
-extends Node2D
+class_name PlayGround extends Node2D
 
 @onready var card_scene: PackedScene = preload("res://godot/card/card.tscn")
 @onready var hand: Hand = $CanvasLayer/Hand
@@ -13,7 +13,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	pass
 
-func _on_button_pressed() -> void:
+func _on_draw_from_deck_button_pressed() -> void:
 	var rng = RandomNumberGenerator.new()
 	#TODO: Pick one from the deck
 	var spawn_card = card_scene.instantiate()
@@ -22,15 +22,6 @@ func _on_button_pressed() -> void:
 	spawn_card.picture = preload("res://hero/artillery.png")
 	spawn_card.get_node("Unit").picture = preload("res://hero/artillery.png")
 	#print("artillery")
-	hand.add_child(spawn_card)
-
-func _on_button_2_pressed() -> void:
-	var rng = RandomNumberGenerator.new()
-	var spawn_card = card_scene.instantiate()
-	spawn_card.title = "Caroleans"
-	spawn_card.price = rng.randi_range(3, 7)
-	spawn_card.picture = preload("res://hero/projectile.png")
-	spawn_card.get_node("Unit").picture = preload("res://hero/projectile.png")
 	hand.add_child(spawn_card)
 
 func _on_card_selected(card: Card) -> void:

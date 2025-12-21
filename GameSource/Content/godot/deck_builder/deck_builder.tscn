@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://qcvo6f2u2no6"]
+
+[ext_resource type="Script" uid="uid://ydkl88qj623s" path="res://godot/deck_builder/deck_builder.gd" id="1_2dlqr"]
+[ext_resource type="PackedScene" uid="uid://bl5df3b7c8t0d" path="res://godot/deck/deck.tscn" id="2_stdcc"]
+
+[node name="DeckBuilder" type="Node2D"]
+script = ExtResource("1_2dlqr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Deck" parent="CanvasLayer" instance=ExtResource("2_stdcc")]
+
+[node name="CreateDeckBtn" type="Button" parent="."]
+offset_left = 910.0
+offset_top = 43.0
+offset_right = 1089.0
+offset_bottom = 74.0
+text = "Create a random deck"
+
+[node name="BattleBtn" type="Button" parent="."]
+offset_left = 941.0
+offset_top = 150.0
+offset_right = 1067.0
+offset_bottom = 181.0
+text = "Start the battle"
+
+[node name="AddCustomizedCardBtn" type="Button" parent="."]
+offset_left = 915.0
+offset_top = 92.0
+offset_right = 1085.0
+offset_bottom = 123.0
+text = "Add customized card"
+
+[connection signal="pressed" from="CreateDeckBtn" to="." method="_on_create_deck_btn_pressed"]
+[connection signal="pressed" from="BattleBtn" to="." method="_on_battle_btn_pressed"]
+[connection signal="pressed" from="AddCustomizedCardBtn" to="." method="_on_add_customized_card_btn_pressed"]

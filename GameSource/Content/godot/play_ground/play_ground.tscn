@@ -10,22 +10,16 @@ script = ExtResource("1_cgi8y")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Battle" parent="CanvasLayer" instance=ExtResource("2_mm68r")]
-position = Vector2(125, 42)
+position = Vector2(145, 156)
 
 [node name="Hand" parent="CanvasLayer" instance=ExtResource("1_rd3d2")]
-position = Vector2(15, 136)
+position = Vector2(18, 168)
 
-[node name="Button" type="Button" parent="."]
-offset_left = 122.0
-offset_right = 236.0
-offset_bottom = 31.0
-text = "Random from deck"
+[node name="DrawFromDeckBtn" type="Button" parent="."]
+offset_left = 183.0
+offset_top = 48.0
+offset_right = 315.0
+offset_bottom = 79.0
+text = "Draw from deck"
 
-[node name="Button2" type="Button" parent="."]
-offset_left = 305.0
-offset_right = 416.0
-offset_bottom = 31.0
-text = "Customized"
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="DrawFromDeckBtn" to="." method="_on_draw_from_deck_button_pressed"]

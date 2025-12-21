@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://xdqe1f1ok1hw"]
+
+[ext_resource type="Script" uid="uid://kgrkai8gy1jn" path="res://godot/pool/pool.gd" id="1_jbci8"]
+
+[node name="Pool" type="Node"]
+script = ExtResource("1_jbci8")
