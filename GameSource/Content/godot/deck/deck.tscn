@@ -2,5 +2,9 @@
 
 [ext_resource type="Script" uid="uid://eut7an5cugk4" path="res://godot/deck/deck.gd" id="1_m3lvi"]
 
-[node name="Deck" type="Node"]
+[node name="Deck" type="Node2D"]
 script = ExtResource("1_m3lvi")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]
+[connection signal="child_order_changed" from="." to="." method="_on_child_order_changed"]
