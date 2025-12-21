@@ -1,6 +1,7 @@
 class_name DeckBuilder extends Node2D
 
 @onready var swedish_pool_scene: PackedScene = preload("res://godot/pool/swedish_pool.tscn")
+@onready var card_scene: PackedScene = preload("res://godot/card/card.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -36,13 +37,11 @@ func _remove_all_children(node: Node) -> void:
 		child.free()
 
 func _on_add_customized_card_btn_pressed() -> void:
-	pass # Replace with function body.
-
-#func _on_button_2_pressed() -> void:
-	#var rng = RandomNumberGenerator.new()
-	#var spawn_card = card_scene.instantiate()
-	#spawn_card.title = "Caroleans"
-	#spawn_card.price = rng.randi_range(3, 7)
-	#spawn_card.picture = preload("res://hero/projectile.png")
-	#spawn_card.get_node("Unit").picture = preload("res://hero/projectile.png")
-	#hand.add_child(spawn_card)
+	var rng = RandomNumberGenerator.new()
+	var spawn_card = card_scene.instantiate()
+	spawn_card.title = "Caroleans"
+	spawn_card.price = rng.randi_range(3, 7)
+	spawn_card.picture = preload("res://hero/projectile.png")
+	spawn_card.get_node("Unit").picture = preload("res://hero/projectile.png")
+	$CanvasLayer/Deck.add_child(spawn_card)
+	print(spawn_card.title)
