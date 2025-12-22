@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dvd04mfeaxmbg"]
+
+[node name="GameState" type="Node"]
+
+[node name="PlayerState" type="Node" parent="."]

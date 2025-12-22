@@ -16,6 +16,8 @@ func _input(event):
 		get_tree().quit()
 
 func _on_battle_btn_pressed() -> void:
+	#Save the players deck in the PlayerState
+	$CanvasLayer/Deck.reparent(GameState.get_node("PlayerState"))
 	get_tree().change_scene_to_file("res://godot/play_ground/play_ground.tscn")
 
 func _on_create_deck_btn_pressed() -> void:
