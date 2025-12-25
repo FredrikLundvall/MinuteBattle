@@ -26,17 +26,13 @@ func _on_create_deck_btn_pressed() -> void:
 	_generate_new_deck(deck_size)
 
 func _generate_new_deck(deck_size: int) -> void:
-	_remove_all_children($CanvasLayer/Deck)
+	Utils.remove_all_children($CanvasLayer/Deck)
 	var swedish_pool_instance = swedish_pool_scene.instantiate()
 	for t in deck_size:
 		var card: Card = swedish_pool_instance.get_random_card().duplicate()
 		$CanvasLayer/Deck.add_child(card)
 		print(card.title)
 	swedish_pool_instance.queue_free()
-
-func _remove_all_children(node: Node) -> void:
-	for child in node.get_children():
-		child.free()
 
 func _on_add_customized_card_btn_pressed() -> void:
 	var rng = RandomNumberGenerator.new()

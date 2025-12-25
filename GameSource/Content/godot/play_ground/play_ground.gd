@@ -3,9 +3,13 @@ class_name PlayGround extends Node2D
 @onready var card_scene: PackedScene = preload("res://godot/card/card.tscn")
 @onready var hand: Hand = $CanvasLayer/Hand
 @onready var battle: Node2D = $CanvasLayer/Battle
+@onready var playerstate = GameState.get_node("PlayerState")
+@onready var deck = playerstate.get_node("Deck")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	Utils.remove_all_children(hand)
+	Utils.duplicate_all_children(deck, hand)
 	if !hand.card_selected.is_connected(_on_card_selected):   
 		hand.card_selected.connect(_on_card_selected)
 
@@ -14,15 +18,8 @@ func _process(_delta: float) -> void:
 	pass
 
 func _on_draw_from_deck_button_pressed() -> void:
-	var rng = RandomNumberGenerator.new()
-	#TODO: Pick one from the deck
-	var spawn_card = card_scene.instantiate()
-	spawn_card.title = "12 pd Canon"
-	spawn_card.price = rng.randi_range(2, 7)
-	spawn_card.picture = preload("res://hero/artillery.png")
-	spawn_card.get_node("Unit").picture = preload("res://hero/artillery.png")
-	#print("artillery")
-	hand.add_child(spawn_card)
+	var drawn_card = deck.get_children().pick_random()
+	hand.add_child(drawn_card.duplicate())
 
 func _on_card_selected(card: Card) -> void:
 	var spawn_unit = card.get_node("Unit").duplicate()

@@ -38,10 +38,10 @@ func _on_card_unhovered(card: Card) -> void:
 	_highlight_last_hovered_card()
 	
 func _on_card_clicked(card: Card) -> void:
-	remove_child(card)
 	card_selected.emit(card)
+	remove_child(card)
 	_re_position()
-	#TODO this card has to be freed by the consumer of the signal
+	#TODO Maybe this card has to be freed by the consumer of the signal
 	card.queue_free()
 
 func _card_connect(card: Card):
