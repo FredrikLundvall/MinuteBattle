@@ -1,5 +1,9 @@
-[gd_scene format=3 uid="uid://dvd04mfeaxmbg"]
+[gd_scene load_steps=2 format=3 uid="uid://dvd04mfeaxmbg"]
+
+[ext_resource type="Script" uid="uid://b6ywoqgc5vkmg" path="res://godot/player_state/player_state.gd" id="1_b2sj1"]
 
 [node name="GameState" type="Node"]
 
 [node name="PlayerState" type="Node" parent="."]
+script = ExtResource("1_b2sj1")
+metadata/_custom_type_script = "uid://b6ywoqgc5vkmg"

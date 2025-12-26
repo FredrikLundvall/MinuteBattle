@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7ytt5f3g7ich"]
+
+[ext_resource type="Theme" uid="uid://c8x1a3vhlqavi" path="res://godot/resources/resources_theme.tres" id="1_wslaj"]
+[ext_resource type="Texture2D" uid="uid://c1p68lk7gr7be" path="res://deck/blank_card.png" id="1_xa2ig"]
+
+[node name="Resources" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 256.0
+offset_bottom = 152.0
+texture = ExtResource("1_xa2ig")
+
+[node name="Army" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 112.0
+offset_bottom = 57.0
+theme = ExtResource("1_wslaj")
+text = "Army"
+
+[node name="ArmyValue" type="Label" parent="."]
+offset_left = 168.0
+offset_top = 16.0
+offset_right = 228.0
+offset_bottom = 57.0
+theme = ExtResource("1_wslaj")
+text = "200"
+horizontal_alignment = 2
+
+[node name="Reinforcements" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 56.0
+offset_right = 147.0
+offset_bottom = 97.0
+theme = ExtResource("1_wslaj")
+text = "Logistics"
+
+[node name="ReinforcementsValue" type="Label" parent="."]
+offset_left = 176.0
+offset_top = 56.0
+offset_right = 228.0
+offset_bottom = 97.0
+theme = ExtResource("1_wslaj")
+text = "+10"
+horizontal_alignment = 2
+
+[node name="Camp" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 96.0
+offset_right = 112.0
+offset_bottom = 137.0
+theme = ExtResource("1_wslaj")
+text = "Camp"
+
+[node name="CampValue" type="Label" parent="."]
+offset_left = 168.0
+offset_top = 96.0
+offset_right = 228.0
+offset_bottom = 137.0
+theme = ExtResource("1_wslaj")
+text = "30"
+horizontal_alignment = 2

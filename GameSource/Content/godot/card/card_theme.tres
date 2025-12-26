@@ -3,6 +3,6 @@
 [ext_resource type="FontFile" uid="uid://cs2exmv4io0kn" path="res://gui/fonts/JANCIENI.TTF" id="1_3q2n2"]
 
 [resource]
-Label/colors/font_color = Color(0.1692734, 0.113820665, 0.046090238, 1)
+Label/colors/font_color = Color(0.16862746, 0.11372549, 0.047058824, 1)
 Label/font_sizes/font_size = 19
 Label/fonts/font = ExtResource("1_3q2n2")
