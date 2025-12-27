@@ -7,44 +7,45 @@
 [ext_resource type="PackedScene" uid="uid://ck7ukbhe6n7ut" path="res://godot/unit/unit.tscn" id="5_38227"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6n70q"]
-size = Vector2(104, 89)
+size = Vector2(104, 73)
 
 [node name="Card" type="Node2D"]
 script = ExtResource("1_6n70q")
+resource = null
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(32, 32)
 
 [node name="Paper" type="Sprite2D" parent="Background"]
-position = Vector2(20.000006, 11.999998)
-scale = Vector2(1.6250001, 1.375)
+position = Vector2(20, 7.999999)
+scale = Vector2(1.6249999, 1.25)
 texture = ExtResource("1_4uooh")
 
 [node name="Area" type="Area2D" parent="Background"]
 position = Vector2(-32, -32)
 
 [node name="CollisionShape" type="CollisionShape2D" parent="Background/Area"]
-position = Vector2(52, 43.5)
+position = Vector2(52, 39.5)
 shape = SubResource("RectangleShape2D_6n70q")
 
 [node name="Picture" type="Sprite2D" parent="Background"]
-position = Vector2(16, 23.999998)
-scale = Vector2(1.5, 1.4999999)
+position = Vector2(20, 20.000004)
+scale = Vector2(1.25, 1.25)
 texture = ExtResource("2_kl81i")
 
 [node name="Title" type="Label" parent="Background"]
-offset_left = -28.0
-offset_top = -24.0
-offset_right = 12.0
-offset_bottom = -1.0
+offset_left = -25.0
+offset_top = -22.0
+offset_right = 44.0
+offset_bottom = 1.0
 theme = ExtResource("2_1d8r6")
 text = "Title"
 
-[node name="Price" type="Label" parent="Background"]
-offset_left = 16.0
-offset_top = -24.0
-offset_right = 56.0
-offset_bottom = -1.0
+[node name="Resource" type="Label" parent="Background"]
+offset_left = 40.0
+offset_top = -22.0
+offset_right = 65.0
+offset_bottom = 1.0
 theme = ExtResource("2_1d8r6")
 text = "5"
 horizontal_alignment = 2

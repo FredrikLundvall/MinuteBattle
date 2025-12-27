@@ -12,21 +12,22 @@ metadata/_custom_type_script = "uid://kgrkai8gy1jn"
 [node name="Pikemen" parent="." instance=ExtResource("1_ckdpo")]
 position = Vector2(1, 2)
 title = "Pikeman"
-price = 2
+resource = 2
 
 [node name="Musketeers" parent="." instance=ExtResource("1_ckdpo")]
 position = Vector2(95, 1)
 title = "Musketeer"
-price = 3
+resource = 3
 picture = ExtResource("2_wifmh")
 
 [node name="3-pounder" parent="." instance=ExtResource("1_ckdpo")]
 position = Vector2(187, 1)
 title = "3-pounder"
+resource = 3
 picture = ExtResource("3_wu6ik")
 
 [node name="6-pounder" parent="." instance=ExtResource("1_ckdpo")]
 position = Vector2(279, 0)
 title = "6-pounder"
-price = 6
+resource = 6
 picture = ExtResource("3_wu6ik")

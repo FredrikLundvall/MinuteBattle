@@ -2,6 +2,7 @@ class_name DeckBuilder extends Node2D
 
 @onready var swedish_pool_scene: PackedScene = preload("res://godot/pool/swedish_pool.tscn")
 @onready var card_scene: PackedScene = preload("res://godot/card/card.tscn")
+@onready var player_state = GameState.get_node("PlayerState")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,7 +18,11 @@ func _input(event):
 
 func _on_battle_btn_pressed() -> void:
 	#Save the players deck in the PlayerState
-	$CanvasLayer/Deck.reparent(GameState.get_node("PlayerState"))
+	$CanvasLayer/Deck.reparent(player_state)
+	#Set the resources for the player
+	player_state.army_resource = 90
+	player_state.reinforcement_speed = 10
+	player_state.camp_resource = 14
 	get_tree().change_scene_to_file("res://godot/play_ground/play_ground.tscn")
 
 func _on_create_deck_btn_pressed() -> void:
@@ -31,7 +36,7 @@ func _generate_new_deck(deck_size: int) -> void:
 	for t in deck_size:
 		var card: Card = swedish_pool_instance.get_random_card().duplicate()
 		$CanvasLayer/Deck.add_child(card)
-		print(card.title)
+		print(card.title + ": " + str(card.resource))
 	swedish_pool_instance.queue_free()
 
 func _on_add_customized_card_btn_pressed() -> void:

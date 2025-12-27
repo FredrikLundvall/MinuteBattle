@@ -2,7 +2,7 @@
 class_name Card extends Node2D
 
 @export var title: String = "Title"
-@export var price: int = 5
+@export var resource: int = 5
 @export var picture: Texture2D = preload("res://hero/melee.png")
 @export var hovered: bool = false
 @export var highlighted: bool = false
@@ -14,7 +14,7 @@ signal card_clicked(card: Card)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Background/Title.text = title
-	$Background/Price.text = str(price)
+	$Background/Resource.text = str(resource)
 	$Background/Picture.texture = picture
 	$Unit.picture = picture
 	if Engine.is_editor_hint():

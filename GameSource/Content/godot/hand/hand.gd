@@ -2,7 +2,7 @@ class_name Hand extends Node2D
 
 signal card_selected(card: Card)
 
-const CARD_HEIGHT = 70
+const CARD_HEIGHT = 55
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

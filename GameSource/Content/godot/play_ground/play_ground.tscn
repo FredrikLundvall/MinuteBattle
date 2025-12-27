@@ -16,7 +16,7 @@ position = Vector2(145, 156)
 [node name="Hand" parent="CanvasLayer" instance=ExtResource("1_rd3d2")]
 position = Vector2(18, 168)
 
-[node name="Resources" parent="CanvasLayer" instance=ExtResource("4_afd5t")]
+[node name="PlayerResources" parent="CanvasLayer" instance=ExtResource("4_afd5t")]
 position = Vector2(6, -4)
 
 [node name="DrawFromDeckBtn" type="Button" parent="."]

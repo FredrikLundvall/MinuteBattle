@@ -43,4 +43,4 @@ exit_click={
 
 [rendering]
 
-environment/defaults/default_clear_color=Color(0.26193383, 0.23709819, 0.2073029, 1)
+environment/defaults/default_clear_color=Color(0.3412176, 0.3329623, 0.30819285, 1)
