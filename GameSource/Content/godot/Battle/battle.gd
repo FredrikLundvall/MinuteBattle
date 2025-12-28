@@ -46,6 +46,7 @@ func _set_marker_for_selected_units_and_remove_old(marker: Marker) -> void:
 		if unit.marker != null and not markers_to_remove.has(unit.marker):
 			markers_to_remove.append(unit.marker)
 		unit.marker = marker
+	Utils.show_toast("Moving orders", marker.position, 1.5)
 	_remove_nodes(markers_to_remove)
 
 func _is_unit_and_selected(node: Node) -> bool:

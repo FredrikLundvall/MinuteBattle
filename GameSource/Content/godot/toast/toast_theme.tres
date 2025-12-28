@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dd42a1d284f3g"]
+
+[ext_resource type="FontFile" uid="uid://ckwemtqg8ntm8" path="res://gui/fonts/JANCIENT.TTF" id="1_ea0lj"]
+
+[resource]
+default_font = ExtResource("1_ea0lj")
+Label/colors/font_color = Color(0.16862746, 0.11372549, 0.047058824, 1)
+Label/font_sizes/font_size = 22

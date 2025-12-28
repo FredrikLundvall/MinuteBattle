@@ -39,6 +39,8 @@ func _on_card_unhovered(card: Card) -> void:
 	
 func _on_card_clicked(card: Card) -> void:
 	card_selected.emit(card)
+
+func card_played(card: Card) -> void:
 	remove_child(card)
 	_re_position()
 	#TODO Maybe this card has to be freed by the consumer of the signal

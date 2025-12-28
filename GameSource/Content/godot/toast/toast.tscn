@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqtv0feubl60l"]
+
+[ext_resource type="Script" uid="uid://x1duf0eceh56" path="res://godot/toast/toast.gd" id="1_e84te"]
+[ext_resource type="Texture2D" uid="uid://c1p68lk7gr7be" path="res://deck/blank_card.png" id="1_todv1"]
+[ext_resource type="Theme" uid="uid://dd42a1d284f3g" path="res://godot/toast/toast_theme.tres" id="2_e84te"]
+
+[node name="Toast" type="CanvasLayer"]
+script = ExtResource("1_e84te")
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.7607843)
+offset_left = -136.0
+offset_top = -56.0
+offset_right = 136.0
+texture = ExtResource("1_todv1")
+expand_mode = 1
+
+[node name="MessageLbl" type="Label" parent="."]
+offset_left = -128.0
+offset_top = -48.0
+offset_right = 128.0
+offset_bottom = -7.0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("2_e84te")
+text = "Test message that is quite long and also has more than one row"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

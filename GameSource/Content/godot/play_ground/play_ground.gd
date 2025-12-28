@@ -27,11 +27,16 @@ func _on_draw_from_deck_button_pressed() -> void:
 	hand.add_child(drawn_card.duplicate())
 
 func _on_card_selected(card: Card) -> void:
+	if(player_state.camp_resource < card.resource):
+		Utils.show_toast("Not enough resources", card.position, 1.5)
+		return
+	hand.card_played(card)
 	var spawn_unit = card.get_node("Unit").duplicate()
 	#Reduce the resource count
 	player_state.camp_resource -= card.resource
 	spawn_unit.visible = true
 	battle.spawn_unit(spawn_unit)
+	Utils.show_toast(card.title, spawn_unit.position, 1.5)
 
 func _input(event):
 	if event.is_action_pressed("exit_click"):
