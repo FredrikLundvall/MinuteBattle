@@ -9,17 +9,16 @@ script = ExtResource("1_e84te")
 
 [node name="Background" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.7607843)
-offset_left = -136.0
-offset_top = -56.0
-offset_right = 136.0
+offset_right = 272.0
+offset_bottom = 56.0
 texture = ExtResource("1_todv1")
 expand_mode = 1
 
 [node name="MessageLbl" type="Label" parent="."]
-offset_left = -128.0
-offset_top = -48.0
-offset_right = 128.0
-offset_bottom = -7.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 264.0
+offset_bottom = 57.0
 size_flags_horizontal = 4
 size_flags_vertical = 8
 theme = ExtResource("2_e84te")

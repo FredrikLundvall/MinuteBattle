@@ -20,7 +20,7 @@ func duplicate_all_children(from_node: Node, to_node: Node) -> void:
 
 func show_toast(message: String, position: Vector2, duration: float) -> void:
 	var toastNode = TOAST.instantiate()
-	toastNode.show_toast(message, position + Vector2(90,180))
+	toastNode.show_toast(message, position)
 	add_child(toastNode)
 	await get_tree().create_timer(duration).timeout
 	toastNode.queue_free()
