@@ -8,7 +8,6 @@ signal unit_selected(unit: Unit)
 
 const SPAWN_COORDINATES = Vector2i(0,3)
 const SPAWN_ATLAS_TILE = Vector2i(0,0)
-const TERRAIN_OFFSET = Vector2(10,10)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,7 +34,7 @@ func _on_unit_clicked(unit: Unit) -> void:
 func _on_map_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("mouse_click") and _has_any_unit_selected() and not _is_any_unit_hovered():
 		var marker = marker_scene.instantiate()
-		marker.position = get_local_mouse_position() - TERRAIN_OFFSET
+		marker.position = terrain.get_local_mouse_position()
 		marker.get_node("Animation").play()
 		terrain.add_child(marker)
 		_set_marker_for_selected_units_and_remove_old(marker)
