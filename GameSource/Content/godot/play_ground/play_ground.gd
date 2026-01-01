@@ -28,7 +28,7 @@ func _on_draw_from_deck_button_pressed() -> void:
 
 func _on_card_selected(card: Card) -> void:
 	if(player_state.camp_resource < card.resource):
-		Utils.show_toast("Not enough resources", card.position, 1.5)
+		Utils.show_toast("Not enough resources", get_global_mouse_position(), 0.8)
 		return
 	hand.card_played(card)
 	var spawn_unit = card.get_node("Unit").duplicate()
@@ -36,7 +36,7 @@ func _on_card_selected(card: Card) -> void:
 	player_state.camp_resource -= card.resource
 	spawn_unit.visible = true
 	battle.spawn_unit(spawn_unit)
-	Utils.show_toast(card.title, spawn_unit.position, 1.5)
+	Utils.show_toast(card.title + " report to your commander!" , battle.to_global(spawn_unit.position), 1.8)
 
 func _input(event):
 	if event.is_action_pressed("exit_click"):

@@ -47,7 +47,7 @@ func _set_marker_for_selected_units_and_remove_old(marker: Marker) -> void:
 		if unit.marker != null and not markers_to_remove.has(unit.marker):
 			markers_to_remove.append(unit.marker)
 		unit.marker = marker
-	Utils.show_toast("Orders to move out, ready the troop comander! \nMove towards the flag and make haste!", marker.position, 2.5)
+	Utils.show_toast("Ready the troops Captain!\nMove towards that flag.", to_global(marker.position), 2.5)
 	_remove_nodes(markers_to_remove)
 
 func _is_unit_and_selected(node: Node) -> bool:
