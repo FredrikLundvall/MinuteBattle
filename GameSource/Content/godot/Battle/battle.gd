@@ -13,6 +13,7 @@ const SPAWN_ATLAS_TILE = Vector2i(0,0)
 func _ready() -> void:
 	#Set spawn point
 	terrain.set_cell(SPAWN_COORDINATES,0,SPAWN_ATLAS_TILE,0)
+	$MapTitle.text = "South of Breitenfeldt"
 
 func spawn_unit(unit: Unit):
 	unit.position = terrain.map_to_local(SPAWN_COORDINATES)
@@ -46,7 +47,7 @@ func _set_marker_for_selected_units_and_remove_old(marker: Marker) -> void:
 		if unit.marker != null and not markers_to_remove.has(unit.marker):
 			markers_to_remove.append(unit.marker)
 		unit.marker = marker
-	Utils.show_toast("Ready the troops Captain!\nMove towards that flag.", to_global(marker.position), 2.5)
+	Utils.show_toast("Ready the troops Commander!\nMove towards that flag.", to_global(marker.position), 2.5)
 	_remove_nodes(markers_to_remove)
 
 func _is_unit_and_selected(node: Node) -> bool:

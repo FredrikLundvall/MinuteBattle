@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://qcvo6f2u2no6"]
+[gd_scene load_steps=4 format=3 uid="uid://qcvo6f2u2no6"]
 
 [ext_resource type="Script" uid="uid://ydkl88qj623s" path="res://godot/deck_builder/deck_builder.gd" id="1_2dlqr"]
 [ext_resource type="PackedScene" uid="uid://bl5df3b7c8t0d" path="res://godot/deck/deck.tscn" id="2_stdcc"]
+[ext_resource type="Theme" uid="uid://dd303o3e7c3ai" path="res://godot/deck_builder/button_theme.tres" id="3_2gchn"]
 
 [node name="DeckBuilder" type="Node2D"]
 script = ExtResource("1_2dlqr")
@@ -10,24 +11,27 @@ script = ExtResource("1_2dlqr")
 position = Vector2(1000, 294)
 
 [node name="CreateDeckBtn" type="Button" parent="."]
-offset_left = 910.0
-offset_top = 43.0
-offset_right = 1089.0
-offset_bottom = 74.0
+offset_left = 856.0
+offset_top = 48.0
+offset_right = 1142.0
+offset_bottom = 91.0
+theme = ExtResource("3_2gchn")
 text = "Create a random deck"
 
 [node name="BattleBtn" type="Button" parent="."]
-offset_left = 941.0
-offset_top = 150.0
-offset_right = 1067.0
-offset_bottom = 181.0
+offset_left = 856.0
+offset_top = 160.0
+offset_right = 1147.0
+offset_bottom = 203.0
+theme = ExtResource("3_2gchn")
 text = "Start the battle"
 
 [node name="AddCustomizedCardBtn" type="Button" parent="."]
-offset_left = 915.0
-offset_top = 92.0
-offset_right = 1085.0
-offset_bottom = 123.0
+offset_left = 856.0
+offset_top = 104.0
+offset_right = 1145.0
+offset_bottom = 147.0
+theme = ExtResource("3_2gchn")
 text = "Add customized card"
 
 [connection signal="pressed" from="CreateDeckBtn" to="." method="_on_create_deck_btn_pressed"]

@@ -36,7 +36,7 @@ func _on_card_selected(card: Card) -> void:
 	player_state.camp_resource -= card.resource
 	spawn_unit.visible = true
 	battle.spawn_unit(spawn_unit)
-	Utils.show_toast(card.title + " report to your commander!" , battle.to_global(spawn_unit.position), 1.8)
+	Utils.show_toast(card.title + ", report to your Commander!" , battle.to_global(spawn_unit.position), 1.8)
 
 func _input(event):
 	if event.is_action_pressed("exit_click"):

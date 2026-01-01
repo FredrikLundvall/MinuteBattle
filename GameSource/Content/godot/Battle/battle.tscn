@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://b1f5e0og3cr3d"]
+[gd_scene load_steps=12 format=4 uid="uid://b1f5e0og3cr3d"]
 
 [ext_resource type="Texture2D" uid="uid://ch3hdmtterefj" path="res://maps/paper_sheet.png" id="1_l7l7s"]
 [ext_resource type="Script" uid="uid://dph110o5rhboh" path="res://godot/battle/battle.gd" id="1_wv22a"]
 [ext_resource type="Texture2D" uid="uid://cuam4d2fsam0n" path="res://maps/terrain_tile_set.png" id="2_3qm6w"]
+[ext_resource type="Theme" uid="uid://c8x1a3vhlqavi" path="res://godot/resources/resources_theme.tres" id="4_ot1q0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wv22a"]
 texture = ExtResource("2_3qm6w")
@@ -91,6 +92,22 @@ shape = SubResource("WorldBoundaryShape2D_eicpw")
 
 [node name="Up" type="CollisionShape2D" parent="WorldBoundary"]
 shape = SubResource("WorldBoundaryShape2D_n55d4")
+
+[node name="MapTitle" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 696.0
+offset_top = 26.0
+offset_right = 918.0
+offset_bottom = 80.0
+grow_horizontal = 2
+size_flags_horizontal = 6
+size_flags_vertical = 2
+theme = ExtResource("4_ot1q0")
+theme_override_font_sizes/font_size = 53
+text = "Breitenfeldt"
+horizontal_alignment = 1
 
 [connection signal="child_entered_tree" from="Terrain" to="." method="_on_terrain_child_entered_tree"]
 [connection signal="input_event" from="MapArea" to="." method="_on_map_area_input_event"]

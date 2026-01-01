@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://biyoriwt7grce"]
+[gd_scene load_steps=6 format=3 uid="uid://biyoriwt7grce"]
 
 [ext_resource type="Script" uid="uid://gs22p0vudfwo" path="res://godot/play_ground/play_ground.gd" id="1_cgi8y"]
 [ext_resource type="PackedScene" uid="uid://cjkc4jlqirg4d" path="res://godot/hand/hand.tscn" id="1_rd3d2"]
 [ext_resource type="PackedScene" uid="uid://b1f5e0og3cr3d" path="res://godot/battle/battle.tscn" id="2_mm68r"]
 [ext_resource type="PackedScene" uid="uid://c7ytt5f3g7ich" path="res://godot/resources/resources.tscn" id="4_afd5t"]
+[ext_resource type="Theme" uid="uid://dd303o3e7c3ai" path="res://godot/deck_builder/button_theme.tres" id="5_oueio"]
 
 [node name="PlayGround" type="Node2D"]
 script = ExtResource("1_cgi8y")
@@ -18,10 +19,11 @@ position = Vector2(18, 168)
 position = Vector2(6, -4)
 
 [node name="DrawFromDeckBtn" type="Button" parent="."]
-offset_left = 414.0
-offset_top = 46.0
-offset_right = 546.0
-offset_bottom = 77.0
+offset_left = 442.0
+offset_top = 52.0
+offset_right = 671.0
+offset_bottom = 95.0
+theme = ExtResource("5_oueio")
 text = "Draw from deck"
 
 [connection signal="pressed" from="DrawFromDeckBtn" to="." method="_on_draw_from_deck_button_pressed"]

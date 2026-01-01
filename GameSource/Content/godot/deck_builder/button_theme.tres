@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://dd303o3e7c3ai"]
+
+[ext_resource type="FontFile" uid="uid://ckwemtqg8ntm8" path="res://gui/fonts/JANCIENT.TTF" id="1_0yhqi"]
+
+[resource]
+default_font = ExtResource("1_0yhqi")
+default_font_size = 34
