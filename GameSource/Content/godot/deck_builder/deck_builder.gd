@@ -18,7 +18,7 @@ func _input(event):
 
 func _on_battle_btn_pressed() -> void:
 	#Save the players deck in the PlayerState
-	$CanvasLayer/Deck.reparent(player_state)
+	$Deck.reparent(player_state)
 	#Set the resources for the player
 	player_state.army_resource = 90
 	player_state.reinforcement_speed = 10
@@ -31,11 +31,11 @@ func _on_create_deck_btn_pressed() -> void:
 	_generate_new_deck(deck_size)
 
 func _generate_new_deck(deck_size: int) -> void:
-	Utils.remove_all_children($CanvasLayer/Deck)
+	Utils.remove_all_children($Deck)
 	var swedish_pool_instance = swedish_pool_scene.instantiate()
 	for t in deck_size:
 		var card: Card = swedish_pool_instance.get_random_card().duplicate()
-		$CanvasLayer/Deck.add_child(card)
+		$Deck.add_child(card)
 		print(card.title + ": " + str(card.resource))
 	swedish_pool_instance.queue_free()
 
@@ -46,5 +46,5 @@ func _on_add_customized_card_btn_pressed() -> void:
 	spawn_card.price = rng.randi_range(3, 7)
 	spawn_card.picture = preload("res://hero/projectile.png")
 	spawn_card.get_node("Unit").picture = preload("res://hero/projectile.png")
-	$CanvasLayer/Deck.add_child(spawn_card)
+	$Deck.add_child(spawn_card)
 	print(spawn_card.title)

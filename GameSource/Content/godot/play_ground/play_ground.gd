@@ -1,13 +1,13 @@
 class_name PlayGround extends Node2D
 
 @onready var card_scene: PackedScene = preload("res://godot/card/card.tscn")
-@onready var hand: Hand = $CanvasLayer/Hand
-@onready var battle: Node2D = $CanvasLayer/Battle
+@onready var hand: Hand = $Hand
+@onready var battle: Node2D = $Battle
 @onready var player_state = GameState.get_node("PlayerState")
 @onready var deck = player_state.get_node("Deck")
-@onready var player_army_lbl = $CanvasLayer/PlayerResources/ArmyValue
-@onready var player_reinforcements_lbl = $CanvasLayer/PlayerResources/ReinforcementsValue
-@onready var player_camp_lbl = $CanvasLayer/PlayerResources/CampValue
+@onready var player_army_lbl = $PlayerResources/ArmyValue
+@onready var player_reinforcements_lbl = $PlayerResources/ReinforcementsValue
+@onready var player_camp_lbl = $PlayerResources/CampValue
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -6,9 +6,7 @@
 [node name="DeckBuilder" type="Node2D"]
 script = ExtResource("1_2dlqr")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Deck" parent="CanvasLayer" instance=ExtResource("2_stdcc")]
+[node name="Deck" parent="." instance=ExtResource("2_stdcc")]
 position = Vector2(1000, 294)
 
 [node name="CreateDeckBtn" type="Button" parent="."]
