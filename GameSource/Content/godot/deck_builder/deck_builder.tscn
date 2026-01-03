@@ -7,26 +7,15 @@
 [node name="DeckBuilder" type="Node2D"]
 script = ExtResource("1_2dlqr")
 
-[node name="MyDeck" parent="." instance=ExtResource("2_stdcc")]
-position = Vector2(1000, 294)
-
-[node name="CreateDeckBtn" type="Button" parent="."]
-offset_left = 856.0
-offset_top = 48.0
-offset_right = 1142.0
-offset_bottom = 91.0
+[node name="CreateMyDeckBtn" type="Button" parent="."]
+offset_left = 849.0
+offset_top = 54.0
+offset_right = 1149.0
+offset_bottom = 97.0
 theme = ExtResource("3_2gchn")
 text = "Create your random deck"
 
-[node name="BattleBtn" type="Button" parent="."]
-offset_left = 856.0
-offset_top = 160.0
-offset_right = 1147.0
-offset_bottom = 203.0
-theme = ExtResource("3_2gchn")
-text = "Start the battle"
-
-[node name="AddCustomizedCardBtn" type="Button" parent="."]
+[node name="AddMyCustomizedCardBtn" type="Button" parent="."]
 offset_left = 856.0
 offset_top = 104.0
 offset_right = 1145.0
@@ -34,6 +23,38 @@ offset_bottom = 147.0
 theme = ExtResource("3_2gchn")
 text = "Add card to your deck"
 
-[connection signal="pressed" from="CreateDeckBtn" to="." method="_on_create_deck_btn_pressed"]
-[connection signal="pressed" from="BattleBtn" to="." method="_on_battle_btn_pressed"]
-[connection signal="pressed" from="AddCustomizedCardBtn" to="." method="_on_add_customized_card_btn_pressed"]
+[node name="MyDeck" parent="." instance=ExtResource("2_stdcc")]
+position = Vector2(1000, 184)
+
+[node name="CreateEnemyDeckBtn" type="Button" parent="."]
+offset_left = 840.0
+offset_top = 448.0
+offset_right = 1162.0
+offset_bottom = 491.0
+theme = ExtResource("3_2gchn")
+text = "Create enemy random deck"
+
+[node name="AddEnemyCustomizedCardBtn2" type="Button" parent="."]
+offset_left = 855.0
+offset_top = 499.0
+offset_right = 1144.0
+offset_bottom = 542.0
+theme = ExtResource("3_2gchn")
+text = "Add card to enemy deck"
+
+[node name="EnemyDeck" parent="." instance=ExtResource("2_stdcc")]
+position = Vector2(1002, 583)
+
+[node name="StartBattleBtn" type="Button" parent="."]
+offset_left = 859.0
+offset_top = 894.0
+offset_right = 1150.0
+offset_bottom = 937.0
+theme = ExtResource("3_2gchn")
+text = "Start the battle"
+
+[connection signal="pressed" from="CreateMyDeckBtn" to="." method="_on_create_my_deck_btn_pressed"]
+[connection signal="pressed" from="AddMyCustomizedCardBtn" to="." method="_on_add_my_customized_card_btn_pressed"]
+[connection signal="pressed" from="CreateEnemyDeckBtn" to="." method="_on_create_enemy_deck_btn_pressed"]
+[connection signal="pressed" from="AddEnemyCustomizedCardBtn2" to="." method="_on_add_enemy_customized_card_btn_pressed"]
+[connection signal="pressed" from="StartBattleBtn" to="." method="_on_start_battle_btn_pressed"]

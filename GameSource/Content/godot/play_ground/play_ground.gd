@@ -1,42 +1,55 @@
 class_name PlayGround extends Node2D
 
 @onready var card_scene: PackedScene = preload("res://godot/card/card.tscn")
-@onready var hand: Hand = get_node("Hand")
 @onready var battle: Node2D = get_node("Battle")
-@onready var player_state = GameState.get_node("PlayerState")
-@onready var my_deck = player_state.get_node("MyDeck")
-@onready var player_army_lbl = get_node("PlayerResources/ArmyValue")
-@onready var player_reinforcements_lbl = get_node("PlayerResources/ReinforcementsValue")
-@onready var player_camp_lbl = get_node("PlayerResources/CampValue")
+@onready var my_hand: Hand = get_node("MyHand")
+@onready var my_player_state = GameState.get_node("MyPlayerState")
+@onready var my_deck = my_player_state.get_node("MyDeck")
+@onready var my_player_army_lbl = get_node("MyPlayerResources/ArmyValue")
+@onready var my_player_reinforcements_lbl = get_node("MyPlayerResources/ReinforcementsValue")
+@onready var my_player_camp_lbl = get_node("MyPlayerResources/CampValue")
+@onready var enemy_hand: Hand = get_node("EnemyHand")
+@onready var enemy_player_state = GameState.get_node("EnemyPlayerState")
+@onready var enemy_deck = enemy_player_state.get_node("EnemyDeck")
+@onready var enemy_player_army_lbl = get_node("EnemyPlayerResources/ArmyValue")
+@onready var enemy_player_reinforcements_lbl = get_node("EnemyPlayerResources/ReinforcementsValue")
+@onready var enemy_player_camp_lbl = get_node("EnemyPlayerResources/CampValue")
 
 const NO_RESOURCES_TXT = "Not enough resources in camp"
 const SPAWN_TXT = ", report to your Commander!"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Utils.remove_all_children(hand)
-	Utils.duplicate_all_children(my_deck, hand)
-	if !hand.card_selected.is_connected(_on_card_selected):   
-		hand.card_selected.connect(_on_card_selected)
+	Utils.remove_all_children(my_hand)
+	Utils.duplicate_all_children(my_deck, my_hand)
+	if !my_hand.card_selected.is_connected(_on_card_selected):   
+		my_hand.card_selected.connect(_on_card_selected)
+
+	Utils.remove_all_children(enemy_hand)
+	Utils.duplicate_all_children(enemy_deck, enemy_hand)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	player_army_lbl.text = str(player_state.army_resource)
-	player_reinforcements_lbl.text = "+" + str(player_state.reinforcement_speed)
-	player_camp_lbl.text = str(player_state.camp_resource)
+	my_player_army_lbl.text = str(my_player_state.army_resource)
+	my_player_reinforcements_lbl.text = "+" + str(my_player_state.reinforcement_speed)
+	my_player_camp_lbl.text = str(my_player_state.camp_resource)
+	
+	enemy_player_army_lbl.text = str(enemy_player_state.army_resource)
+	enemy_player_reinforcements_lbl.text = "+" + str(enemy_player_state.reinforcement_speed)
+	enemy_player_camp_lbl.text = str(enemy_player_state.camp_resource)
 
 func _on_draw_from_deck_button_pressed() -> void:
 	var drawn_card = my_deck.get_children().pick_random()
-	hand.add_child(drawn_card.duplicate())
+	my_hand.add_child(drawn_card.duplicate())
 
 func _on_card_selected(card: Card) -> void:
-	if(player_state.camp_resource < card.resource):
+	if(my_player_state.camp_resource < card.resource):
 		Utils.show_toast(NO_RESOURCES_TXT, get_global_mouse_position(), 0.8)
 		return
-	hand.card_played(card)
+	my_hand.card_played(card)
 	var spawn_unit = card.get_node("Unit").duplicate()
 	#Reduce the resource count
-	player_state.camp_resource -= card.resource
+	my_player_state.camp_resource -= card.resource
 	spawn_unit.visible = true
 	battle.spawn_unit(spawn_unit)
 	Utils.show_toast(card.title + SPAWN_TXT, battle.to_global(spawn_unit.position), 1.8)

@@ -4,6 +4,10 @@
 
 [node name="GameState" type="Node"]
 
-[node name="PlayerState" type="Node" parent="."]
+[node name="MyPlayerState" type="Node" parent="."]
+script = ExtResource("1_b2sj1")
+metadata/_custom_type_script = "uid://b6ywoqgc5vkmg"
+
+[node name="EnemyPlayerState" type="Node" parent="."]
 script = ExtResource("1_b2sj1")
 metadata/_custom_type_script = "uid://b6ywoqgc5vkmg"

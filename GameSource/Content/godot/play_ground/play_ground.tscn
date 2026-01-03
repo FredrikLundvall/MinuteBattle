@@ -12,11 +12,17 @@ script = ExtResource("1_cgi8y")
 [node name="Battle" parent="." instance=ExtResource("2_mm68r")]
 position = Vector2(145, 156)
 
-[node name="Hand" parent="." instance=ExtResource("1_rd3d2")]
+[node name="MyHand" parent="." instance=ExtResource("1_rd3d2")]
 position = Vector2(18, 168)
 
-[node name="PlayerResources" parent="." instance=ExtResource("4_afd5t")]
+[node name="MyPlayerResources" parent="." instance=ExtResource("4_afd5t")]
 position = Vector2(6, -4)
+
+[node name="EnemyHand" parent="." instance=ExtResource("1_rd3d2")]
+position = Vector2(1794, 170)
+
+[node name="EnemyPlayerResources" parent="." instance=ExtResource("4_afd5t")]
+position = Vector2(1545, -2)
 
 [node name="DrawFromDeckBtn" type="Button" parent="."]
 offset_left = 442.0
