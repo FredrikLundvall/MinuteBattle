@@ -6,6 +6,11 @@ class_name Card extends Node2D
 @export var picture: Texture2D = preload("res://hero/melee.png")
 @export var hovered: bool = false
 @export var highlighted: bool = false
+@onready var title_lbl: Label = $Background/Title
+@onready var resource_lbl: Label = $Background/Resource
+@onready var background_spr: Sprite2D = $Background
+@onready var picture_spr: Sprite2D = $Background/Picture
+@onready var unit_uni: Unit = $Unit
 
 signal card_hovered(card: Card)
 signal card_unhovered(card: Card)
@@ -13,14 +18,14 @@ signal card_clicked(card: Card)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Background/Title.text = title
-	$Background/Resource.text = str(resource)
-	$Background/Picture.texture = picture
-	$Unit.picture = picture
+	title_lbl.text = title
+	resource_lbl.text = str(resource)
+	picture_spr.texture = picture
+	unit_uni.picture = picture
 	if Engine.is_editor_hint():
-		$Unit.visible = true
+		unit_uni.visible = true
 	else:
-		$Unit.visible = false
+		unit_uni.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -30,12 +35,14 @@ func _process(_delta: float) -> void:
 		unhighlight()
 
 func highlight():
-	var background: Sprite2D = $Background
-	background.set_modulate(Color(0.8,0.7,0.6, 1))
+	if background_spr == null:
+		return
+	background_spr.set_modulate(Color(0.8,0.7,0.6, 1))
 	
 func unhighlight():
-	var background: Sprite2D = $Background
-	background.set_modulate(Color(1,1,1, 1))
+	if background_spr == null:
+		return
+	background_spr.set_modulate(Color(1,1,1, 1))
 
 func _on_area_mouse_entered() -> void:
 	hovered = true

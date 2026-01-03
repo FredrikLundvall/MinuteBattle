@@ -5,6 +5,7 @@ class_name Unit extends Node2D
 @export var highlighted: bool = false
 @export var selected: bool = false
 @export var marker: Marker = null
+@onready var picture_spr: Sprite2D = $Picture
 
 signal unit_hovered(unit: Unit)
 signal unit_unhovered(unit: Unit)
@@ -12,7 +13,7 @@ signal unit_clicked(unit: Unit)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Picture.texture = picture
+	picture_spr.texture = picture
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -22,10 +23,14 @@ func _process(_delta: float) -> void:
 		unhighlight()
 
 func highlight():
-	$Picture.set_modulate(Color(0.8,0.7,0.6, 1))
+	if picture_spr == null:
+		return
+	picture_spr.set_modulate(Color(0.8,0.7,0.6, 1))
 	
 func unhighlight():
-	$Picture.set_modulate(Color(1,1,1, 1))
+	if picture_spr == null:
+		return
+	picture_spr.set_modulate(Color(1,1,1, 1))
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("mouse_click"):
