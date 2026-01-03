@@ -27,6 +27,7 @@ func _ready() -> void:
 
 	Utils.remove_all_children(enemy_hand)
 	Utils.duplicate_all_children(enemy_deck, enemy_hand)
+	enemy_hand.no_highlight()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

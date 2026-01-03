@@ -10,7 +10,6 @@ script = ExtResource("1_db1ti")
 
 [node name="Card" parent="." instance=ExtResource("1_cj7vf")]
 title = "Melee"
-price = 3
 
 [node name="Card2" parent="." instance=ExtResource("1_cj7vf")]
 position = Vector2(-1, 57)
@@ -20,7 +19,6 @@ picture = ExtResource("2_v64y0")
 [node name="Card3" parent="." instance=ExtResource("1_cj7vf")]
 position = Vector2(0, 110)
 title = "Musketeer"
-price = 4
 picture = ExtResource("3_db1ti")
 
 [connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

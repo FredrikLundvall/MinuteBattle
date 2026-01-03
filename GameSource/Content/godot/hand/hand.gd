@@ -14,6 +14,11 @@ func _ready() -> void:
 	for child in get_children():
 		var card = (child as Card)
 		_card_connect(card)
+		
+func no_highlight():
+	for child in get_children():
+		var card = (child as Card)
+		card.use_highlight = false
 
 func _re_position():
 	var y = 0

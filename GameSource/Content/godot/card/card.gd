@@ -6,6 +6,7 @@ class_name Card extends Node2D
 @export var picture: Texture2D = preload("res://hero/melee.png")
 @export var hovered: bool = false
 @export var highlighted: bool = false
+@export var use_highlight: bool = true
 @onready var title_lbl: Label = $Background/Title
 @onready var resource_lbl: Label = $Background/Resource
 @onready var background_spr: Sprite2D = $Background
@@ -29,7 +30,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if highlighted:
+	if highlighted and use_highlight:
 		highlight()
 	else:
 		unhighlight()
