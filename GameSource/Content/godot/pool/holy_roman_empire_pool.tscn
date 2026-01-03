@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://dmrk4i4tt4le3"]
+
+[ext_resource type="Script" uid="uid://kgrkai8gy1jn" path="res://godot/pool/pool.gd" id="1_tjdrp"]
+[ext_resource type="PackedScene" uid="uid://bsor251gbadiw" path="res://godot/card/card.tscn" id="2_0mv3w"]
+[ext_resource type="Texture2D" uid="uid://bfgljh68battj" path="res://enemy/melee.png" id="3_velr2"]
+[ext_resource type="Texture2D" uid="uid://c46mbu0jfnuct" path="res://enemy/projectile.png" id="4_hxq34"]
+[ext_resource type="Texture2D" uid="uid://biyvqg2mdi4hx" path="res://enemy/artillery.png" id="5_p2kwc"]
+
+[node name="HolyRomanEmpirePool" type="Node"]
+script = ExtResource("1_tjdrp")
+metadata/_custom_type_script = "uid://kgrkai8gy1jn"
+
+[node name="Pikeman" parent="." instance=ExtResource("2_0mv3w")]
+title = "Pikeman"
+resource = 2
+picture = ExtResource("3_velr2")
+
+[node name="Musketeer" parent="." instance=ExtResource("2_0mv3w")]
+position = Vector2(117, 1)
+title = "Musketeer"
+resource = 3
+picture = ExtResource("4_hxq34")
+
+[node name="Kartaune" parent="." instance=ExtResource("2_0mv3w")]
+position = Vector2(230, 2)
+title = "Kartaune"
+resource = 8
+picture = ExtResource("5_p2kwc")
+
+[node name="DemiCannon" parent="." instance=ExtResource("2_0mv3w")]
+position = Vector2(341, 1)
+title = "Demi cannon"
+resource = 9
+picture = ExtResource("5_p2kwc")

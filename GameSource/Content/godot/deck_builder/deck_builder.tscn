@@ -7,7 +7,7 @@
 [node name="DeckBuilder" type="Node2D"]
 script = ExtResource("1_2dlqr")
 
-[node name="Deck" parent="." instance=ExtResource("2_stdcc")]
+[node name="MyDeck" parent="." instance=ExtResource("2_stdcc")]
 position = Vector2(1000, 294)
 
 [node name="CreateDeckBtn" type="Button" parent="."]
@@ -16,7 +16,7 @@ offset_top = 48.0
 offset_right = 1142.0
 offset_bottom = 91.0
 theme = ExtResource("3_2gchn")
-text = "Create a random deck"
+text = "Create your random deck"
 
 [node name="BattleBtn" type="Button" parent="."]
 offset_left = 856.0
@@ -32,7 +32,7 @@ offset_top = 104.0
 offset_right = 1145.0
 offset_bottom = 147.0
 theme = ExtResource("3_2gchn")
-text = "Add customized card"
+text = "Add card to your deck"
 
 [connection signal="pressed" from="CreateDeckBtn" to="." method="_on_create_deck_btn_pressed"]
 [connection signal="pressed" from="BattleBtn" to="." method="_on_battle_btn_pressed"]

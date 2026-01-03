@@ -1,8 +1,9 @@
 class_name DeckBuilder extends Node2D
 
-@onready var swedish_pool_scene: PackedScene = preload("res://godot/pool/swedish_pool.tscn")
+@onready var swedish_pool_scene: PackedScene = preload("res://godot/pool/sweden_pool.tscn")
 @onready var card_scene: PackedScene = preload("res://godot/card/card.tscn")
 @onready var player_state = GameState.get_node("PlayerState")
+@onready var my_deck = get_node("MyDeck")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,7 +19,7 @@ func _input(event):
 
 func _on_battle_btn_pressed() -> void:
 	#Save the players deck in the PlayerState
-	$Deck.reparent(player_state)
+	my_deck.reparent(player_state)
 	#Set the resources for the player
 	player_state.army_resource = 90
 	player_state.reinforcement_speed = 10
@@ -31,11 +32,11 @@ func _on_create_deck_btn_pressed() -> void:
 	_generate_new_deck(deck_size)
 
 func _generate_new_deck(deck_size: int) -> void:
-	Utils.remove_all_children($Deck)
+	Utils.remove_all_children(my_deck)
 	var swedish_pool_instance = swedish_pool_scene.instantiate()
 	for t in deck_size:
 		var card: Card = swedish_pool_instance.get_random_card().duplicate()
-		$Deck.add_child(card)
+		my_deck.add_child(card)
 		print(card.title + ": " + str(card.resource))
 	swedish_pool_instance.queue_free()
 
@@ -43,8 +44,8 @@ func _on_add_customized_card_btn_pressed() -> void:
 	var rng = RandomNumberGenerator.new()
 	var spawn_card = card_scene.instantiate()
 	spawn_card.title = "Caroleans"
-	spawn_card.price = rng.randi_range(3, 7)
+	spawn_card.resource = rng.randi_range(3, 7)
 	spawn_card.picture = preload("res://hero/projectile.png")
 	spawn_card.get_node("Unit").picture = preload("res://hero/projectile.png")
-	$Deck.add_child(spawn_card)
+	my_deck.add_child(spawn_card)
 	print(spawn_card.title)

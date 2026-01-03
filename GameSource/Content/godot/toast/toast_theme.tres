@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://dd42a1d284f3g"]
 
-[ext_resource type="FontFile" uid="uid://ckwemtqg8ntm8" path="res://gui/fonts/JANCIENT.TTF" id="1_ea0lj"]
+[ext_resource type="FontFile" uid="uid://cs2exmv4io0kn" path="res://gui/fonts/JANCIENI.TTF" id="1_ea0lj"]
 
 [resource]
 default_font = ExtResource("1_ea0lj")

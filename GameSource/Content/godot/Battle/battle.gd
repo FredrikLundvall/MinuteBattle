@@ -3,17 +3,20 @@ class_name Battle extends Node2D
 @onready var terrain: TileMapLayer = $Terrain
 @onready var meleePicture: Texture2D = preload("res://hero/melee.png")
 @onready var marker_scene: PackedScene = preload("res://godot/marker/marker.tscn")
+@onready var map_title_lbl = get_node("MapTitle")
 
 signal unit_selected(unit: Unit)
 
 const SPAWN_COORDINATES = Vector2i(0,3)
 const SPAWN_ATLAS_TILE = Vector2i(0,0)
+const BATTLE_TITLE_TXT = "North of Breitenfeldt"
+const FLAG_MARKER_TXT = "Ready the troops Commander!\nMove towards that flag."
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#Set spawn point
 	terrain.set_cell(SPAWN_COORDINATES,0,SPAWN_ATLAS_TILE,0)
-	$MapTitle.text = "South of Breitenfeldt"
+	map_title_lbl.text = BATTLE_TITLE_TXT
 
 func spawn_unit(unit: Unit):
 	unit.position = terrain.map_to_local(SPAWN_COORDINATES)
@@ -47,7 +50,7 @@ func _set_marker_for_selected_units_and_remove_old(marker: Marker) -> void:
 		if unit.marker != null and not markers_to_remove.has(unit.marker):
 			markers_to_remove.append(unit.marker)
 		unit.marker = marker
-	Utils.show_toast("Ready the troops Commander!\nMove towards that flag.", to_global(marker.position), 2.5)
+	Utils.show_toast(FLAG_MARKER_TXT, to_global(marker.position), 2.5)
 	_remove_nodes(markers_to_remove)
 
 func _is_unit_and_selected(node: Node) -> bool:
