@@ -8,7 +8,7 @@
 script = ExtResource("1_p7irt")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 328.0
+offset_right = 304.0
 offset_bottom = 152.0
 texture = ExtResource("1_xa2ig")
 
@@ -21,9 +21,9 @@ theme = ExtResource("1_wslaj")
 text = "Army"
 
 [node name="ArmyValue" type="Label" parent="."]
-offset_left = 208.0
+offset_left = 180.0
 offset_top = 14.0
-offset_right = 288.0
+offset_right = 260.0
 offset_bottom = 55.0
 theme = ExtResource("1_wslaj")
 text = "200"
@@ -38,9 +38,9 @@ theme = ExtResource("1_wslaj")
 text = "Reinforcements"
 
 [node name="ReinforcementsValue" type="Label" parent="."]
-offset_left = 208.0
+offset_left = 180.0
 offset_top = 46.0
-offset_right = 288.0
+offset_right = 260.0
 offset_bottom = 87.0
 theme = ExtResource("1_wslaj")
 text = "+10"
@@ -55,9 +55,9 @@ theme = ExtResource("1_wslaj")
 text = "Camp"
 
 [node name="CampValue" type="Label" parent="."]
-offset_left = 208.0
+offset_left = 180.0
 offset_top = 78.0
-offset_right = 288.0
+offset_right = 260.0
 offset_bottom = 119.0
 theme = ExtResource("1_wslaj")
 text = "30"
@@ -72,9 +72,9 @@ theme = ExtResource("1_wslaj")
 text = "Gold"
 
 [node name="GoldValue" type="Label" parent="."]
-offset_left = 208.0
+offset_left = 180.0
 offset_top = 110.0
-offset_right = 288.0
+offset_right = 260.0
 offset_bottom = 151.0
 theme = ExtResource("1_wslaj")
 text = "20"
