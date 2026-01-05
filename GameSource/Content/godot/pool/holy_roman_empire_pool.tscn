@@ -13,22 +13,26 @@ metadata/_custom_type_script = "uid://kgrkai8gy1jn"
 [node name="Pikeman" parent="." instance=ExtResource("2_0mv3w")]
 title = "Pikeman"
 resource = 2
+gold = 1
 picture = ExtResource("3_velr2")
 
 [node name="Musketeer" parent="." instance=ExtResource("2_0mv3w")]
 position = Vector2(117, 1)
 title = "Musketeer"
 resource = 3
+gold = 2
 picture = ExtResource("4_hxq34")
 
 [node name="Kartaune" parent="." instance=ExtResource("2_0mv3w")]
 position = Vector2(230, 2)
 title = "Kartaune"
 resource = 8
+gold = 10
 picture = ExtResource("5_p2kwc")
 
 [node name="DemiCannon" parent="." instance=ExtResource("2_0mv3w")]
 position = Vector2(341, 1)
 title = "Demi cannon"
 resource = 9
+gold = 12
 picture = ExtResource("5_p2kwc")

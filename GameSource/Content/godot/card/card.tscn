@@ -11,6 +11,7 @@ size = Vector2(104, 73)
 
 [node name="Card" type="Node2D"]
 script = ExtResource("1_6n70q")
+gold = null
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(32, 32)
@@ -41,13 +42,21 @@ theme = ExtResource("2_1d8r6")
 text = "Title"
 
 [node name="Resource" type="Label" parent="Background"]
-offset_left = 40.0
-offset_top = -22.0
-offset_right = 65.0
-offset_bottom = 1.0
+offset_left = 36.0
+offset_top = -10.0
+offset_right = 61.0
+offset_bottom = 13.0
 theme = ExtResource("2_1d8r6")
 text = "5"
 horizontal_alignment = 2
+
+[node name="Gold" type="Label" parent="Background"]
+offset_left = -25.0
+offset_top = -10.0
+offset_bottom = 13.0
+theme = ExtResource("2_1d8r6")
+theme_override_colors/font_color = Color(0.5275604, 0.3601575, 0.040216517, 1)
+text = "5"
 
 [node name="Unit" parent="." instance=ExtResource("5_38227")]
 position = Vector2(32, 112)

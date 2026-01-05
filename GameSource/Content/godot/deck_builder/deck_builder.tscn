@@ -9,70 +9,70 @@
 script = ExtResource("1_2dlqr")
 
 [node name="MyResources" parent="." instance=ExtResource("2_0k6gu")]
-position = Vector2(464, 0)
+position = Vector2(464, 73)
 
 [node name="RerollMyStatsBtn" type="Button" parent="."]
 offset_left = 856.0
-offset_top = 8.0
+offset_top = 81.0
 offset_right = 1144.0
-offset_bottom = 51.0
+offset_bottom = 124.0
 theme = ExtResource("3_2gchn")
 text = "Reroll your stats"
 
 [node name="CreateMyDeckBtn" type="Button" parent="."]
 offset_left = 856.0
-offset_top = 56.0
+offset_top = 129.0
 offset_right = 1144.0
-offset_bottom = 99.0
+offset_bottom = 172.0
 theme = ExtResource("3_2gchn")
 text = "Reroll your deck"
 
 [node name="AddMyCustomizedCardBtn" type="Button" parent="."]
 offset_left = 856.0
-offset_top = 104.0
+offset_top = 177.0
 offset_right = 1144.0
-offset_bottom = 147.0
+offset_bottom = 220.0
 theme = ExtResource("3_2gchn")
 text = "Add card to your deck"
 
 [node name="MyDeck" parent="." instance=ExtResource("2_stdcc")]
-position = Vector2(1000, 184)
+position = Vector2(1000, 257)
 
 [node name="EnemyResources" parent="." instance=ExtResource("2_0k6gu")]
-position = Vector2(464, 376)
+position = Vector2(464, 449)
 
 [node name="RerollEnemyStatsBtn" type="Button" parent="."]
 offset_left = 856.0
-offset_top = 384.0
+offset_top = 457.0
 offset_right = 1144.0
-offset_bottom = 427.0
+offset_bottom = 500.0
 theme = ExtResource("3_2gchn")
 text = "Reroll enemy stats"
 
 [node name="CreateEnemyDeckBtn" type="Button" parent="."]
 offset_left = 856.0
-offset_top = 432.0
+offset_top = 505.0
 offset_right = 1144.0
-offset_bottom = 475.0
+offset_bottom = 548.0
 theme = ExtResource("3_2gchn")
 text = "Reroll enemy deck"
 
 [node name="AddEnemyCustomizedCardBtn" type="Button" parent="."]
 offset_left = 856.0
-offset_top = 480.0
+offset_top = 553.0
 offset_right = 1144.0
-offset_bottom = 523.0
+offset_bottom = 596.0
 theme = ExtResource("3_2gchn")
 text = "Add card to enemy deck"
 
 [node name="EnemyDeck" parent="." instance=ExtResource("2_stdcc")]
-position = Vector2(1002, 583)
+position = Vector2(1002, 656)
 
 [node name="StartBattleBtn" type="Button" parent="."]
 offset_left = 856.0
-offset_top = 896.0
+offset_top = 969.0
 offset_right = 1144.0
-offset_bottom = 939.0
+offset_bottom = 1012.0
 theme = ExtResource("3_2gchn")
 text = "Start the battle"
 

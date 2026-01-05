@@ -3,12 +3,14 @@ class_name Card extends Node2D
 
 @export var title: String = "Title"
 @export var resource: int = 5
+@export var gold: int = 3
 @export var picture: Texture2D = preload("res://hero/melee.png")
 @export var hovered: bool = false
 @export var highlighted: bool = false
 @export var use_highlight: bool = true
 @onready var title_lbl: Label = $Background/Title
 @onready var resource_lbl: Label = $Background/Resource
+@onready var gold_lbl: Label = $Background/Gold
 @onready var background_spr: Sprite2D = $Background
 @onready var picture_spr: Sprite2D = $Background/Picture
 @onready var unit_uni: Unit = $Unit
@@ -21,6 +23,7 @@ signal card_clicked(card: Card)
 func _ready() -> void:
 	title_lbl.text = title
 	resource_lbl.text = str(resource)
+	gold_lbl.text = str(gold)
 	picture_spr.texture = picture
 	unit_uni.picture = picture
 	if Engine.is_editor_hint():
