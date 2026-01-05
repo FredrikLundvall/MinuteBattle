@@ -10,6 +10,7 @@ class_name DeckBuilder extends Node2D
 @onready var enemy_resources = get_node("EnemyResources")
 @onready var enemy_deck: Deck = get_node("EnemyDeck")
 
+const RESOURCE_STOCK = 200
 var my_gold: int
 var enemy_gold: int
 
@@ -103,10 +104,14 @@ func _on_start_battle_btn_pressed() -> void:
 
 func _reroll_player_stats(stats: PlayerState):
 	var rng = RandomNumberGenerator.new()
-	stats.army_resource = rng.randi_range(50, 100)
+	var remaining_points = RESOURCE_STOCK
+	stats.army_resource = rng.randi_range(70, 100)
+	remaining_points -= stats.army_resource
 	stats.reinforcement_speed = rng.randi_range(5, 30)
+	remaining_points -= stats.reinforcement_speed
 	stats.camp_resource = rng.randi_range(10, 40)
-	stats.gold_resource = rng.randi_range(20, 70)
+	remaining_points -= stats.camp_resource
+	stats.gold_resource = remaining_points
 
 func _on_reroll_my_stats_btn_pressed() -> void:
 	#Set the resources for the player
