@@ -15,13 +15,13 @@ position = Vector2(145, 156)
 [node name="MyHand" parent="." instance=ExtResource("1_rd3d2")]
 position = Vector2(18, 168)
 
-[node name="MyPlayerResources" parent="." instance=ExtResource("4_afd5t")]
+[node name="MyResources" parent="." instance=ExtResource("4_afd5t")]
 position = Vector2(6, -4)
 
 [node name="EnemyHand" parent="." instance=ExtResource("1_rd3d2")]
 position = Vector2(1794, 170)
 
-[node name="EnemyPlayerResources" parent="." instance=ExtResource("4_afd5t")]
+[node name="EnemyResources" parent="." instance=ExtResource("4_afd5t")]
 position = Vector2(1545, -2)
 
 [node name="DrawFromDeckBtn" type="Button" parent="."]

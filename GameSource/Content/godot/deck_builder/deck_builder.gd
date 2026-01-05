@@ -3,15 +3,17 @@ class_name DeckBuilder extends Node2D
 @onready var swedish_pool_scene: PackedScene = preload("res://godot/pool/sweden_pool.tscn")
 @onready var card_scene: PackedScene = preload("res://godot/card/card.tscn")
 @onready var my_player_state = GameState.get_node("MyPlayerState")
+@onready var my_resources = get_node("MyResources")
 @onready var my_deck = get_node("MyDeck")
 @onready var holy_roman_empire_pool_scene: PackedScene = preload("res://godot/pool/holy_roman_empire_pool.tscn")
 @onready var enemy_player_state = GameState.get_node("EnemyPlayerState")
+@onready var enemy_resources = get_node("EnemyResources")
 @onready var enemy_deck: Deck = get_node("EnemyDeck")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_on_create_my_deck_btn_pressed()
-	_on_create_enemy_deck_btn_pressed()
+	_on_reroll_my_stats_btn_pressed()
+	_on_reroll_enemy_stats_btn_pressed()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -72,14 +74,25 @@ func _on_add_enemy_customized_card_btn_pressed() -> void:
 func _on_start_battle_btn_pressed() -> void:
 	#Save the players deck in the PlayerState
 	my_deck.reparent(my_player_state)
-	#Set the resources for the player
-	my_player_state.army_resource = 90
-	my_player_state.reinforcement_speed = 10
-	my_player_state.camp_resource = 14
 	#Save the enemies deck in the PlayerState
 	enemy_deck.reparent(enemy_player_state)
-	#Set the resources for the enemy
-	enemy_player_state.army_resource = 50
-	enemy_player_state.reinforcement_speed = 14
-	enemy_player_state.camp_resource = 24
 	get_tree().change_scene_to_file("res://godot/play_ground/play_ground.tscn")
+
+func _reroll_player_stats(stats: PlayerState):
+	var rng = RandomNumberGenerator.new()
+	stats.army_resource = rng.randi_range(50, 100)
+	stats.reinforcement_speed = rng.randi_range(5, 30)
+	stats.camp_resource = rng.randi_range(10, 40)
+	stats.gold_resource = rng.randi_range(0, 50)
+
+func _on_reroll_my_stats_btn_pressed() -> void:
+	#Set the resources for the player
+	_reroll_player_stats(my_player_state)
+	my_resources.update_gui(my_player_state)
+	_on_create_my_deck_btn_pressed()
+
+func _on_reroll_enemy_stats_btn_pressed() -> void:
+	#Set the resources for the enemy
+	_reroll_player_stats(enemy_player_state)
+	enemy_resources.update_gui(enemy_player_state)
+	_on_create_enemy_deck_btn_pressed()

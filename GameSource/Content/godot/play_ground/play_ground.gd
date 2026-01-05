@@ -2,18 +2,16 @@ class_name PlayGround extends Node2D
 
 @onready var card_scene: PackedScene = preload("res://godot/card/card.tscn")
 @onready var battle: Node2D = get_node("Battle")
+
 @onready var my_hand: Hand = get_node("MyHand")
 @onready var my_player_state = GameState.get_node("MyPlayerState")
+@onready var my_resources = get_node("MyResources")
 @onready var my_deck = my_player_state.get_node("MyDeck")
-@onready var my_player_army_lbl = get_node("MyPlayerResources/ArmyValue")
-@onready var my_player_reinforcements_lbl = get_node("MyPlayerResources/ReinforcementsValue")
-@onready var my_player_camp_lbl = get_node("MyPlayerResources/CampValue")
+
 @onready var enemy_hand: Hand = get_node("EnemyHand")
 @onready var enemy_player_state = GameState.get_node("EnemyPlayerState")
+@onready var enemy_resources = get_node("EnemyResources")
 @onready var enemy_deck = enemy_player_state.get_node("EnemyDeck")
-@onready var enemy_player_army_lbl = get_node("EnemyPlayerResources/ArmyValue")
-@onready var enemy_player_reinforcements_lbl = get_node("EnemyPlayerResources/ReinforcementsValue")
-@onready var enemy_player_camp_lbl = get_node("EnemyPlayerResources/CampValue")
 
 const NO_RESOURCES_TXT = "Not enough resources in camp"
 const SPAWN_TXT = ", report to your Commander!"
@@ -31,13 +29,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	my_player_army_lbl.text = str(my_player_state.army_resource)
-	my_player_reinforcements_lbl.text = "+" + str(my_player_state.reinforcement_speed)
-	my_player_camp_lbl.text = str(my_player_state.camp_resource)
-	
-	enemy_player_army_lbl.text = str(enemy_player_state.army_resource)
-	enemy_player_reinforcements_lbl.text = "+" + str(enemy_player_state.reinforcement_speed)
-	enemy_player_camp_lbl.text = str(enemy_player_state.camp_resource)
+	my_resources.update_gui(my_player_state)
+	enemy_resources.update_gui(enemy_player_state)
 
 func _on_draw_from_deck_button_pressed() -> void:
 	var drawn_card = my_deck.get_children().pick_random()

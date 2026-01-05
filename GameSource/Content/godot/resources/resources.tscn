@@ -1,62 +1,81 @@
-[gd_scene load_steps=3 format=3 uid="uid://c7ytt5f3g7ich"]
+[gd_scene load_steps=4 format=3 uid="uid://c7ytt5f3g7ich"]
 
+[ext_resource type="Script" uid="uid://chqae0uo03bss" path="res://godot/resources/resources.gd" id="1_p7irt"]
 [ext_resource type="Theme" uid="uid://c8x1a3vhlqavi" path="res://godot/resources/resources_theme.tres" id="1_wslaj"]
 [ext_resource type="Texture2D" uid="uid://c1p68lk7gr7be" path="res://deck/blank_card.png" id="1_xa2ig"]
 
 [node name="Resources" type="Node2D"]
+script = ExtResource("1_p7irt")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 366.0
+offset_right = 328.0
 offset_bottom = 152.0
 texture = ExtResource("1_xa2ig")
 
 [node name="Army" type="Label" parent="."]
 offset_left = 24.0
-offset_top = 16.0
+offset_top = 14.0
 offset_right = 112.0
-offset_bottom = 57.0
+offset_bottom = 55.0
 theme = ExtResource("1_wslaj")
 text = "Army"
 
 [node name="ArmyValue" type="Label" parent="."]
-offset_left = 242.0
-offset_top = 16.0
-offset_right = 322.0
-offset_bottom = 57.0
+offset_left = 208.0
+offset_top = 14.0
+offset_right = 288.0
+offset_bottom = 55.0
 theme = ExtResource("1_wslaj")
 text = "200"
 horizontal_alignment = 2
 
 [node name="Reinforcements" type="Label" parent="."]
 offset_left = 24.0
-offset_top = 56.0
-offset_right = 147.0
-offset_bottom = 97.0
+offset_top = 46.0
+offset_right = 198.0
+offset_bottom = 87.0
 theme = ExtResource("1_wslaj")
 text = "Reinforcements"
 
 [node name="ReinforcementsValue" type="Label" parent="."]
-offset_left = 242.0
-offset_top = 57.0
-offset_right = 322.0
-offset_bottom = 98.0
+offset_left = 208.0
+offset_top = 46.0
+offset_right = 288.0
+offset_bottom = 87.0
 theme = ExtResource("1_wslaj")
 text = "+10"
 horizontal_alignment = 2
 
 [node name="Camp" type="Label" parent="."]
 offset_left = 24.0
-offset_top = 96.0
+offset_top = 78.0
 offset_right = 112.0
-offset_bottom = 137.0
+offset_bottom = 119.0
 theme = ExtResource("1_wslaj")
 text = "Camp"
 
 [node name="CampValue" type="Label" parent="."]
-offset_left = 242.0
-offset_top = 98.0
-offset_right = 322.0
-offset_bottom = 139.0
+offset_left = 208.0
+offset_top = 78.0
+offset_right = 288.0
+offset_bottom = 119.0
 theme = ExtResource("1_wslaj")
 text = "30"
+horizontal_alignment = 2
+
+[node name="Gold" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 110.0
+offset_right = 112.0
+offset_bottom = 151.0
+theme = ExtResource("1_wslaj")
+text = "Gold"
+
+[node name="GoldValue" type="Label" parent="."]
+offset_left = 208.0
+offset_top = 110.0
+offset_right = 288.0
+offset_bottom = 151.0
+theme = ExtResource("1_wslaj")
+text = "20"
 horizontal_alignment = 2

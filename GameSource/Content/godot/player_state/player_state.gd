@@ -3,6 +3,7 @@ class_name PlayerState extends Node
 @export var army_resource: int
 @export var camp_resource: int
 @export var reinforcement_speed: int
+@export var gold_resource: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
