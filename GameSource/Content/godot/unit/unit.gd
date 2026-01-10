@@ -5,6 +5,7 @@ class_name Unit extends Node2D
 @export var highlighted: bool = false
 @export var selected: bool = false
 @export var marker: Marker = null
+@export var is_enemy: bool = false
 @onready var picture_spr: Sprite2D = $Picture
 
 signal unit_hovered(unit: Unit)

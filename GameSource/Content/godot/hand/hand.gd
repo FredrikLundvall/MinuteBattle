@@ -69,3 +69,11 @@ func _highlight_last_hovered_card():
 				last_hovered_card = card
 			else:
 				last_hovered_card.highlighted = false
+
+func lowest_resource() -> int:
+	var min_resource: int = 99999 
+	for child in get_children():
+		var card = (child as Card)
+		if card.resource < min_resource:
+			min_resource = card.resource
+	return min_resource

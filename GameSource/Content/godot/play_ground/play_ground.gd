@@ -4,14 +4,14 @@ class_name PlayGround extends Node2D
 @onready var battle: Node2D = get_node("Battle")
 
 @onready var my_hand: Hand = get_node("MyHand")
-@onready var my_player_state = GameState.get_node("MyPlayerState")
-@onready var my_resources = get_node("MyResources")
-@onready var my_deck = my_player_state.get_node("MyDeck")
+@onready var my_player_state: PlayerState = GameState.get_node("MyPlayerState")
+@onready var my_resources: Resources = get_node("MyResources")
+@onready var my_deck: Deck = my_player_state.get_node("MyDeck")
 
 @onready var enemy_hand: Hand = get_node("EnemyHand")
-@onready var enemy_player_state = GameState.get_node("EnemyPlayerState")
-@onready var enemy_resources = get_node("EnemyResources")
-@onready var enemy_deck = enemy_player_state.get_node("EnemyDeck")
+@onready var enemy_player_state: PlayerState = GameState.get_node("EnemyPlayerState")
+@onready var enemy_resources: Resources = get_node("EnemyResources")
+@onready var enemy_deck: Deck = enemy_player_state.get_node("EnemyDeck")
 
 const NO_RESOURCES_TXT = "Not enough resources in camp"
 const SPAWN_TXT = ", report to your Commander!"
@@ -22,10 +22,15 @@ func _ready() -> void:
 	Utils.duplicate_all_children(my_deck, my_hand)
 	if !my_hand.card_selected.is_connected(_on_card_selected):   
 		my_hand.card_selected.connect(_on_card_selected)
+		
+	if !my_hand.tree_exiting.is_connected(my_hand._on_child_exiting_tree):   
+		my_hand.tree_exiting.connect(my_hand._on_child_exiting_tree)
 
 	Utils.remove_all_children(enemy_hand)
 	Utils.duplicate_all_children(enemy_deck, enemy_hand)
 	enemy_hand.no_highlight()
+	if !enemy_hand.tree_exiting.is_connected(enemy_hand._on_child_exiting_tree):   
+		enemy_hand.tree_exiting.connect(enemy_hand._on_child_exiting_tree)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -51,3 +56,6 @@ func _on_card_selected(card: Card) -> void:
 func _input(event):
 	if event.is_action_pressed("exit_click"):
 		get_tree().quit()
+
+func _on_execute_orders_btn_pressed() -> void:
+	enemy_ai.play_cards(enemy_hand, enemy_player_state, battle)

@@ -25,11 +25,20 @@ position = Vector2(1794, 170)
 position = Vector2(1545, -2)
 
 [node name="DrawFromDeckBtn" type="Button" parent="."]
-offset_left = 442.0
-offset_top = 52.0
-offset_right = 671.0
-offset_bottom = 95.0
+offset_left = 332.0
+offset_top = 15.0
+offset_right = 561.0
+offset_bottom = 58.0
 theme = ExtResource("5_oueio")
 text = "Draw from deck"
 
+[node name="ExecuteOrdersBtn" type="Button" parent="."]
+offset_left = 332.0
+offset_top = 85.0
+offset_right = 561.0
+offset_bottom = 128.0
+theme = ExtResource("5_oueio")
+text = "Execute orders"
+
 [connection signal="pressed" from="DrawFromDeckBtn" to="." method="_on_draw_from_deck_button_pressed"]
+[connection signal="pressed" from="ExecuteOrdersBtn" to="." method="_on_execute_orders_btn_pressed"]

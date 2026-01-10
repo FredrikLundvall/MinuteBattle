@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameState="*res://godot/game_state/game_state.tscn"
 Utils="*res://godot/utils/utils.gd"
+enemy_ai="*res://godot/ai/enemy_ai.gd"
 
 [display]
 
