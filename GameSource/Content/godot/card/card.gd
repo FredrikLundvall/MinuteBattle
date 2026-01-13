@@ -1,13 +1,12 @@
-@tool
 class_name Card extends Node2D
 
 @export var title: String = "Title"
 @export var resource: int = 5
 @export var gold: int = 3
 @export var picture: Texture2D = preload("res://hero/melee.png")
-@export var is_hovered: bool = false
-@export var is_highlighted: bool = false
 @export var use_highlight: bool = true
+var is_hovered: bool = false
+var is_highlighted: bool = false
 @onready var title_lbl: Label = $Background/Title
 @onready var resource_lbl: Label = $Background/Resource
 @onready var gold_lbl: Label = $Background/Gold

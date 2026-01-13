@@ -1,12 +1,15 @@
+@tool
 class_name Unit extends Node2D
 
+@export var movement_distance: int = 3
 @export var picture: Texture2D = preload("res://hero/melee.png")
-@export var is_hovered: bool = false
-@export var is_highlighted: bool = false
-@export var is_selected: bool = false
-@export var marker: Marker = null
-@export var is_enemy: bool = false
+var is_hovered: bool = false
+var is_highlighted: bool = false
+var is_selected: bool = false
+@export_storage var marker: Marker = null
+@export_storage var is_enemy: bool = false
 @onready var picture_spr: Sprite2D = $Picture
+
 
 signal unit_hovered(unit: Unit)
 signal unit_unhovered(unit: Unit)
