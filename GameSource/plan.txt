@@ -92,3 +92,7 @@ Game
 * User creates a game then a player, an enemy player and a campaign is created
 When players total resource drops below zero the game status is "lost"
 When enemy's total resource drops below zero the game status is is "won"
+
+-- GODOT
+Units should have different goals to simplify the enemy ai for the movements. 
+Maybe some hardcoded places where they move to in the map.

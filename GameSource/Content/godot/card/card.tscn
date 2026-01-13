@@ -11,7 +11,8 @@ size = Vector2(104, 73)
 
 [node name="Card" type="Node2D"]
 script = ExtResource("1_6n70q")
-gold = null
+is_hovered = null
+is_highlighted = null
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(32, 32)
@@ -56,7 +57,7 @@ offset_top = -10.0
 offset_bottom = 13.0
 theme = ExtResource("2_1d8r6")
 theme_override_colors/font_color = Color(0.5275604, 0.3601575, 0.040216517, 1)
-text = "5"
+text = "3"
 
 [node name="Unit" parent="." instance=ExtResource("5_38227")]
 position = Vector2(32, 112)

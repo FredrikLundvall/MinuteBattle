@@ -5,8 +5,8 @@ class_name Card extends Node2D
 @export var resource: int = 5
 @export var gold: int = 3
 @export var picture: Texture2D = preload("res://hero/melee.png")
-@export var hovered: bool = false
-@export var highlighted: bool = false
+@export var is_hovered: bool = false
+@export var is_highlighted: bool = false
 @export var use_highlight: bool = true
 @onready var title_lbl: Label = $Background/Title
 @onready var resource_lbl: Label = $Background/Resource
@@ -33,7 +33,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if highlighted and use_highlight:
+	if is_highlighted and use_highlight:
 		highlight()
 	else:
 		unhighlight()
@@ -49,13 +49,13 @@ func unhighlight():
 	background_spr.set_modulate(Color(1,1,1, 1))
 
 func _on_area_mouse_entered() -> void:
-	hovered = true
+	is_hovered = true
 	card_hovered.emit(self)
 
 func _on_area_mouse_exited() -> void:
-	hovered = false
+	is_hovered = false
 	card_unhovered.emit(self)
 
 func _on_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
-	if(event.is_action_pressed("mouse_click") and highlighted):
+	if(event.is_action_pressed("mouse_click") and is_highlighted):
 		card_clicked.emit(self)

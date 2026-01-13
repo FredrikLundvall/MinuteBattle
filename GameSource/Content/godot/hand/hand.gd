@@ -39,7 +39,7 @@ func _on_card_hovered(_card: Card) -> void:
 	_highlight_last_hovered_card()
 
 func _on_card_unhovered(card: Card) -> void:
-	card.highlighted = false
+	card.is_highlighted = false
 	_highlight_last_hovered_card()
 	
 func _on_card_clicked(card: Card) -> void:
@@ -63,12 +63,12 @@ func _highlight_last_hovered_card():
 	var last_hovered_card: Card = null
 	for child in get_children():
 		var card = (child as Card)
-		if card.hovered:
-			card.highlighted = true
+		if card.is_hovered:
+			card.is_highlighted = true
 			if last_hovered_card == null:
 				last_hovered_card = card
 			else:
-				last_hovered_card.highlighted = false
+				last_hovered_card.is_highlighted = false
 
 func lowest_resource() -> int:
 	var min_resource: int = 99999 

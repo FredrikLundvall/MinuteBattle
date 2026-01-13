@@ -32,14 +32,14 @@ func spawn_enemy_unit(unit: Unit):
 	terrain.add_child(unit)
 	
 func _on_unit_hovered(unit: Unit) -> void:
-	unit.highlighted = true
+	unit.is_highlighted = true
 
 func _on_unit_unhovered(unit: Unit) -> void:
-	unit.highlighted = false
+	unit.is_highlighted = false
 	
 func _on_unit_clicked(unit: Unit) -> void:
 	print(unit.name + " clicked")
-	unit.selected = true
+	unit.is_selected = true
 	unit_selected.emit(unit)
 
 func _on_map_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
@@ -62,7 +62,7 @@ func _set_marker_for_selected_units_and_remove_old(marker: Marker) -> void:
 
 func _is_unit_and_selected(node: Node) -> bool:
 	if node is Unit: 
-		return node.selected
+		return node.is_selected
 	else: 
 		return false
 
@@ -80,13 +80,13 @@ func _unselect_all_units():
 	for child in terrain.get_children():
 		if child is Unit:
 			var unit = (child as Unit)
-			unit.selected = false
+			unit.is_selected = false
 
 func _is_any_unit_hovered() -> bool:
 	for child in terrain.get_children():
 		if child is Unit:
 			var unit = (child as Unit)
-			if unit.hovered:
+			if unit.is_hovered:
 				return true
 	return false
 
