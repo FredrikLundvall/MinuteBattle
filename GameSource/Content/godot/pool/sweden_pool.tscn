@@ -19,7 +19,6 @@ gold = 1
 position = Vector2(95, 1)
 title = "Musketeer"
 resource = 3
-gold = 3
 picture = ExtResource("3_xj862")
 
 [node name="3-pounder" parent="." instance=ExtResource("2_pichw")]
@@ -35,3 +34,12 @@ title = "6-pounder"
 resource = 10
 gold = 12
 picture = ExtResource("4_ke1ap")
+
+[editable path="Pikeman"]
+[editable path="Pikeman/Unit"]
+[editable path="Musketeer"]
+[editable path="Musketeer/Unit"]
+[editable path="3-pounder"]
+[editable path="3-pounder/Unit"]
+[editable path="6-pounder"]
+[editable path="6-pounder/Unit"]

@@ -36,3 +36,12 @@ title = "Demi cannon"
 resource = 9
 gold = 12
 picture = ExtResource("5_p2kwc")
+
+[editable path="Pikeman"]
+[editable path="Pikeman/Unit"]
+[editable path="Musketeer"]
+[editable path="Musketeer/Unit"]
+[editable path="Kartaune"]
+[editable path="Kartaune/Unit"]
+[editable path="DemiCannon"]
+[editable path="DemiCannon/Unit"]
