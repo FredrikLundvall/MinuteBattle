@@ -15,10 +15,35 @@ title = "Pikeman"
 resource = 2
 gold = 1
 
+[node name="Title" parent="Pikeman/Background" index="3"]
+text = "Pikeman"
+
+[node name="Resource" parent="Pikeman/Background" index="4"]
+text = "2"
+
+[node name="Gold" parent="Pikeman/Background" index="5"]
+text = "1"
+
+[node name="Unit" parent="Pikeman" index="1"]
+movement_distance = 7
+
 [node name="Musketeer" parent="." instance=ExtResource("2_pichw")]
 position = Vector2(95, 1)
 title = "Musketeer"
 resource = 3
+picture = ExtResource("3_xj862")
+
+[node name="Picture" parent="Musketeer/Background" index="2"]
+texture = ExtResource("3_xj862")
+
+[node name="Title" parent="Musketeer/Background" index="3"]
+text = "Musketeer"
+
+[node name="Resource" parent="Musketeer/Background" index="4"]
+text = "3"
+
+[node name="Unit" parent="Musketeer" index="1"]
+movement_distance = 6
 picture = ExtResource("3_xj862")
 
 [node name="3-pounder" parent="." instance=ExtResource("2_pichw")]
@@ -28,11 +53,42 @@ resource = 9
 gold = 11
 picture = ExtResource("4_ke1ap")
 
+[node name="Picture" parent="3-pounder/Background" index="2"]
+texture = ExtResource("4_ke1ap")
+
+[node name="Title" parent="3-pounder/Background" index="3"]
+text = "3-pounder"
+
+[node name="Resource" parent="3-pounder/Background" index="4"]
+text = "9"
+
+[node name="Gold" parent="3-pounder/Background" index="5"]
+text = "11"
+
+[node name="Unit" parent="3-pounder" index="1"]
+movement_distance = 4
+picture = ExtResource("4_ke1ap")
+
 [node name="6-pounder" parent="." instance=ExtResource("2_pichw")]
 position = Vector2(279, 0)
 title = "6-pounder"
 resource = 10
 gold = 12
+picture = ExtResource("4_ke1ap")
+
+[node name="Picture" parent="6-pounder/Background" index="2"]
+texture = ExtResource("4_ke1ap")
+
+[node name="Title" parent="6-pounder/Background" index="3"]
+text = "6-pounder"
+
+[node name="Resource" parent="6-pounder/Background" index="4"]
+text = "10"
+
+[node name="Gold" parent="6-pounder/Background" index="5"]
+text = "12"
+
+[node name="Unit" parent="6-pounder" index="1"]
 picture = ExtResource("4_ke1ap")
 
 [editable path="Pikeman"]

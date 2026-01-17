@@ -95,4 +95,13 @@ When enemy's total resource drops below zero the game status is is "won"
 
 -- GODOT
 Units should have different goals to simplify the enemy ai for the movements. 
-Maybe some hardcoded places where they move to in the map.
+Maybe some hardcoded places where they move to in the map. 
+The placement of the canons is the base of the placement of the other units.
+A list of places where canons is good to place can be a good start for the enemy ai development
+
+The different terrains: 
+road - move longer
+forrest - move shorter, incomming projectile less accurate
+river - unpassable 
+bridge - adds a passable place on rivers
+hill - expands outgoing projectile distance
