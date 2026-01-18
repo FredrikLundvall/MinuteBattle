@@ -7,26 +7,23 @@ class_name Battle extends Node2D
 
 signal unit_selected(unit: Unit)
 
-const SPAWN_COORDINATES = Vector2i(0,3)
-const SPAWN_ENEMY_COORDINATES = Vector2i(24,9)
-const SPAWN_ATLAS_TILE = Vector2i(0,0)
 const BATTLE_TITLE_TXT = "North of Breitenfeldt"
 const FLAG_MARKER_TXT = "Ready the troops Commander!\nMove towards that flag."
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	#Set spawn point
-	terrain.set_cell(SPAWN_COORDINATES,0,SPAWN_ATLAS_TILE,0)
+	#terrain.set_cell(SPAWN_COORDINATES,0,SPAWN_ATLAS_TILE,0)
 	map_title_lbl.text = BATTLE_TITLE_TXT
-
+	
 func spawn_unit(unit: Unit):
-	unit.position = terrain.map_to_local(SPAWN_COORDINATES)
+	unit.position = terrain.map_to_local(terrain.SPAWN_COORDINATES)
 	var rng = RandomNumberGenerator.new()
 	unit.position += Vector2(rng.randf_range(-10.0, 10.0),rng.randf_range(-10.0, 10.0))
 	terrain.add_child(unit)
 	
 func spawn_enemy_unit(unit: Unit):
-	unit.position = terrain.map_to_local(SPAWN_ENEMY_COORDINATES)
+	unit.position = terrain.map_to_local(terrain.SPAWN_ENEMY_COORDINATES)
 	var rng = RandomNumberGenerator.new()
 	unit.position += Vector2(rng.randf_range(-10.0, 10.0),rng.randf_range(-10.0, 10.0))
 	terrain.add_child(unit)

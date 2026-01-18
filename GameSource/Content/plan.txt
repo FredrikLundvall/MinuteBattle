@@ -105,3 +105,5 @@ forrest - move shorter, incomming projectile less accurate
 river - unpassable 
 bridge - adds a passable place on rivers
 hill - expands outgoing projectile distance
+swamp - move much shorter, unpassable for cannons and horses
+buildings - can hold units?
