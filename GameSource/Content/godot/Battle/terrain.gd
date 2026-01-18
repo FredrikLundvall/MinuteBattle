@@ -6,7 +6,9 @@ const SPAWN_ATLAS_TILE = Vector2i(0,0)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	#Set spawn points
+	self.set_cell(SPAWN_COORDINATES,0,SPAWN_ATLAS_TILE,0)
+	self.set_cell(SPAWN_ENEMY_COORDINATES,0,SPAWN_ATLAS_TILE,0)
 
 func _use_tile_data_runtime_update(coords: Vector2i) -> bool:
 	if coords == SPAWN_COORDINATES || coords == SPAWN_ENEMY_COORDINATES:

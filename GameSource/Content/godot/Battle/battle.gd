@@ -12,8 +12,6 @@ const FLAG_MARKER_TXT = "Ready the troops Commander!\nMove towards that flag."
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#Set spawn point
-	#terrain.set_cell(SPAWN_COORDINATES,0,SPAWN_ATLAS_TILE,0)
 	map_title_lbl.text = BATTLE_TITLE_TXT
 	
 func spawn_unit(unit: Unit):
