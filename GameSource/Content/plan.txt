@@ -98,6 +98,21 @@ Units should have different goals to simplify the enemy ai for the movements.
 Maybe some hardcoded places where they move to in the map. 
 The placement of the canons is the base of the placement of the other units.
 A list of places where canons is good to place can be a good start for the enemy ai development
+Possibility to discover things wrong on the map or secrets
+
+The battle is: 
+* Spawn units in camp by playing cards.
+* First do movement action, shooting action or melee actions (all performed as kind of angry birds style). 
+Some units can do all three actions in one turn, others can only do one action. The different actions are only preliminary resolved here so the position in reality of the units can be different in the end.
+* Finally resolve all the actions in the turn from both sides the same time.
+
+Start with only allowing one of the three actions at a time.
+How to implement the "sling shot" of the units?
+How to differantiate between move, melee charge and shoot?
+How to visualize that the actions are intentions and previews not the final result?  
+
+The actions could be done by placing "Order messages" that basically are preset moving blocks that will shuffle the units on the map.
+Depending on what types of "Order messages" the player has access to and how many order points he has, he can place one or more different types of "order messages".
 
 The different terrains: 
 road - move longer
