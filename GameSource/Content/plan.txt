@@ -113,6 +113,11 @@ How to visualize that the actions are intentions and previews not the final resu
 
 The actions could be done by placing "Order messages" that basically are preset moving blocks that will shuffle the units on the map.
 Depending on what types of "Order messages" the player has access to and how many order points he has, he can place one or more different types of "order messages".
+The action is done by adding a block that has a directional arrow. When the action is executed the block pushes the units to a new location. 
+The blocks are spawned randomly from the units placed on the map. Every unit has different chances to spawn blocks of the different kinds.
+The blocks are executed by clicking on them after the "Execute orders" are clicked. If the blocks are not clicked the random timer on them decides when they are executed.
+The blocks can be roatated and dragged around. Size, type of action, timer, distance are the different values on them. 
+They should all be randomized to not complicate the gameplay. If the time to move the block is always the same, the distance is also a measure of speed.
 
 The different terrains: 
 road - move longer
