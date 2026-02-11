@@ -3,12 +3,15 @@ class_name Unit extends Node2D
 
 @export var movement_distance: int = 3
 @export var picture: Texture2D = preload("res://hero/melee.png")
+@export var is_movement_visible: bool = false
+
 var is_hovered: bool = false
 var is_highlighted: bool = false
 var is_selected: bool = false
 @export_storage var marker: Marker = null
 @export_storage var is_enemy: bool = false
 @onready var picture_spr: Sprite2D = $Picture
+@onready var movement_spr: Sprite2D = $Movement
 
 
 signal unit_hovered(unit: Unit)
@@ -25,6 +28,9 @@ func _process(_delta: float) -> void:
 		highlight()
 	else:
 		unhighlight()
+	if is_movement_visible != null && movement_spr != null:
+		movement_spr.visible = is_movement_visible
+		 
 
 func highlight():
 	if picture_spr == null:
