@@ -30,6 +30,7 @@ func _process(_delta: float) -> void:
 		unhighlight()
 	if is_movement_visible != null && movement_spr != null:
 		movement_spr.visible = is_movement_visible
+		movement_spr.scale.y = movement_distance / 2.0
 		 
 
 func highlight():

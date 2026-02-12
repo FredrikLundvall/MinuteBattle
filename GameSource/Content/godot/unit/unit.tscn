@@ -22,7 +22,6 @@ script = ExtResource("1_lc2w5")
 [node name="Movement" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(0, 7)
-rotation = 1.5707964
 texture = ExtResource("2_oyst7")
 offset = Vector2(0, -32)
 

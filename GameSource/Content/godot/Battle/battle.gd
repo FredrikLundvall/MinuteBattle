@@ -37,6 +37,7 @@ func _on_unit_clicked(unit: Unit) -> void:
 	if selected_unit != null:
 		selected_unit.is_selected = false
 	unit.is_selected = true
+	unit.movement_spr.rotation  = PI / 2
 	unit.is_movement_visible = true
 	selected_unit = unit
 	unit_selected.emit(unit)
@@ -44,25 +45,11 @@ func _on_unit_clicked(unit: Unit) -> void:
 func _on_map_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if selected_unit != null:
 		if event.is_action_pressed("mouse_click") and not _is_any_unit_hovered():
-			#var marker = marker_scene.instantiate()
-			#marker.position = terrain.get_local_mouse_position()
-			#marker.get_node("Animation").play()
-			#terrain.add_child(marker)
-			#_set_marker_for_selected_units_and_remove_old(marker)
 			selected_unit.is_selected = false
 			selected_unit = null
 		else:
-			selected_unit.movement_spr.look_at(selected_unit.movement_spr.get_local_mouse_position())
-	
-
-func _set_marker_for_selected_units_and_remove_old(marker: Arrow) -> void:
-	var markers_to_remove: Array[Node] = []
-	for unit in terrain.get_children().filter(func(c): return _is_unit_and_selected(c)):
-		if unit.marker != null and not markers_to_remove.has(unit.marker):
-			markers_to_remove.append(unit.marker)
-		unit.marker = marker
-	Utils.show_toast(FLAG_MARKER_TXT, to_global(marker.position), 2.5)
-	_remove_nodes(markers_to_remove)
+			selected_unit.movement_spr.look_at(selected_unit.movement_spr.get_global_mouse_position())
+			selected_unit.movement_spr.rotation += PI / 2
 
 func _is_unit_and_selected(node: Node) -> bool:
 	if node is Unit: 
