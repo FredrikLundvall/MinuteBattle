@@ -37,7 +37,7 @@ func _on_unit_clicked(unit: Unit) -> void:
 	if selected_unit != null:
 		selected_unit.is_selected = false
 	unit.is_selected = true
-	unit.movement_spr.rotation  = PI / 2
+	unit.movement_spr.rotation = PI / 2
 	unit.is_movement_visible = true
 	selected_unit = unit
 	unit_selected.emit(unit)
@@ -47,9 +47,6 @@ func _on_map_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: in
 		if event.is_action_pressed("mouse_click") and not _is_any_unit_hovered():
 			selected_unit.is_selected = false
 			selected_unit = null
-		else:
-			selected_unit.movement_spr.look_at(selected_unit.movement_spr.get_global_mouse_position())
-			selected_unit.movement_spr.rotation += PI / 2
 
 func _is_unit_and_selected(node: Node) -> bool:
 	if node is Unit: 

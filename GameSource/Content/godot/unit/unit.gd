@@ -18,6 +18,8 @@ signal unit_hovered(unit: Unit)
 signal unit_unhovered(unit: Unit)
 signal unit_clicked(unit: Unit)
 
+const MOVEMENT_MULTIPLIER: float = 30
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	picture_spr.texture = picture
@@ -30,8 +32,12 @@ func _process(_delta: float) -> void:
 		unhighlight()
 	if is_movement_visible != null && movement_spr != null:
 		movement_spr.visible = is_movement_visible
-		movement_spr.scale.y = movement_distance / 2.0
-		 
+		if is_movement_visible and is_selected:
+			var distance = movement_spr.position.distance_to(movement_spr.get_parent().get_local_mouse_position())
+			distance = clampf(distance, 0, movement_distance * MOVEMENT_MULTIPLIER)
+			movement_spr.scale.y = distance / movement_spr.texture.get_height()
+			movement_spr.look_at(movement_spr.get_global_mouse_position())
+			movement_spr.rotation += PI / 2
 
 func highlight():
 	if picture_spr == null:

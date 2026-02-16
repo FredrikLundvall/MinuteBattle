@@ -26,7 +26,10 @@ func duplicate_all_children(from_node: Node, to_node: Node) -> void:
 	for child in from_node.get_children():
 		to_node.add_child(child.duplicate())
 
-func show_toast(message: String, position: Vector2, duration: float) -> void:
+#func show_toast(message: String, position: Vector2, duration: float) -> void:
+#	show_toast(message, position, duration, 0)
+
+func show_toast(message: String, position: Vector2, duration: float, fade: float = 0) -> void:
 	var notification_layer = get_node(NOTIFICATION_NODE_NAME)
 	#Hide any old notifications
 	hide_all_children(notification_layer)
@@ -34,6 +37,12 @@ func show_toast(message: String, position: Vector2, duration: float) -> void:
 	var toastNode = TOAST.instantiate()
 	notification_layer.add_child(toastNode)
 	toastNode.show_toast(message, position)
-	#Add the timer for the notification to disapear
+	#Add the timer for the notification to be shown
 	await get_tree().create_timer(duration).timeout
+	#Add the tween for the notification to be faded out
+	var tween := toastNode.create_tween()
+	tween.tween_property(toastNode, "modulate:a", 0, fade)
+	tween.play()
+	await tween.finished
+	tween.kill()
 	toastNode.queue_free()
