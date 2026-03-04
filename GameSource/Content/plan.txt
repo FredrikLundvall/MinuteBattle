@@ -119,6 +119,9 @@ The blocks are executed by clicking on them after the "Execute orders" are click
 The blocks can be roatated and dragged around. Size, type of action, timer, distance are the different values on them. 
 They should all be randomized to not complicate the gameplay. If the time to move the block is always the same, the distance is also a measure of speed.
 
+The movement is done by drawing an arrow from the unit showing where it will move
+Spawn will be moved to a point farthest away from the enemy in a line drawn from the centerpoint of all friendly units to the centerpoint of all enemy units 
+
 The different terrains: 
 road - move longer
 forrest - move shorter, incomming projectile less accurate

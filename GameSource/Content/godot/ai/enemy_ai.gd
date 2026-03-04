@@ -30,3 +30,13 @@ func play_cards(hand: Hand, player_state: PlayerState, battle: Battle) -> void:
 			spawn_unit.visible = true
 		battle.spawn_enemy_unit(spawn_unit)
 		print("Playing enemy card: " + card.title)
+
+func set_unit_movements(battle: Battle) -> void:
+	var highground_list = battle.get_highgrounds()
+	var unit_list = battle.get_enemy_units()
+	
+	for unit in unit_list:
+		var nearest_point = Utils.find_nearest_point(unit.position, highground_list)
+		unit.set_movement(nearest_point - unit.position)
+		unit.is_movement_visible = true
+	print("Setting enemy unit movements")

@@ -1,6 +1,7 @@
 extends Node
 const TOAST = preload("res://godot/toast/toast.tscn")
 const NOTIFICATION_NODE_NAME = "NotificationLayer"
+const MAX_FLOAT = 99999.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,3 +47,14 @@ func show_toast(message: String, position: Vector2, duration: float, fade: float
 	await tween.finished
 	tween.kill()
 	toastNode.queue_free()
+
+func find_nearest_point(position: Vector2, point_list: Array[Vector2]) -> Vector2:
+	var nearest_point: Vector2
+	var nearest_distance: float = MAX_FLOAT
+	for point: Vector2 in point_list:
+		var point_distance = position.distance_to(point)
+		if point_distance < nearest_distance:
+			nearest_distance = point_distance
+			nearest_point = point
+
+	return nearest_point

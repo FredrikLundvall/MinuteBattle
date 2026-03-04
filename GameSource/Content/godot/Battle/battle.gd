@@ -47,6 +47,9 @@ func _on_map_area_input_event(_viewport: Node, event: InputEvent, _shape_idx: in
 		if event.is_action_pressed("mouse_click") and not _is_any_unit_hovered():
 			selected_unit.is_selected = false
 			selected_unit = null
+	else:
+		if event.is_action_pressed("mouse_click"):
+			print("position: " + str(terrain.get_local_mouse_position()))
 
 func _is_unit_and_selected(node: Node) -> bool:
 	if node is Unit: 
@@ -90,3 +93,28 @@ func _on_terrain_child_entered_tree(node: Node) -> void:
 	var spawned_unit: Unit = node as Unit
 	if spawned_unit != null and !spawned_unit.is_enemy:
 		_unit_connect(node as Unit)
+
+func get_highgrounds() -> Array[Vector2]:
+	var highground_list: Array[Vector2]
+	highground_list.append(Vector2(797.0, 290.0))
+	highground_list.append(Vector2(842.0, 353.0))
+	highground_list.append(Vector2(907.0, 413.0))
+	highground_list.append(Vector2(1167.0, 354.0))
+	highground_list.append(Vector2(1257.0, 351.0))
+	highground_list.append(Vector2(1317.0, 420.0))
+	return highground_list
+
+func get_enemy_units() -> Array[Unit]:
+	var enemy_list: Array[Unit]
+	for child in terrain.get_children():
+		if child is Unit:
+			var unit = (child as Unit)
+			if unit.is_enemy:
+				enemy_list.append(unit)
+	return enemy_list
+
+func move_units():
+	for child in terrain.get_children():
+		if child is Unit:
+			var unit = (child as Unit)
+			unit.move_to_destination()
