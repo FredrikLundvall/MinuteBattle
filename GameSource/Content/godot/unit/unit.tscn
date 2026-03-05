@@ -8,10 +8,10 @@
 rough = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jyasx"]
-radius = 10.049875
+radius = 11.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oyst7"]
-radius = 14.0
+radius = 15.0
 
 [node name="Unit" type="RigidBody2D"]
 input_pickable = true
