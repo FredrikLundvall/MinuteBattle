@@ -112,9 +112,3 @@ func get_enemy_units() -> Array[Unit]:
 			if unit.is_enemy:
 				enemy_list.append(unit)
 	return enemy_list
-
-func move_units():
-	for child in terrain.get_children():
-		if child is Unit:
-			var unit = (child as Unit)
-			unit.move_to_destination()

@@ -27,9 +27,6 @@ func duplicate_all_children(from_node: Node, to_node: Node) -> void:
 	for child in from_node.get_children():
 		to_node.add_child(child.duplicate())
 
-#func show_toast(message: String, position: Vector2, duration: float) -> void:
-#	show_toast(message, position, duration, 0)
-
 func show_toast(message: String, position: Vector2, duration: float, fade: float = 0) -> void:
 	var notification_layer = get_node(NOTIFICATION_NODE_NAME)
 	#Hide any old notifications

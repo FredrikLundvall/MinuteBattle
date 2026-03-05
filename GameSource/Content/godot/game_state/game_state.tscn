@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dvd04mfeaxmbg"]
+[gd_scene load_steps=3 format=3 uid="uid://dvd04mfeaxmbg"]
 
+[ext_resource type="Script" uid="uid://s6enumsjjvtx" path="res://godot/game_state/game_state.gd" id="1_8dyl7"]
 [ext_resource type="Script" uid="uid://b6ywoqgc5vkmg" path="res://godot/player_state/player_state.gd" id="1_b2sj1"]
 
 [node name="GameState" type="Node"]
+script = ExtResource("1_8dyl7")
 
 [node name="MyPlayerState" type="Node" parent="."]
 script = ExtResource("1_b2sj1")
@@ -11,3 +13,8 @@ metadata/_custom_type_script = "uid://b6ywoqgc5vkmg"
 [node name="EnemyPlayerState" type="Node" parent="."]
 script = ExtResource("1_b2sj1")
 metadata/_custom_type_script = "uid://b6ywoqgc5vkmg"
+
+[node name="MovementPhase" type="Timer" parent="."]
+wait_time = 1.2999999999999998
+
+[connection signal="timeout" from="MovementPhase" to="." method="_on_movement_phase_timeout"]

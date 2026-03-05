@@ -60,4 +60,4 @@ func _input(event):
 func _on_execute_orders_btn_pressed() -> void:
 	enemy_ai.play_cards(enemy_hand, enemy_player_state, battle)
 	enemy_ai.set_unit_movements(battle)
-	battle.move_units()
+	GameState.start_movement_phase()

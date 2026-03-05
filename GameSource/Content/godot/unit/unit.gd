@@ -20,30 +20,34 @@ signal unit_hovered(unit: Unit)
 signal unit_unhovered(unit: Unit)
 signal unit_clicked(unit: Unit)
 
-const MOVEMENT_MULTIPLIER: float = 30
-const MOVEMENT_DURATION: float = 1.3
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	picture_spr.texture = picture
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	if is_highlighted or is_selected:
-		highlight()
-	else:
+	if not Engine.is_editor_hint() and GameState.movement_phase:
 		unhighlight()
-	if is_movement_visible != null && movement_spr != null:
-		movement_spr.visible = is_movement_visible
-		if is_movement_visible and is_selected:
-			set_movement(get_local_mouse_position())
+		movement_spr.visible = false
+	else:
+		if (is_highlighted or is_selected):
+			highlight()
+		else:
+			unhighlight()
+		if is_movement_visible != null && movement_spr != null:
+			movement_spr.visible = is_movement_visible
+			if is_movement_visible and is_selected:
+				set_movement(get_local_mouse_position())
+
+func _physics_process(delta: float) -> void:
+	if not Engine.is_editor_hint() and GameState.movement_phase:
+		position += movement_vector * delta
 
 func set_movement(to_position: Vector2):
 	var distance = movement_spr.position.distance_to(to_position)
-	distance = clampf(distance, 0, movement_distance * MOVEMENT_MULTIPLIER)
+	distance = clampf(distance, 0, movement_distance * GameState.MOVEMENT_MULTIPLIER)
 	movement_vector = to_position.limit_length(distance)
 	movement_spr.scale.y = distance / movement_spr.texture.get_height()
-	#movement_spr.look_at(movement_spr.get_global_mouse_position())
 	movement_spr.look_at(to_global(to_position))
 	movement_spr.rotation += PI / 2
 
@@ -68,12 +72,3 @@ func _on_mouse_entered() -> void:
 func _on_mouse_exited() -> void:
 	is_hovered = false
 	unit_unhovered.emit(self)
-
-func move_to_destination():
-	#position += movement 
-	#Add the tween for the movement
-	var tween := create_tween()
-	tween.tween_property(self, "position", position + movement_vector, MOVEMENT_DURATION)
-	tween.play()
-	await tween.finished
-	tween.kill()
