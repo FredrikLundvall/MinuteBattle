@@ -55,3 +55,11 @@ func find_nearest_point(position: Vector2, point_list: Array[Vector2]) -> Vector
 			nearest_point = point
 
 	return nearest_point
+	
+func calc_centroid_point(point_list: Array[Vector2]) -> Vector2:
+	var sum_x: float = 0.0
+	var sum_y: float = 0.0
+	for point: Vector2 in point_list:
+		sum_x += point.x
+		sum_y += point.y
+	return Vector2(sum_x/point_list.size(), sum_y/point_list.size())

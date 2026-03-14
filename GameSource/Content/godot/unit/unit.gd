@@ -37,18 +37,28 @@ func _process(_delta: float) -> void:
 		if is_movement_visible != null && movement_spr != null:
 			movement_spr.visible = is_movement_visible
 			if is_movement_visible and is_selected:
-				set_movement(get_local_mouse_position())
+				set_movement(get_local_mouse_position() / GameState.MOVEMENT_MULTIPLIER)
 
 func _physics_process(delta: float) -> void:
 	if not Engine.is_editor_hint() and GameState.movement_phase:
-		position += movement_vector * delta
+		position += movement_vector * GameState.MOVEMENT_MULTIPLIER * (delta / GameState.MOVEMENT_DURATION)
 
-func set_movement(to_position: Vector2):
-	var distance = movement_spr.position.distance_to(to_position)
-	distance = clampf(distance, 0, movement_distance * GameState.MOVEMENT_MULTIPLIER)
-	movement_vector = to_position.limit_length(distance)
-	movement_spr.scale.y = distance / movement_spr.texture.get_height()
-	movement_spr.look_at(to_global(to_position))
+func get_next_position() -> Vector2:
+	return position + movement_vector
+
+func set_movement(new_movement: Vector2):
+	movement_vector = new_movement
+	movement_vector = movement_vector.limit_length(movement_distance)
+	_calc_movement_visuals()
+
+func add_movement(added_movement: Vector2):
+	movement_vector += added_movement
+	movement_vector = movement_vector.limit_length(movement_distance)
+	_calc_movement_visuals()
+	
+func _calc_movement_visuals():
+	movement_spr.scale.y = (movement_vector.length() * GameState.MOVEMENT_MULTIPLIER) / movement_spr.texture.get_height()
+	movement_spr.look_at(to_global(movement_vector + movement_spr.position))
 	movement_spr.rotation += PI / 2
 
 func highlight():

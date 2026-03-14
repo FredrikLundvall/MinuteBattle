@@ -105,10 +105,42 @@ func get_highgrounds() -> Array[Vector2]:
 	return highground_list
 
 func get_enemy_units() -> Array[Unit]:
+	return get_faction_units(true)
+	
+func get_my_units() -> Array[Unit]:
+	return get_faction_units(false)
+	
+func get_unit_positions(unit_list: Array[Unit]) -> Array[Vector2]:
+	var position_list: Array[Vector2]
+	for unit in unit_list:
+		position_list.append(unit.position)
+	return position_list
+	
+func find_nearest_units(own_unit: Unit, unit_list: Array[Unit], size: int) -> Array[Unit]:
+	var nearest_list: Array[Unit]
+	for check_unit in unit_list:
+		if(check_unit != own_unit): #Don't add your own unit as nearest
+			#Add so the nearest is first
+			for i: int in nearest_list.size():
+				if(i >= size):
+					break
+				var check_distance = own_unit.position.distance_to(check_unit.position)
+				#TODO: Save the distance in the array to avoid recalculating it all the time 
+				if check_distance < own_unit.position.distance_to(nearest_list[i].position):
+					nearest_list.insert(i, check_unit)
+					print("added a near unit")
+					break
+			if(nearest_list.size() == 0):
+				nearest_list.insert(0, check_unit)
+			if(nearest_list.size() > size):
+				nearest_list.resize(size)
+	return nearest_list
+	
+func get_faction_units(enemy: bool) -> Array[Unit]:
 	var enemy_list: Array[Unit]
 	for child in terrain.get_children():
 		if child is Unit:
 			var unit = (child as Unit)
-			if unit.is_enemy:
+			if unit.is_enemy == enemy:
 				enemy_list.append(unit)
 	return enemy_list

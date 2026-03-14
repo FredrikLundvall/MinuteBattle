@@ -11,3 +11,6 @@ func start_movement_phase():
 
 func _on_movement_phase_timeout() -> void:
 	movement_phase = false
+	
+func rescale_position(position_vector: Vector2) -> Vector2:
+	return position_vector / GameState.MOVEMENT_MULTIPLIER
