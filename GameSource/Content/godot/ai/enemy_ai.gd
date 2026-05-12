@@ -16,7 +16,7 @@ const KEEP_SAME_DISTANCE_MOVEMENT_MULT: float = 1.0
 func _ready() -> void:
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# Called every frame. 'delta' is the elapsed time since the first frame.
 func _process(_delta: float) -> void:
 	pass
 
@@ -70,24 +70,28 @@ func set_unit_movements(battle: Battle) -> void:
 func move_towards_strategic_point(unit: Unit, battle: Battle) -> Vector2:
 	var highground_list = battle.get_highgrounds()
 	var nearest_highground_point = Utils.find_nearest_point(unit.position, highground_list)
-	return GameState.rescale_position(nearest_highground_point - unit.get_next_position()) * STRATEGIC_MOVEMENT_MULT
+	var direction = (nearest_highground_point - unit.position).normalized()
+	return direction * STRATEGIC_MOVEMENT_MULT
 	
 func move_towards_own_center(unit: Unit, centroid: Vector2) -> Vector2:
-	return GameState.rescale_position(centroid - unit.get_next_position()) * CENTER_MOVEMENT_MULT
+	var direction = (centroid - unit.position).normalized()
+	return direction * CENTER_MOVEMENT_MULT
 
 func move_away_from_units(unit: Unit, unit_list: Array[Unit]) -> Vector2:
 	var new_movement: Vector2 = Vector2.ZERO
 	for near_unit in unit_list:
-		if (near_unit != unit && unit.get_next_position().distance_to(near_unit.get_next_position()) < TOO_NEAR_DISTANCE_LIMIT):
-			new_movement += unit.get_next_position() - near_unit.get_next_position()
-	return GameState.rescale_position(new_movement) * TOO_NEAR_MOVEMENT_MULT
+		if (near_unit != unit && unit.position.distance_to(near_unit.position) < TOO_NEAR_DISTANCE_LIMIT):
+			new_movement += (unit.position - near_unit.position).normalized()
+	if new_movement.length() > 0:
+		return new_movement.normalized() * TOO_NEAR_MOVEMENT_MULT
+	return Vector2.ZERO
 	
 func match_movement_of_near_units(unit_list: Array[Unit]) -> Vector2:
 	var new_movement: Vector2 = Vector2.ZERO
 	for near_unit in unit_list:
 		new_movement += near_unit.movement_vector
-	if(unit_list.size() > 0):
-		return (new_movement/unit_list.size()) * MATCHING_MOVEMENT_MULT
+	if unit_list.size() > 0:
+		return (new_movement / unit_list.size()) * MATCHING_MOVEMENT_MULT
 	else:
 		return Vector2.ZERO
 		
@@ -99,8 +103,13 @@ func keep_same_distance_to_opposite_center(unit: Unit, unit_list: Array[Unit], c
 			distance += near_unit.position.distance_to(centroid)
 			size += 1
 	
-	distance = distance/size
-	var dist_diff = unit.get_next_position().distance_to(centroid) - distance
-	var new_movement: Vector2 = (centroid - unit.get_next_position()).normalized() * dist_diff
-	print("Calc movement next position: " + str(unit.get_next_position()) + ", center: " + str(centroid) + ", distance: " + str(distance) + ", distance diff: " + str(dist_diff) +", new movement: " + str(new_movement))
-	return GameState.rescale_position(new_movement) * KEEP_SAME_DISTANCE_MOVEMENT_MULT
+	distance = distance / size
+	var current_distance = unit.position.distance_to(centroid)
+	var dist_diff = current_distance - distance
+	
+	# Only apply force if unit needs to move closer or farther
+	if abs(dist_diff) > 0.1:  # Small deadzone to prevent jitter
+		var direction = (centroid - unit.position).normalized()
+		var movement = direction * -dist_diff  # Negative because moving away if dist_diff > 0
+		return movement.normalized() * KEEP_SAME_DISTANCE_MOVEMENT_MULT
+	return Vector2.ZERO
