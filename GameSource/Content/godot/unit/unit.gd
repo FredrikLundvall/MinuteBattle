@@ -21,10 +21,12 @@ signal unit_unhovered(unit: Unit)
 signal unit_clicked(unit: Unit)
 
 # Called when the node enters the scene tree for the first time.
+# Initializes node references and sets textures; called when entering scene tree
 func _ready() -> void:
 	picture_spr.texture = picture
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
+# Per-frame logic: updates selection highlights and movement preview visibility
 func _process(_delta: float) -> void:
 	if not Engine.is_editor_hint() and GameState.movement_phase:
 		unhighlight()
@@ -39,49 +41,60 @@ func _process(_delta: float) -> void:
 			if is_movement_visible and is_selected:
 				set_movement(GameState.pixels_to_movement_units(get_local_mouse_position()))
 
+# Physics-tick: applies movement during movement phase using movement-unit conversion
 func _physics_process(delta: float) -> void:
 	if not Engine.is_editor_hint() and GameState.movement_phase:
 		add_raw_position(GameState.movement_units_to_pixels(movement_vector) * (delta / GameState.MOVEMENT_DURATION))
 
+# Sets the node's raw world position in pixels
 func set_raw_position(new_position: Vector2):
 	position = new_position
 
+# Adds a delta (in pixels) to the node's world position
 func add_raw_position(delta_position: Vector2):
 	position += delta_position
 
+# Sets the desired movement vector (in movement units) and clamps it
 func set_movement(new_movement: Vector2):
 	movement_vector = new_movement
 	movement_vector = movement_vector.limit_length(movement_distance)
 	_calc_movement_visuals()
 
+# Adds to the current movement vector (in movement units) and clamps it
 func add_movement(added_movement: Vector2):
 	movement_vector += added_movement
 	movement_vector = movement_vector.limit_length(movement_distance)
 	_calc_movement_visuals()
 	
+# Updates the visual representation (sprite) of the movement vector
 func _calc_movement_visuals():
 	movement_spr.scale.y = (GameState.movement_length_to_pixels(movement_vector.length())) / movement_spr.texture.get_height()
 	movement_spr.look_at(to_global(movement_vector + movement_spr.position))
 	movement_spr.rotation += PI / 2
 
+# Apply highlight tint to the unit picture
 func highlight():
 	if picture_spr == null:
 		return
 	picture_spr.set_modulate(Color(0.8,0.7,0.6, 1))
 	
+# Remove highlight tint from the unit picture
 func unhighlight():
 	if picture_spr == null:
 		return
 	picture_spr.set_modulate(Color(1,1,1, 1))
 
+# Input handler for clicks; emits unit_clicked when clicked
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if event.is_action_pressed("mouse_click"):
 		unit_clicked.emit(self)
 
+# Mouse enter event: mark hovered and emit unit_hovered
 func _on_mouse_entered() -> void:
 	is_hovered = true
 	unit_hovered.emit(self)
 
+# Mouse exit event: clear hovered flag and emit unit_unhovered
 func _on_mouse_exited() -> void:
 	is_hovered = false
 	unit_unhovered.emit(self)
