@@ -63,3 +63,7 @@ func calc_centroid_point(point_list: Array[Vector2]) -> Vector2:
 		sum_x += point.x
 		sum_y += point.y
 	return Vector2(sum_x/point_list.size(), sum_y/point_list.size())
+
+func randomize_position(position: Vector2) -> Vector2:
+	var rng = RandomNumberGenerator.new()
+	return position + Vector2(rng.randf_range(-10.0, 10.0),rng.randf_range(-10.0, 10.0))

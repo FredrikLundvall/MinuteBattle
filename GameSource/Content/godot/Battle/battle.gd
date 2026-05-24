@@ -15,15 +15,15 @@ func _ready() -> void:
 	map_title_lbl.text = BATTLE_TITLE_TXT
 	
 func spawn_unit(unit: Unit):
-	unit.position = terrain.map_to_local(terrain.SPAWN_COORDINATES)
-	var rng = RandomNumberGenerator.new()
-	unit.position += Vector2(rng.randf_range(-10.0, 10.0),rng.randf_range(-10.0, 10.0))
+	var unit_position = terrain.map_to_local(terrain.SPAWN_COORDINATES)
+	unit_position = Utils.randomize_position(unit_position)
+	unit.set_raw_position(unit_position)
 	terrain.add_child(unit)
 	
 func spawn_enemy_unit(unit: Unit):
-	unit.position = terrain.map_to_local(terrain.SPAWN_ENEMY_COORDINATES)
-	var rng = RandomNumberGenerator.new()
-	unit.position += Vector2(rng.randf_range(-10.0, 10.0),rng.randf_range(-10.0, 10.0))
+	var unit_position = terrain.map_to_local(terrain.SPAWN_ENEMY_COORDINATES)
+	unit_position = Utils.randomize_position(unit_position)
+	unit.set_raw_position(unit_position)
 	terrain.add_child(unit)
 	
 func _on_unit_hovered(unit: Unit) -> void:

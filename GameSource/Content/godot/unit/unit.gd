@@ -37,14 +37,17 @@ func _process(_delta: float) -> void:
 		if is_movement_visible != null && movement_spr != null:
 			movement_spr.visible = is_movement_visible
 			if is_movement_visible and is_selected:
-				set_movement(get_local_mouse_position() / GameState.MOVEMENT_MULTIPLIER)
+				set_movement(GameState.pixels_to_movement_units(get_local_mouse_position()))
 
 func _physics_process(delta: float) -> void:
 	if not Engine.is_editor_hint() and GameState.movement_phase:
-		position += movement_vector * GameState.MOVEMENT_MULTIPLIER * (delta / GameState.MOVEMENT_DURATION)
+		add_raw_position(GameState.movement_units_to_pixels(movement_vector) * (delta / GameState.MOVEMENT_DURATION))
 
-func get_next_position() -> Vector2:
-	return position + movement_vector
+func set_raw_position(new_position: Vector2):
+	position = new_position
+
+func add_raw_position(delta_position: Vector2):
+	position += delta_position
 
 func set_movement(new_movement: Vector2):
 	movement_vector = new_movement
@@ -57,7 +60,7 @@ func add_movement(added_movement: Vector2):
 	_calc_movement_visuals()
 	
 func _calc_movement_visuals():
-	movement_spr.scale.y = (movement_vector.length() * GameState.MOVEMENT_MULTIPLIER) / movement_spr.texture.get_height()
+	movement_spr.scale.y = (GameState.movement_length_to_pixels(movement_vector.length())) / movement_spr.texture.get_height()
 	movement_spr.look_at(to_global(movement_vector + movement_spr.position))
 	movement_spr.rotation += PI / 2
 
