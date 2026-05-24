@@ -41,12 +41,12 @@ func set_unit_movements(battle: Battle) -> void:
 		var new_movement: Vector2 = Vector2.ZERO
 		#Move towards a good position
 		new_movement += move_towards_strategic_point(unit, battle)
-		unit.add_movement(new_movement)
+		unit.add_pixel_movement(new_movement)
 		unit.is_movement_visible = true
 		#print("Setting enemy unit movements " + unit.name + " " + str(new_movement))
 
 func move_towards_strategic_point(unit: Unit, battle: Battle) -> Vector2:
 	var highground_list = battle.get_highgrounds()
-	var nearest_highground_point = Utils.find_nearest_point(unit.position, highground_list)
-	return (nearest_highground_point - unit.get_position()) * STRATEGIC_MOVEMENT_MULT
+	var nearest_highground_point = Utils.find_nearest_point(unit.get_pixel_position(), highground_list)
+	return (nearest_highground_point - unit.get_pixel_position()) * STRATEGIC_MOVEMENT_MULT
 	

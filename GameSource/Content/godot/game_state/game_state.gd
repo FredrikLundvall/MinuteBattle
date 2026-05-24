@@ -33,3 +33,7 @@ func pixels_to_movement_units(vec: Vector2) -> Vector2:
 # Convert a scalar movement length (units) to pixels
 func movement_length_to_pixels(length: float) -> float:
 	return length * MOVEMENT_MULTIPLIER
+	
+# Convert a scalar movement pixels to length 
+func movement_pixels_to_length(length: float) -> float:
+	return length / MOVEMENT_MULTIPLIER

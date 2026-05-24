@@ -19,14 +19,14 @@ func _ready() -> void:
 func spawn_unit(unit: Unit):
 	var unit_position = terrain.map_to_local(terrain.SPAWN_COORDINATES)
 	unit_position = Utils.randomize_position(unit_position)
-	unit.set_raw_position(unit_position)
+	unit.set_pixel_position(unit_position)
 	terrain.add_child(unit)
 	
 # Spawn an enemy unit at the enemy spawn coordinates with random offset
 func spawn_enemy_unit(unit: Unit):
 	var unit_position = terrain.map_to_local(terrain.SPAWN_ENEMY_COORDINATES)
 	unit_position = Utils.randomize_position(unit_position)
-	unit.set_raw_position(unit_position)
+	unit.set_pixel_position(unit_position)
 	terrain.add_child(unit)
 	
 # Handler when a unit is hovered: mark the unit as highlighted
@@ -131,7 +131,7 @@ func get_my_units() -> Array[Unit]:
 func get_unit_positions(unit_list: Array[Unit]) -> Array[Vector2]:
 	var position_list: Array[Vector2]
 	for unit in unit_list:
-		position_list.append(unit.position)
+		position_list.append(unit.get_pixel_position())
 	return position_list
 	
 # Returns up to `size` nearest units to `own_unit` from `unit_list`
@@ -143,9 +143,9 @@ func find_nearest_units(own_unit: Unit, unit_list: Array[Unit], size: int) -> Ar
 			for i: int in nearest_list.size():
 				if(i >= size):
 					break
-				var check_distance = own_unit.position.distance_to(check_unit.position)
+				var check_distance = own_unit.get_pixel_position().distance_to(check_unit.get_pixel_position())
 				#TODO: Save the distance in the array to avoid recalculating it all the time 
-				if check_distance < own_unit.position.distance_to(nearest_list[i].position):
+				if check_distance < own_unit.get_pixel_position().distance_to(nearest_list[i].get_pixel_position()):
 					nearest_list.insert(i, check_unit)
 					print("added a near unit")
 					break

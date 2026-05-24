@@ -8,7 +8,7 @@ class_name Unit extends Node2D
 var is_hovered: bool = false
 var is_highlighted: bool = false
 var is_selected: bool = false
-var movement_vector: Vector2 = Vector2.ZERO
+var pixel_movement_vector: Vector2 = Vector2.ZERO
 
 @export_storage var marker: Marker = null
 @export_storage var is_enemy: bool = false
@@ -39,37 +39,41 @@ func _process(_delta: float) -> void:
 		if is_movement_visible != null && movement_spr != null:
 			movement_spr.visible = is_movement_visible
 			if is_movement_visible and is_selected:
-				set_movement(GameState.pixels_to_movement_units(get_local_mouse_position()))
+				set_pixel_movement(get_local_mouse_position())
 
 # Physics-tick: applies movement during movement phase using movement-unit conversion
 func _physics_process(delta: float) -> void:
 	if not Engine.is_editor_hint() and GameState.movement_phase:
-		add_raw_position(GameState.movement_units_to_pixels(movement_vector) * (delta / GameState.MOVEMENT_DURATION))
-
+		add_pixel_position(pixel_movement_vector * (delta / GameState.MOVEMENT_DURATION))
+		
+# Gets the node's raw world position in pixels
+func get_pixel_position() -> Vector2:
+	return position
+	
 # Sets the node's raw world position in pixels
-func set_raw_position(new_position: Vector2):
+func set_pixel_position(new_position: Vector2):
 	position = new_position
 
 # Adds a delta (in pixels) to the node's world position
-func add_raw_position(delta_position: Vector2):
+func add_pixel_position(delta_position: Vector2):
 	position += delta_position
 
 # Sets the desired movement vector (in movement units) and clamps it
-func set_movement(new_movement: Vector2):
-	movement_vector = new_movement
-	movement_vector = movement_vector.limit_length(movement_distance)
+func set_pixel_movement(new_movement: Vector2):
+	pixel_movement_vector = new_movement
+	pixel_movement_vector = pixel_movement_vector.limit_length(GameState.movement_length_to_pixels(movement_distance))
 	_calc_movement_visuals()
 
 # Adds to the current movement vector (in movement units) and clamps it
-func add_movement(added_movement: Vector2):
-	movement_vector += added_movement
-	movement_vector = movement_vector.limit_length(movement_distance)
+func add_pixel_movement(added_movement: Vector2):
+	pixel_movement_vector += added_movement
+	pixel_movement_vector = pixel_movement_vector.limit_length(GameState.movement_length_to_pixels(movement_distance))
 	_calc_movement_visuals()
 	
 # Updates the visual representation (sprite) of the movement vector
 func _calc_movement_visuals():
-	movement_spr.scale.y = (GameState.movement_length_to_pixels(movement_vector.length())) / movement_spr.texture.get_height()
-	movement_spr.look_at(to_global(movement_vector + movement_spr.position))
+	movement_spr.scale.y = (pixel_movement_vector.length()) / movement_spr.texture.get_height()
+	movement_spr.look_at(to_global(pixel_movement_vector + movement_spr.position))
 	movement_spr.rotation += PI / 2
 
 # Apply highlight tint to the unit picture
