@@ -60,16 +60,18 @@ func add_pixel_position(delta_position: Vector2):
 
 # Sets the desired movement vector (in movement units) and clamps it
 func set_pixel_movement(new_movement: Vector2):
-	pixel_movement_vector = new_movement
-	pixel_movement_vector = pixel_movement_vector.limit_length(GameState.movement_length_to_pixels(movement_distance))
+	pixel_movement_vector = limit_pixel_movement_distance(new_movement)
 	_calc_movement_visuals()
 
 # Adds to the current movement vector (in movement units) and clamps it
 func add_pixel_movement(added_movement: Vector2):
 	pixel_movement_vector += added_movement
-	pixel_movement_vector = pixel_movement_vector.limit_length(GameState.movement_length_to_pixels(movement_distance))
+	pixel_movement_vector = limit_pixel_movement_distance(pixel_movement_vector)
 	_calc_movement_visuals()
-	
+
+func limit_pixel_movement_distance(new_movement: Vector2) -> Vector2:
+	return new_movement.limit_length(GameState.movement_length_to_pixels(movement_distance))
+
 # Updates the visual representation (sprite) of the movement vector
 func _calc_movement_visuals():
 	movement_spr.scale.y = (pixel_movement_vector.length()) / movement_spr.texture.get_height()
