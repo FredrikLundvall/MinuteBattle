@@ -29,7 +29,6 @@ text = "2"
 text = "1"
 
 [node name="Unit" parent="Pikeman" index="1"]
-mile_movement_distance = null
 picture = ExtResource("3_velr2")
 
 [node name="Picture" parent="Pikeman/Unit" index="1"]
@@ -55,7 +54,6 @@ text = "3"
 text = "2"
 
 [node name="Unit" parent="Musketeer" index="1"]
-mile_movement_distance = null
 picture = ExtResource("4_hxq34")
 
 [node name="Picture" parent="Musketeer/Unit" index="1"]
@@ -81,7 +79,6 @@ text = "8"
 text = "10"
 
 [node name="Unit" parent="Kartaune" index="1"]
-mile_movement_distance = null
 picture = ExtResource("5_p2kwc")
 
 [node name="Picture" parent="Kartaune/Unit" index="1"]
@@ -107,7 +104,6 @@ text = "9"
 text = "12"
 
 [node name="Unit" parent="DemiCannon" index="1"]
-mile_movement_distance = null
 picture = ExtResource("5_p2kwc")
 
 [node name="Picture" parent="DemiCannon/Unit" index="1"]

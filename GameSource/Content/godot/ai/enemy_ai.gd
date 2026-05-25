@@ -2,7 +2,12 @@ extends Node
 
 #The move_towards_strategic_point() should, when used alone, end up at that point not circle around it. How to do that?
 #The sum of the different mult should add up to 1.0
-const STRATEGIC_MOVEMENT_MULT: float = 1.0 
+const STRATEGIC_MOVEMENT_MULT: float = 0.1 
+const CENTER_MOVEMENT_MULT: float = 0.1
+const TOO_NEAR_MOVEMENT_MULT: float = 0.1
+const TOO_NEAR_PIXEL_DISTANCE_LIMIT: float = 35.0
+const MATCHING_MOVEMENT_MULT: float = 0.1
+const KEEP_SAME_DISTANCE_MOVEMENT_MULT: float = 0.6
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -36,11 +41,26 @@ func play_cards(hand: Hand, player_state: PlayerState, battle: Battle) -> void:
 
 func set_unit_movements(battle: Battle) -> void:
 	var unit_list = battle.get_enemy_units()
+	var own_centroid: Vector2 = Utils.calc_centroid_point(battle.get_unit_positions(unit_list))
+	#The opposite_centroid is used for lining upp the enemies towards the friendly units
+	#If the enemies try to have the same distance to this point, they will kind of line upp (or more make a circle around it)
+	var opposite_centroid: Vector2 = Utils.calc_centroid_point(battle.get_unit_positions(battle.get_my_units()))
 	
 	for unit in unit_list:
+		var near_unit_list = battle.find_nearest_units(unit, unit_list, 2)
+		#Pseudo Boids
 		var new_movement: Vector2 = Vector2.ZERO
 		#Move towards a good position
 		new_movement += move_towards_strategic_point(unit, battle)
+		#Move towards your own fractions centroid
+		new_movement += move_towards_own_center(unit, own_centroid)
+		#Move away from any unit that is too close
+		new_movement += move_away_from_units(unit, unit_list)
+		#Match the direction and velocity of the near units
+		new_movement += match_movement_of_near_units(unit, near_unit_list)
+		#Match the distance to the opposite_centroid from near units
+		new_movement += keep_same_distance_to_opposite_center(unit, near_unit_list, opposite_centroid)
+
 		unit.set_pixel_movement(new_movement)
 		unit.is_movement_visible = true
 		#print("Setting enemy unit movements " + unit.name + " " + str(new_movement))
@@ -49,4 +69,36 @@ func move_towards_strategic_point(unit: Unit, battle: Battle) -> Vector2:
 	var highground_list = battle.get_highgrounds()
 	var nearest_highground_point = Utils.find_nearest_point(unit.get_pixel_position(), highground_list)
 	return unit.limit_pixel_movement_distance((nearest_highground_point - unit.get_pixel_position())) * STRATEGIC_MOVEMENT_MULT
+
+func move_towards_own_center(unit: Unit, centroid: Vector2) -> Vector2:
+	return unit.limit_pixel_movement_distance(centroid - unit.get_pixel_position()) * CENTER_MOVEMENT_MULT
+
+func move_away_from_units(unit: Unit, unit_list: Array[Unit]) -> Vector2:
+	var new_movement: Vector2 = Vector2.ZERO
+	for near_unit in unit_list:
+		if (near_unit != unit && unit.get_pixel_position().distance_to(near_unit.get_pixel_position()) < TOO_NEAR_PIXEL_DISTANCE_LIMIT):
+			new_movement += unit.get_pixel_position() - near_unit.get_pixel_position()
+	return unit.limit_pixel_movement_distance(new_movement) * TOO_NEAR_MOVEMENT_MULT
 	
+func match_movement_of_near_units(unit: Unit, unit_list: Array[Unit]) -> Vector2:
+	var new_movement: Vector2 = Vector2.ZERO
+	for near_unit in unit_list:
+		new_movement += near_unit.get_pixel_movement()
+	if(unit_list.size() > 0):
+		return unit.limit_pixel_movement_distance(new_movement/unit_list.size()) * Vector2.ONE * MATCHING_MOVEMENT_MULT
+	else:
+		return Vector2.ZERO
+		
+func keep_same_distance_to_opposite_center(unit: Unit, unit_list: Array[Unit], centroid: Vector2) -> Vector2:
+	var distance: float = unit.position.distance_to(centroid)
+	var size: int = 1
+	for near_unit in unit_list:
+		if (near_unit != unit):
+			distance += near_unit.position.distance_to(centroid)
+			size += 1
+
+	distance = distance/size
+	var dist_diff = unit.get_pixel_position().distance_to(centroid) - distance
+	var new_movement: Vector2 = (centroid - unit.get_pixel_position()).normalized() * dist_diff
+	print("Calc movement next position: " + str(unit.get_pixel_position()) + ", center: " + str(centroid) + ", distance: " + str(distance) + ", distance diff: " + str(dist_diff) +", new movement: " + str(new_movement))
+	return unit.limit_pixel_movement_distance(new_movement) * KEEP_SAME_DISTANCE_MOVEMENT_MULT

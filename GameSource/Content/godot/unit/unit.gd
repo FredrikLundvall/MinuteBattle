@@ -58,6 +58,10 @@ func set_pixel_position(new_position: Vector2):
 func add_pixel_position(delta_position: Vector2):
 	position += delta_position
 
+# Gets the node's raw world movement in pixels
+func get_pixel_movement() -> Vector2:
+	return pixel_movement_vector
+
 # Sets the desired movement vector (in movement units) and clamps it
 func set_pixel_movement(new_movement: Vector2):
 	pixel_movement_vector = limit_pixel_movement_distance(new_movement)
