@@ -2,12 +2,12 @@ extends Node
 
 #The move_towards_strategic_point() should, when used alone, end up at that point not circle around it. How to do that?
 #The sum of the different mult should add up to 1.0
-const STRATEGIC_MOVEMENT_MULT: float = 0.1 
-const CENTER_MOVEMENT_MULT: float = 0.1
-const TOO_NEAR_MOVEMENT_MULT: float = 0.1
+const STRATEGIC_MOVEMENT_MULT: float = 1 
+const CENTER_MOVEMENT_MULT: float = 0
+const TOO_NEAR_MOVEMENT_MULT: float = 0
 const TOO_NEAR_PIXEL_DISTANCE_LIMIT: float = 35.0
-const MATCHING_MOVEMENT_MULT: float = 0.1
-const KEEP_SAME_DISTANCE_MOVEMENT_MULT: float = 0.6
+const MATCHING_MOVEMENT_MULT: float = 0
+const KEEP_SAME_DISTANCE_MOVEMENT_MULT: float = 2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -61,14 +61,14 @@ func set_unit_movements(battle: Battle) -> void:
 		#Match the distance to the opposite_centroid from near units
 		new_movement += keep_same_distance_to_opposite_center(unit, near_unit_list, opposite_centroid)
 
-		unit.set_pixel_movement(new_movement)
+		unit.set_pixel_movement( unit.limit_pixel_movement_distance(new_movement))
 		unit.is_movement_visible = true
 		#print("Setting enemy unit movements " + unit.name + " " + str(new_movement))
 
 func move_towards_strategic_point(unit: Unit, battle: Battle) -> Vector2:
 	var highground_list = battle.get_highgrounds()
 	var nearest_highground_point = Utils.find_nearest_point(unit.get_pixel_position(), highground_list)
-	return unit.limit_pixel_movement_distance((nearest_highground_point - unit.get_pixel_position())) * STRATEGIC_MOVEMENT_MULT
+	return ((nearest_highground_point - unit.get_pixel_position())) * STRATEGIC_MOVEMENT_MULT
 
 func move_towards_own_center(unit: Unit, centroid: Vector2) -> Vector2:
 	return unit.limit_pixel_movement_distance(centroid - unit.get_pixel_position()) * CENTER_MOVEMENT_MULT
@@ -101,4 +101,4 @@ func keep_same_distance_to_opposite_center(unit: Unit, unit_list: Array[Unit], c
 	var dist_diff = unit.get_pixel_position().distance_to(centroid) - distance
 	var new_movement: Vector2 = (centroid - unit.get_pixel_position()).normalized() * dist_diff
 	print("Calc movement next position: " + str(unit.get_pixel_position()) + ", center: " + str(centroid) + ", distance: " + str(distance) + ", distance diff: " + str(dist_diff) +", new movement: " + str(new_movement))
-	return unit.limit_pixel_movement_distance(new_movement) * KEEP_SAME_DISTANCE_MOVEMENT_MULT
+	return new_movement * KEEP_SAME_DISTANCE_MOVEMENT_MULT
