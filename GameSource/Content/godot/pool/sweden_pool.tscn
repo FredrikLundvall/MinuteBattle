@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvaa0kl34shn6"]
+[gd_scene load_steps=6 format=3 uid="uid://cvaa0kl34shn6"]
 
 [ext_resource type="Script" uid="uid://kgrkai8gy1jn" path="res://godot/pool/pool.gd" id="1_jds1j"]
 [ext_resource type="PackedScene" uid="uid://bsor251gbadiw" path="res://godot/card/card.tscn" id="2_pichw"]
 [ext_resource type="Texture2D" uid="uid://yq6xk8yrg31" path="res://hero/projectile.png" id="3_xj862"]
 [ext_resource type="Texture2D" uid="uid://bykyxbxt2ukk7" path="res://hero/artillery.png" id="4_ke1ap"]
+[ext_resource type="Texture2D" uid="uid://c7kjo8jm6dh0r" path="res://hero/cavalry.png" id="5_cav"]
 
 [node name="SwedishPool" type="Node"]
 script = ExtResource("1_jds1j")
@@ -26,8 +27,7 @@ text = "1"
 
 [node name="Unit" parent="Pikeman" index="1"]
 movement_distance = 7
-# stats (0-3)
-melee = 2
+melee = 0
 charge = 1
 hold = 3
 range = 0
@@ -49,14 +49,43 @@ text = "Musketeer"
 text = "3"
 
 [node name="Unit" parent="Musketeer" index="1"]
-movement_distance = 6
 picture = ExtResource("3_xj862")
-# stats (0-3)
-melee = 1
+movement_distance = 6
+melee = 0
 charge = 1
 hold = 1
 range = 2
 damage = 2
+
+[node name="Picture" parent="Musketeer/Unit" index="1"]
+texture = ExtResource("3_xj862")
+
+[node name="Cavalry" parent="." instance=ExtResource("2_pichw")]
+position = Vector2(380, 1)
+title = "Cavalry"
+resource = 4
+picture = ExtResource("5_cav")
+
+[node name="Picture" parent="Cavalry/Background" index="2"]
+texture = ExtResource("5_cav")
+
+[node name="Title" parent="Cavalry/Background" index="3"]
+text = "Cavalry"
+
+[node name="Resource" parent="Cavalry/Background" index="4"]
+text = "4"
+
+[node name="Unit" parent="Cavalry" index="1"]
+picture = ExtResource("5_cav")
+movement_distance = 9
+melee = 0
+charge = 3
+hold = 1
+range = 0
+damage = 2
+
+[node name="Picture" parent="Cavalry/Unit" index="1"]
+texture = ExtResource("3_xj862")
 
 [node name="3-pounder" parent="." instance=ExtResource("2_pichw")]
 position = Vector2(187, 1)
@@ -78,14 +107,16 @@ text = "9"
 text = "11"
 
 [node name="Unit" parent="3-pounder" index="1"]
-movement_distance = 4
 picture = ExtResource("4_ke1ap")
-# stats (0-3)
+movement_distance = 4
 melee = 0
 charge = 0
 hold = 0
 range = 3
 damage = 3
+
+[node name="Picture" parent="3-pounder/Unit" index="1"]
+texture = ExtResource("4_ke1ap")
 
 [node name="6-pounder" parent="." instance=ExtResource("2_pichw")]
 position = Vector2(279, 0)
@@ -107,19 +138,22 @@ text = "10"
 text = "12"
 
 [node name="Unit" parent="6-pounder" index="1"]
-movement_distance = 3
 picture = ExtResource("4_ke1ap")
-# stats (0-3)
 melee = 0
 charge = 0
 hold = 0
 range = 3
 damage = 3
 
+[node name="Picture" parent="6-pounder/Unit" index="1"]
+texture = ExtResource("4_ke1ap")
+
 [editable path="Pikeman"]
 [editable path="Pikeman/Unit"]
 [editable path="Musketeer"]
 [editable path="Musketeer/Unit"]
+[editable path="Cavalry"]
+[editable path="Cavalry/Unit"]
 [editable path="3-pounder"]
 [editable path="3-pounder/Unit"]
 [editable path="6-pounder"]

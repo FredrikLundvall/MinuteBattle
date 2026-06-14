@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmrk4i4tt4le3"]
+[gd_scene load_steps=7 format=3 uid="uid://dmrk4i4tt4le3"]
 
 [ext_resource type="Script" uid="uid://kgrkai8gy1jn" path="res://godot/pool/pool.gd" id="1_tjdrp"]
 [ext_resource type="PackedScene" uid="uid://bsor251gbadiw" path="res://godot/card/card.tscn" id="2_0mv3w"]
 [ext_resource type="Texture2D" uid="uid://bfgljh68battj" path="res://enemy/melee.png" id="3_velr2"]
 [ext_resource type="Texture2D" uid="uid://c46mbu0jfnuct" path="res://enemy/projectile.png" id="4_hxq34"]
 [ext_resource type="Texture2D" uid="uid://biyvqg2mdi4hx" path="res://enemy/artillery.png" id="5_p2kwc"]
+[ext_resource type="Texture2D" uid="uid://d0hljyeqvolxd" path="res://enemy/cavalry.png" id="6_cav_e"]
 
 [node name="HolyRomanEmpirePool" type="Node"]
 script = ExtResource("1_tjdrp")
@@ -29,10 +30,9 @@ text = "2"
 text = "1"
 
 [node name="Unit" parent="Pikeman" index="1"]
-movement_distance = 7
 picture = ExtResource("3_velr2")
-# stats (0-3)
-melee = 2
+movement_distance = 7
+melee = 0
 charge = 1
 hold = 3
 range = 0
@@ -61,10 +61,9 @@ text = "3"
 text = "2"
 
 [node name="Unit" parent="Musketeer" index="1"]
-movement_distance = 6
 picture = ExtResource("4_hxq34")
-# stats (0-3)
-melee = 1
+movement_distance = 6
+melee = 0
 charge = 1
 hold = 1
 range = 2
@@ -72,6 +71,33 @@ damage = 2
 
 [node name="Picture" parent="Musketeer/Unit" index="1"]
 texture = ExtResource("4_hxq34")
+
+[node name="Cavalry" parent="." instance=ExtResource("2_0mv3w")]
+position = Vector2(480, 1)
+title = "Cavalry"
+resource = 4
+picture = ExtResource("6_cav_e")
+
+[node name="Picture" parent="Cavalry/Background" index="2"]
+texture = ExtResource("6_cav_e")
+
+[node name="Title" parent="Cavalry/Background" index="3"]
+text = "Cavalry"
+
+[node name="Resource" parent="Cavalry/Background" index="4"]
+text = "4"
+
+[node name="Unit" parent="Cavalry" index="1"]
+picture = ExtResource("6_cav_e")
+movement_distance = 9
+melee = 0
+charge = 3
+hold = 1
+range = 0
+damage = 2
+
+[node name="Picture" parent="Cavalry/Unit" index="1"]
+texture = ExtResource("3_velr2")
 
 [node name="Kartaune" parent="." instance=ExtResource("2_0mv3w")]
 position = Vector2(230, 2)
@@ -93,9 +119,8 @@ text = "8"
 text = "10"
 
 [node name="Unit" parent="Kartaune" index="1"]
-movement_distance = 4
 picture = ExtResource("5_p2kwc")
-# stats (0-3)
+movement_distance = 4
 melee = 0
 charge = 0
 hold = 0
@@ -125,9 +150,8 @@ text = "9"
 text = "12"
 
 [node name="Unit" parent="DemiCannon" index="1"]
-movement_distance = 4
 picture = ExtResource("5_p2kwc")
-# stats (0-3)
+movement_distance = 4
 melee = 0
 charge = 0
 hold = 0
@@ -141,6 +165,8 @@ texture = ExtResource("5_p2kwc")
 [editable path="Pikeman/Unit"]
 [editable path="Musketeer"]
 [editable path="Musketeer/Unit"]
+[editable path="Cavalry"]
+[editable path="Cavalry/Unit"]
 [editable path="Kartaune"]
 [editable path="Kartaune/Unit"]
 [editable path="DemiCannon"]
