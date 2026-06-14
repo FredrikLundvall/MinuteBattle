@@ -29,7 +29,14 @@ text = "2"
 text = "1"
 
 [node name="Unit" parent="Pikeman" index="1"]
+movement_distance = 7
 picture = ExtResource("3_velr2")
+# stats (0-3)
+melee = 2
+charge = 1
+hold = 3
+range = 0
+damage = 1
 
 [node name="Picture" parent="Pikeman/Unit" index="1"]
 texture = ExtResource("3_velr2")
@@ -54,7 +61,14 @@ text = "3"
 text = "2"
 
 [node name="Unit" parent="Musketeer" index="1"]
+movement_distance = 6
 picture = ExtResource("4_hxq34")
+# stats (0-3)
+melee = 1
+charge = 1
+hold = 1
+range = 2
+damage = 2
 
 [node name="Picture" parent="Musketeer/Unit" index="1"]
 texture = ExtResource("4_hxq34")
@@ -79,7 +93,14 @@ text = "8"
 text = "10"
 
 [node name="Unit" parent="Kartaune" index="1"]
+movement_distance = 4
 picture = ExtResource("5_p2kwc")
+# stats (0-3)
+melee = 0
+charge = 0
+hold = 0
+range = 3
+damage = 3
 
 [node name="Picture" parent="Kartaune/Unit" index="1"]
 texture = ExtResource("5_p2kwc")
@@ -104,7 +125,14 @@ text = "9"
 text = "12"
 
 [node name="Unit" parent="DemiCannon" index="1"]
+movement_distance = 4
 picture = ExtResource("5_p2kwc")
+# stats (0-3)
+melee = 0
+charge = 0
+hold = 0
+range = 3
+damage = 3
 
 [node name="Picture" parent="DemiCannon/Unit" index="1"]
 texture = ExtResource("5_p2kwc")

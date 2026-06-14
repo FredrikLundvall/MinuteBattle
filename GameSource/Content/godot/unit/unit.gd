@@ -1,9 +1,16 @@
 @tool
 class_name Unit extends Node2D
 
-@export var movement_distance: int = 3
 @export var picture: Texture2D = preload("res://hero/melee.png")
 @export var is_movement_visible: bool = false
+
+# Unit stats (0-3 scale and 0-18 scale)
+@export_range(0, 18, 1) var movement_distance: int = 3
+@export_range(0, 3, 1) var melee: int = 0            
+@export_range(0, 3, 1) var charge: int = 0           
+@export_range(0, 3, 1) var hold: int = 0             
+@export_range(0, 3, 1) var range: int = 0            
+@export_range(0, 3, 1) var damage: int = 0           
 
 var is_hovered: bool = false
 var is_highlighted: bool = false

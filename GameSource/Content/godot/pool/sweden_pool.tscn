@@ -26,6 +26,12 @@ text = "1"
 
 [node name="Unit" parent="Pikeman" index="1"]
 movement_distance = 7
+# stats (0-3)
+melee = 2
+charge = 1
+hold = 3
+range = 0
+damage = 1
 
 [node name="Musketeer" parent="." instance=ExtResource("2_pichw")]
 position = Vector2(95, 1)
@@ -45,6 +51,12 @@ text = "3"
 [node name="Unit" parent="Musketeer" index="1"]
 movement_distance = 6
 picture = ExtResource("3_xj862")
+# stats (0-3)
+melee = 1
+charge = 1
+hold = 1
+range = 2
+damage = 2
 
 [node name="3-pounder" parent="." instance=ExtResource("2_pichw")]
 position = Vector2(187, 1)
@@ -68,6 +80,12 @@ text = "11"
 [node name="Unit" parent="3-pounder" index="1"]
 movement_distance = 4
 picture = ExtResource("4_ke1ap")
+# stats (0-3)
+melee = 0
+charge = 0
+hold = 0
+range = 3
+damage = 3
 
 [node name="6-pounder" parent="." instance=ExtResource("2_pichw")]
 position = Vector2(279, 0)
@@ -89,7 +107,14 @@ text = "10"
 text = "12"
 
 [node name="Unit" parent="6-pounder" index="1"]
+movement_distance = 3
 picture = ExtResource("4_ke1ap")
+# stats (0-3)
+melee = 0
+charge = 0
+hold = 0
+range = 3
+damage = 3
 
 [editable path="Pikeman"]
 [editable path="Pikeman/Unit"]
